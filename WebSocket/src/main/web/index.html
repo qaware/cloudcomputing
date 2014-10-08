@@ -1,0 +1,48 @@
+<html>
+<head>
+    <link type="text/css" href="css/black-tie/jquery-ui-1.8.18.custom.css" rel="Stylesheet" />
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+</head>
+<body>
+
+<script>
+    $(function() {
+        $( "#dialog" ).dialog({ autoOpen: false })
+        $( "button", ".status" ).button();
+    });
+</script>
+
+<div id="dialog" title="Neue WebSocket-Nachricht!">
+    <div id="message"></div>
+</div>
+
+<div class="status">
+<button id="status">...</button>
+</div>
+
+<script>
+    var ws = new WebSocket('ws://' + document.location.host + '/broadcastwebsocket')
+
+    ws.onopen = function () {
+        updateStatus('WebSocket aufgebaut!');
+    };
+    ws.onclose = function () {
+        updateStatus('WebSocket geschlossen');
+    };
+    ws.onmessage = function (msg) {
+        showMessage(msg.data);
+    };
+
+    function showMessage(text) {
+        $( "#dialog" ).dialog('open');
+        document.getElementById("message").innerHTML = text;
+        ws.send("AKQ");
+    }
+
+    function updateStatus(text) {
+        document.getElementById("status").innerHTML = text;
+    }
+</script>
+</body>
+</html>
