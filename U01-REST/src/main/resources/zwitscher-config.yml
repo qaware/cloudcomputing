@@ -1,0 +1,9 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 2890
+  adminConnectors:
+    - type: http
+      port: 2891      
+logging:
+  level: INFO
