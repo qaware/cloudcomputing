@@ -6,3 +6,4 @@ Die folgenden Quellcodes sind verfügbar:
  * Lösung zur Übung "REST" 
  * Beispiel-Code zur Vorlesung "Programmiermodelle"
  * Code-Vorlage zur Übung "akka"
+ * Beispiel-Lösung zur Übung "akka"
