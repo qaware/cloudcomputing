@@ -8,3 +8,4 @@ Die folgenden Quellcodes sind verfügbar:
  * Code-Vorlage zur Übung "akka"
  * Beispiel-Lösung zur Übung "akka"
  * Code-Vorlage zur Übung "Google Compute Engine mit JClouds"
+ * Beispiel-Lösung zur Übung "Google Compute Engine mit JClouds"
