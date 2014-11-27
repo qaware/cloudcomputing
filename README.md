@@ -7,3 +7,4 @@ Die folgenden Quellcodes sind verfügbar:
  * Beispiel-Code zur Vorlesung "Programmiermodelle"
  * Code-Vorlage zur Übung "akka"
  * Beispiel-Lösung zur Übung "akka"
+ * Code-Vorlage zur Übung "Google Compute Engine mit JClouds"
