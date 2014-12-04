@@ -10,3 +10,4 @@ Die folgenden Quellcodes sind verfügbar:
  * Code-Vorlage zur Übung "Google Compute Engine mit JClouds"
  * Beispiel-Lösung zur Übung "Google Compute Engine mit JClouds"
  * Code-Vorlage zur Übung "Konfigurationsspeicher Hazelcast"
+ * Beispiel-Lösung zur Übung "Konfigurationsspeicher Hazelcast"
