@@ -9,3 +9,4 @@ Die folgenden Quellcodes sind verfügbar:
  * Beispiel-Lösung zur Übung "akka"
  * Code-Vorlage zur Übung "Google Compute Engine mit JClouds"
  * Beispiel-Lösung zur Übung "Google Compute Engine mit JClouds"
+ * Code-Vorlage zur Übung "Konfigurationsspeicher Hazelcast"
