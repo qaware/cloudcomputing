@@ -24,6 +24,7 @@ Vorbedingungen zur Übung sind:
 	end
 ```
 4. Die Vagrant Box starten. Die letzte Log-Meldung in der Konsolenausgabe dabei in eine Text-Datei kopieren. Hier eine beispielhafte entsprechende Log-Meldung:
+
 `flynn cluster add -g demo.localflynn.com:2222 -p P9fDwHaDeFgeyHjxVlAWh/eOVQaq5fuJkso1YM8uGPoY= default https://controller.demo.localflynn.com b43aadebdf4730ef296d3d76567ad07`
 
 ## Schritt 1.2: Controller Image aufsetzen
@@ -41,6 +42,7 @@ Vorbedingungen zur Übung sind:
   * `yum install nano`
 Eine Anleitung zur Verwendung von _nano_ ist hier zu finden: http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor
 5. Das Flynn Client Kommandozeilenwerkzeug erstellen über den folgenden Befehl:
+
   `L=/usr/local/bin/flynn && curl -sL -A "``uname -sp``" https://cli.flynn.io/flynn.gz | zcat >$L && chmod +x $L`
 6. Einen SSH key erzeugen (beliebiges Passwort wählen) und dem Flynn CLient bekannt machen:
   * `ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa`
@@ -52,33 +54,22 @@ Eine Anleitung zur Verwendung von _nano_ ist hier zu finden: http://www.howtogee
 Wechseln sie nun in das Verzeichnis der Beispielapplikation uns lassen sie sich die Liste der Dateien dort ausgeben. Die Dateien _package.json_ und _web.js_ sind Node.JS-spezifisch. Die Datei _Procfile_ ist Flynn-spezifisch. Was ist im _Procfile_ beschrieben? Lassen sie sich den Inhalt der Datei anzeigen und recherchieren sie das Konzept des Procfiles in Flynn im Internet.
 2. Das lokale git-Repository mit der Beispielapplikation an Flynn binden mit dem Anwendungsnamen _example_:
 `flynn create example`
-Anmerkungen: Dabei wird nur ein Verweis auf ein Remote-Repository gesetzt, das dem Git Receiver der Flynn PaaS entspricht. In dieses Remote Repository kann der Code der Beispielapplikation jederzeit per `git push flynn master` übertragen werden. Sie können sich die verfügbaren Remote Repositories für ein lokales git Repository über den Befehl `git remote -v` anzeigen lassen.
-3. Übertragen sie die Beispielapplikation und analysieren sie die Log-Ausgabe, was dabei in der PaaS passiert. Rufen sie die Anwendung direkt in ihrem Browser auf. Sie ist über dei URL http://example.demo.localflynn.com erreichbar.
-4. Inspizieren
 
+Anmerkungen: Dabei wird nur ein Verweis auf ein Remote-Repository gesetzt, das dem Git Receiver der Flynn PaaS Cloud entspricht. In dieses Remote Repository kann der Code der Beispielapplikation jederzeit per `git push flynn master` übertragen werden. Sie können sich die verfügbaren Remote Repositories für ein lokales git Repository über den Befehl `git remote -v` anzeigen lassen.
+3. Übertragen sie die Beispielapplikation und analysieren sie die Log-Ausgabe, was dabei in der PaaS Cloud passiert. Rufen sie die Anwendung direkt in ihrem Browser auf. Sie ist über dei URL http://example.demo.localflynn.com erreichbar.
+4. Inspizieren sie den aktuellen Zustand der PaaS Cloud. Dabei helfen ihnen die folgenden Kommandos:
+* flynn ps: Zeigt die laufenden Applikationen (Container / Jobs) an.
+* flynn route: Zeigt die aktiven Routen an.
+* flynn log: Zeigt die Log-Ausgabe einer Applikation an.
+Die Dokumentation der Kommandos finden sie hier: https://flynn.io/docs/cli.
 
-## Schritt 3: Beispielapplikation verändern und neuen Stand deployen
+## Schritt 3: Applikation verändern und neuen Stand deployen
+1. Ändern sie die Response-Nachricht in der Beispielapplikation innerhalb der Datei _web.js_.
+2. Übertragen sie die Änderungen in das lokale git Repository: `git commit -am "Neue Antwort"`.
+3. Übertragen sie die Anwendung in die PaaS Cloud.
+4. Testen sie im Browser, ob die Änderungen sichtbar sind.
 
-
-
-- Response-Nachricht editieren (Ctrl + X zum Beenden plus 2 x y)
-nano web.js
-- Änderung übertragen
-git add web.js
-git commit -m "Neue Antwort"
-git push flynn master
--  App im Browser aufrufen
-http://example.demo.localflynn.com/
-
-flynn ps
-flynn route
-
-
-
-# Infos und TODOs
-* https://flynn.io/docs/using-flynn
-* https://flynn.io/docs/cli
-* Procfile ???
-* Weitere Mittel in Using Flynn sichten (insb. Skalierung)
-* Beispiel auf Java umstellen (REST App mit/ohne Dropwizard)
-* Kür: Postgres als DB mit einführen (https://github.com/flynn/flynn)
+## Schritt 4: Applikation skalieren
+1. Skalieren sie die Applikation auf 3 Instanzen mit dem Befehl `flynn scale`.
+2. Überprüfen sie per `flynn ps`, ob alle Instanzen laufen.
+3. Überprüfen sie über mehrfache Aufrufe im Browser, dass das automatische Load Balancing funktioniert.
