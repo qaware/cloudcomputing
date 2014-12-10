@@ -1,81 +1,66 @@
-# Vorbereitung
- * Verzeichnisse "controller" und "slave erstellen"
- * Boxes kopieren
- * vagrant box add flynn-base.box --name=flynn-base
- * vagrant box add centos.box --name=centos
+# Die Übung
+Ziel dieser Übung ist es, auf dem lokalen Rechner eine Flynn PaaS Cloud zu erstellen oder dort eine Node.JS Anwendung zu deployen. Node.JS ist ein Anwendungsserver für JavaScript.
 
-# Images aufsetzen
+Vorbedingungen zur Übung sind: 
+* Eine aktuelle Vagrant- und VirtualBox-Version ist installiert.
+* Die beiden Vagrant Boxen _flynn-base.box_ und _centos.box_ sind ins Übungsverzeichnis kopiert.
 
-## Slave Image aufsetzen
-1. Verzeichnis "slave" im Übungsverzeichnis erstellen
-2. In diesem Verzeichnis eine Datei "Vagrantfile" mit folgendem Inhalt erstellen:
+# Schritt 1: Images aufsetzen
 
+## Schritt 1.1: Slave Image aufsetzen
+1. Die Vagrant die Box _flynn-base.box_ bekannt machen:
+   `vagrant box add flynn-base.box --name=flynn-base`
+2. Verzeichnis _slave_ im Übungsverzeichnis erstellen.
+3. In diesem Verzeichnis eine Datei _Vagrantfile_ mit folgendem Inhalt erstellen:
+```ruby
 	Vagrant.configure(2) do |config|
-  		config.vm.box = "flynn-base"
-  		config.vm.provision "shell", privileged: false, inline: <<SCRIPT
-    		sudo start flynn-host
-    		CLUSTER_DOMAIN=demo.localflynn.com \
-    		flynn-host bootstrap /etc/flynn/bootstrap-manifest.json 2>&1
-		SCRIPT
+	  config.vm.box = "flynn-base"
+	  config.vm.network "private_network", ip: "192.0.2.200"
+	  config.vm.provision "shell", privileged: false, inline: <<SCRIPT
+	    sudo start flynn-host
+	    CLUSTER_DOMAIN=demo.localflynn.com \
+	    flynn-host bootstrap /etc/flynn/bootstrap-manifest.json 2>&1
+	SCRIPT
 	end
+```
+4. Die Vagrant Box starten. Die letzte Log-Meldung in der Konsolenausgabe dabei in eine Text-Datei kopieren. Hier eine beispielhafte entsprechende Log-Meldung:
+`flynn cluster add -g demo.localflynn.com:2222 -p P9fDwHaDeFgeyHjxVlAWh/eOVQaq5fuJkso1YM8uGPoY= default https://controller.demo.localflynn.com b43aadebdf4730ef296d3d76567ad07`
 
-
- `git clone https://github.com/flynn/flynn`
-
- `cd flynn/demo`
-
- `vagrant up`
-
-flynn cluster add -g demo.localflynn.com:2222 -p P9fDwHqhUC2yHjxVlAWh/eOVQaq5fuJkso1YM8uGPoY= default https://controller.demo.localflynn.com b43aadebb76730ef296d3d76567ad07
-
-
-
-## CentOS Controller Image mit Vagrant aufsetzen
-* CentOS COntroller Image mit Vagrant aufsetzen
-* Login auf Root umbiegen. Vagrantfile:
-
-  `config.ssh.username = 'root'`
-
-  `config.ssh.password = 'vagrant'`
-
-  `config.ssh.insert_key = 'true'`
-* Image starten und per Konsole verbinden
-* git installieren: 
-
-  `yum install -y git`
-
-* Flyn Kommandozeilenwerkzeuge installieren
-
+## Schritt 1.2: Controller Image aufsetzen
+1. Die Vagrant die Box _centos.box_ bekannt machen:
+   `vagrant box add centos.box --name=centos`
+2. Ein Vagrant Image auf Basis der _centos_ Box initialisieren. Dabei dann die folgenden Zeilen an der entsprechenden Stelle im Vagrantfile ergänzen (wir werden Root-Rechte in der Box benötigen):
+```ruby
+  config.ssh.username = 'root'
+  config.ssh.password = 'vagrant'
+  config.ssh.insert_key = 'true'
+```
+3. Das Vagrant Image starten und per SSH-Konsole verbinden. Falls auf dem Rechner kein SSH Client installiert ist, so können sie unter Windows den folgenden, bereits aus vorhergehenden Übungen bekannten, SSH Client verwenden: https://dl.dropboxusercontent.com/u/3318749/ssh.zip.
+4. _git_ (VCS) und _nano_ (Editor) installieren über den _yum_ Paketmanager (vergleichbar mit dem bisher bekannten _apt-get_):
+  * `yum install -y git`
+  * `yum install nano`
+Eine Anleitung zur Verwendung von _nano_ ist hier zu finden: http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor
+5. Das Flynn Client Kommandozeilenwerkzeug erstellen über den folgenden Befehl:
   `L=/usr/local/bin/flynn && curl -sL -A "``uname -sp``" https://cli.flynn.io/flynn.gz | zcat >$L && chmod +x $L`
+6. Einen SSH key erzeugen (beliebiges Passwort wählen) und dem Flynn CLient bekannt machen:
+  * `ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa`
+  * `flynn key add`
 
-* SSH key erzeugen (bel. Passwort eingeben)
+## Schritt 2: Beispielapplikation holen und deployen 
+1. Die Node.JS Beispielapplikation holen:
+`git clone https://github.com/flynn/nodejs-flynn-example.git`
+Wechseln sie nun in das Verzeichnis der Beispielapplikation uns lassen sie sich die Liste der Dateien dort ausgeben. Die Dateien _package.json_ und _web.js_ sind Node.JS-spezifisch. Die Datei _Procfile_ ist Flynn-spezifisch. Was ist im _Procfile_ beschrieben? Lassen sie sich den Inhalt der Datei anzeigen und recherchieren sie das Konzept des Procfiles in Flynn im Internet.
+2. Das lokale git-Repository mit der Beispielapplikation an Flynn binden mit dem Anwendungsnamen _example_:
+`flynn create example`
+Anmerkungen: Dabei wird nur ein Verweis auf ein Remote-Repository gesetzt, das dem Git Receiver der Flynn PaaS entspricht. In dieses Remote Repository kann der Code der Beispielapplikation jederzeit per `git push flynn master` übertragen werden. Sie können sich die verfügbaren Remote Repositories für ein lokales git Repository über den Befehl `git remote -v` anzeigen lassen.
+3. Übertragen sie die Beispielapplikation und analysieren sie die Log-Ausgabe, was dabei in der PaaS passiert. Rufen sie die Anwendung direkt in ihrem Browser auf. Sie ist über dei URL http://example.demo.localflynn.com erreichbar.
+4. Inspizieren
 
-  `ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa`
+
+## Schritt 3: Beispielapplikation verändern und neuen Stand deployen
 
 
 
-- SSH key dem Flyyn Client bekannt machen (der in ~/.ssh/id_rsa per Default): https://flynn.io/docs/cli#key
-flynn key add
-- Beispielapplikation holen
-git clone https://github.com/flynn/nodejs-flynn-example.git
-cd nodejs-flynn-example
-- git Remotes anzeigen lassen
-git remote -vgit push 
-- Flynn Applikation erstellen (trägt nur Flynn remotes ein): https://flynn.io/docs/cli#create
-flynn create example
-- git Remotes anzeigen lassen (prüfen ob Flynn remotes eingetragen)
-git remote -v
-- Flynn Routen anzeigen
-flynn route
-- Applikation pushen in Flynn PaaS
-git push flynn master
-- Analyse des Logs was alles passiert (insb. bzgl. Buildpacks)
-> App detection
-> Buildpack Ausführung
--  App im Browser aufrufen
-http://example.demo.localflynn.com/
-- Nano installieren (http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/)
-yum install nano
 - Response-Nachricht editieren (Ctrl + X zum Beenden plus 2 x y)
 nano web.js
 - Änderung übertragen
@@ -84,6 +69,11 @@ git commit -m "Neue Antwort"
 git push flynn master
 -  App im Browser aufrufen
 http://example.demo.localflynn.com/
+
+flynn ps
+flynn route
+
+
 
 # Infos und TODOs
 * https://flynn.io/docs/using-flynn
