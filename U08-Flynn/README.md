@@ -12,34 +12,35 @@ Vorbedingungen zur Übung sind:
    `vagrant box add flynn-base.box --name=flynn-base`
 2. Verzeichnis _slave_ im Übungsverzeichnis erstellen.
 3. In diesem Verzeichnis eine Datei _Vagrantfile_ mit folgendem Inhalt erstellen:
-```ruby
-	Vagrant.configure(2) do |config|
-	  config.vm.box = "flynn-base"
-	  config.vm.network "private_network", ip: "192.0.2.200"
-	  config.vm.provision "shell", privileged: false, inline: <<SCRIPT
-	    sudo start flynn-host
-	    CLUSTER_DOMAIN=demo.localflynn.com \
-	    flynn-host bootstrap /etc/flynn/bootstrap-manifest.json 2>&1
-	SCRIPT
-	end
-```
+	```ruby
+		Vagrant.configure(2) do |config|
+		  config.vm.box = "flynn-base"
+		  config.vm.network "private_network", ip: "192.0.2.200"
+		  config.vm.provision "shell", privileged: false, inline: <<SCRIPT
+		    sudo start flynn-host
+		    CLUSTER_DOMAIN=demo.localflynn.com \
+		    flynn-host bootstrap /etc/flynn/bootstrap-manifest.json 2>&1
+		SCRIPT
+		end
+	```
 4. Die Vagrant Box starten. Die letzte Log-Meldung in der Konsolenausgabe dabei in eine Text-Datei kopieren. Hier eine beispielhafte entsprechende Log-Meldung:
 
-`flynn cluster add -g demo.localflynn.com:2222 -p P9fDwHaDeFgeyHjxVlAWh/eOVQaq5fuJkso1YM8uGPoY= default https://controller.demo.localflynn.com b43aadebdf4730ef296d3d76567ad07`
+	`flynn cluster add -g demo.localflynn.com:2222 -p P9fDwHaDeFgeyHjxVlAWh/eOVQaq5fuJkso1YM8uGPoY= default https://controller.demo.localflynn.com b43aadebdf4730ef296d3d76567ad07`
 
 ## Schritt 1.2: Controller Image aufsetzen
 1. Die Vagrant die Box _centos.box_ bekannt machen:
    `vagrant box add centos.box --name=centos`
 2. Ein Vagrant Image auf Basis der _centos_ Box initialisieren. Dabei dann die folgenden Zeilen an der entsprechenden Stelle im Vagrantfile ergänzen (wir werden Root-Rechte in der Box benötigen):
-```ruby
-  config.ssh.username = 'root'
-  config.ssh.password = 'vagrant'
-  config.ssh.insert_key = 'true'
-```
+	```ruby
+	  config.ssh.username = 'root'
+	  config.ssh.password = 'vagrant'
+	  config.ssh.insert_key = 'true'
+	```
 3. Das Vagrant Image starten und per SSH-Konsole verbinden. Falls auf dem Rechner kein SSH Client installiert ist, so können sie unter Windows den folgenden, bereits aus vorhergehenden Übungen bekannten, SSH Client verwenden: https://dl.dropboxusercontent.com/u/3318749/ssh.zip.
 4. _git_ (VCS) und _nano_ (Editor) installieren über den _yum_ Paketmanager (vergleichbar mit dem bisher bekannten _apt-get_):
   * `yum install -y git`
-  * `yum install nano`
+  * `yum install nano` 
+ 
 Eine Anleitung zur Verwendung von _nano_ ist hier zu finden: http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor
 5. Das Flynn Client Kommandozeilenwerkzeug erstellen über den folgenden Befehl:
 
@@ -73,3 +74,6 @@ Die Dokumentation der Kommandos finden sie hier: https://flynn.io/docs/cli.
 1. Skalieren sie die Applikation auf 3 Instanzen mit dem Befehl `flynn scale`.
 2. Überprüfen sie per `flynn ps`, ob alle Instanzen laufen.
 3. Überprüfen sie über mehrfache Aufrufe im Browser, dass das automatische Load Balancing funktioniert.
+
+## Kür: Applikation in anderer Sprache deployen
+Erstellen sie ein lokales git Repository und hinterlegen sie dort eine kleine selbstgeschriebene Beispielapplikation in einer anderen von Flynn unterstützten Sprache (z.B. Java, PHP oder Ruby). Eine Anleitung dazu finden sie in den Flynn Language Guides unter https://flynn.io/docs. Deployen sie die Beispielapplikation in der Flynn Cloud.
