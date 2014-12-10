@@ -54,14 +54,12 @@ Eine Anleitung zur Verwendung von _nano_ ist hier zu finden: http://www.howtogee
 `git clone https://github.com/flynn/nodejs-flynn-example.git`
 Wechseln sie nun in das Verzeichnis der Beispielapplikation uns lassen sie sich die Liste der Dateien dort ausgeben. Die Dateien _package.json_ und _web.js_ sind Node.JS-spezifisch. Die Datei _Procfile_ ist Flynn-spezifisch. Was ist im _Procfile_ beschrieben? Lassen sie sich den Inhalt der Datei anzeigen und recherchieren sie das Konzept des Procfiles in Flynn im Internet.
 2. Das lokale git-Repository mit der Beispielapplikation an Flynn binden mit dem Anwendungsnamen _example_:
-`flynn create example`
-
-Anmerkungen: Dabei wird nur ein Verweis auf ein Remote-Repository gesetzt, das dem Git Receiver der Flynn PaaS Cloud entspricht. In dieses Remote Repository kann der Code der Beispielapplikation jederzeit per `git push flynn master` übertragen werden. Sie können sich die verfügbaren Remote Repositories für ein lokales git Repository über den Befehl `git remote -v` anzeigen lassen.
+`flynn create example`. Anmerkungen: Dabei wird nur ein Verweis auf ein Remote-Repository gesetzt, das dem Git Receiver der Flynn PaaS Cloud entspricht. In dieses Remote Repository kann der Code der Beispielapplikation jederzeit per `git push flynn master` übertragen werden. Sie können sich die verfügbaren Remote Repositories für ein lokales git Repository über den Befehl `git remote -v` anzeigen lassen.
 3. Übertragen sie die Beispielapplikation und analysieren sie die Log-Ausgabe, was dabei in der PaaS Cloud passiert. Rufen sie die Anwendung direkt in ihrem Browser auf. Sie ist über dei URL http://example.demo.localflynn.com erreichbar.
-4. Inspizieren sie den aktuellen Zustand der PaaS Cloud. Dabei helfen ihnen die folgenden Kommandos:
-* flynn ps: Zeigt die laufenden Applikationen (Container / Jobs) an.
-* flynn route: Zeigt die aktiven Routen an.
-* flynn log: Zeigt die Log-Ausgabe einer Applikation an.
+4. Inspizieren sie den aktuellen Zustand der PaaS Cloud. Dabei helfen ihnen die folgenden Kommandos
+* `flynn ps`: Zeigt die laufenden Applikationen (Container / Jobs) an.
+* `flynn route`: Zeigt die aktiven Routen an.
+* `flynn log`: Zeigt die Log-Ausgabe einer Applikation an.
 Die Dokumentation der Kommandos finden sie hier: https://flynn.io/docs/cli.
 
 ## Schritt 3: Applikation verändern und neuen Stand deployen
