@@ -55,12 +55,11 @@ Wechseln sie nun in das Verzeichnis der Beispielapplikation uns lassen sie sich 
 2. Das lokale git-Repository mit der Beispielapplikation an Flynn binden mit dem Anwendungsnamen _example_:
 `flynn create example`. Anmerkungen: Dabei wird nur ein Verweis auf ein Remote-Repository gesetzt, das dem Git Receiver der Flynn PaaS Cloud entspricht. In dieses Remote Repository kann der Code der Beispielapplikation jederzeit per `git push flynn master` übertragen werden. Sie können sich die verfügbaren Remote Repositories für ein lokales git Repository über den Befehl `git remote -v` anzeigen lassen.
 3. Übertragen sie die Beispielapplikation und analysieren sie die Log-Ausgabe, was dabei in der PaaS Cloud passiert. Rufen sie die Anwendung direkt in ihrem Browser auf. Sie ist über dei URL http://example.demo.localflynn.com erreichbar.
-4. Inspizieren sie den aktuellen Zustand der PaaS Cloud. Dabei helfen ihnen die folgenden Kommandos:
+4. Inspizieren sie den aktuellen Zustand der PaaS Cloud. Dabei helfen ihnen die folgenden Kommandos. Die Dokumentation der Kommandos finden sie hier: https://flynn.io/docs/cli.
+  * `flynn ps`: Zeigt die laufenden Applikationen (Container / Jobs) an.
+  * `flynn route`: Zeigt die aktiven Routen an.
+  * `flynn log`: Zeigt die Log-Ausgabe einer Applikation an.
 
-* `flynn ps`: Zeigt die laufenden Applikationen (Container / Jobs) an.
-* `flynn route`: Zeigt die aktiven Routen an.
-* `flynn log`: Zeigt die Log-Ausgabe einer Applikation an.
-Die Dokumentation der Kommandos finden sie hier: https://flynn.io/docs/cli.
 
 ## Schritt 3: Applikation verändern und neuen Stand deployen
 1. Ändern sie die Response-Nachricht in der Beispielapplikation innerhalb der Datei _web.js_.
