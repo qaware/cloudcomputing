@@ -42,9 +42,7 @@ Vorbedingungen zur Übung sind:
   * `yum install -y git`
   * `yum install nano` 
  
-5. Das Flynn Client Kommandozeilenwerkzeug erstellen über den folgenden Befehl:
-
-  `L=/usr/local/bin/flynn && curl -sL -A "``uname -sp``" https://cli.flynn.io/flynn.gz | zcat >$L && chmod +x $L`
+5. Das Flynn Client Kommandozeilenwerkzeug installieren wie hier beschrieben: https://github.com/flynn/flynn/blob/master/cli/README.md.
   
 6. Den Befehl, den sie unter Schritt 1.1.4 in eine Text-Datei kopiert haben, ausführen. 
 7. Einen SSH key erzeugen (beliebiges Passwort wählen) und dem Flynn CLient bekannt machen:
