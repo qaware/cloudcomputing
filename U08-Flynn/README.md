@@ -23,6 +23,7 @@ Vorbedingungen zur Übung sind:
 	SCRIPT
 	end
 ```
+
 4. Die Vagrant Box starten. Die letzte Log-Meldung in der Konsolenausgabe dabei in eine Text-Datei kopieren. Hier eine beispielhafte entsprechende Log-Meldung:
 
 `flynn cluster add -g demo.localflynn.com:2222 -p P9fDwHaDeFgeyHjxVlAWh/eOVQaq5fuJkso1YM8uGPoY= default https://controller.demo.localflynn.com b43aadebdf4730ef296d3d76567ad07`
