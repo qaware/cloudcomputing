@@ -11,3 +11,4 @@ Die folgenden Quellcodes sind verfügbar:
  * Beispiel-Lösung zur Übung "Google Compute Engine mit JClouds"
  * Code-Vorlage zur Übung "Konfigurationsspeicher Hazelcast"
  * Beispiel-Lösung zur Übung "Konfigurationsspeicher Hazelcast"
+ * Übungsbeschreibung zur Übung "PaaS mit Flynn"
