@@ -30,7 +30,7 @@ Vorbedingungen zur Übung sind:
 ## Schritt 1.2: Controller Image aufsetzen
 1. Die Vagrant die Box _centos.box_ bekannt machen:
    `vagrant box add centos.box --name=centos`
-2. Ein Vagrant Image auf Basis der _centos_ Box initialisieren. Dabei dann die folgenden Zeilen an der entsprechenden Stelle im Vagrantfile ergänzen (wir werden Root-Rechte in der Box benötigen):
+2. En Verzeichnis _controller_ im Übungsverzeichnis erstellen und dort ein Vagrant Image auf Basis der _centos_ Box initialisieren. Dabei dann die folgenden Zeilen an der entsprechenden Stelle im Vagrantfile ergänzen (wir werden Root-Rechte in der Box benötigen):
 ```ruby
   config.ssh.username = 'root'
   config.ssh.password = 'vagrant'
