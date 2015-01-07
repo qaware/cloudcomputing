@@ -12,3 +12,4 @@ Die folgenden Quellcodes sind verfügbar:
  * Code-Vorlage zur Übung "Konfigurationsspeicher Hazelcast"
  * Beispiel-Lösung zur Übung "Konfigurationsspeicher Hazelcast"
  * Übungsbeschreibung zur Übung "PaaS mit Flynn"
+ * Code-Vorlage zur Übung "Cascading" 
