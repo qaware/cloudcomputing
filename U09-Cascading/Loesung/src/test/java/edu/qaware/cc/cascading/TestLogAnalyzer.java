@@ -3,9 +3,10 @@ package edu.qaware.cc.cascading;
 import cascading.PlatformTestCase;
 import cascading.flow.Flow;
 import cascading.flow.FlowDef;
-import cascading.operation.Insert;
+import cascading.operation.DebugLevel;
 import cascading.operation.aggregator.Count;
-import cascading.operation.aggregator.First;
+import cascading.operation.aggregator.Sum;
+import cascading.operation.filter.Limit;
 import cascading.operation.regex.RegexParser;
 import cascading.pipe.Each;
 import cascading.pipe.Every;
@@ -65,19 +66,27 @@ public class TestLogAnalyzer extends PlatformTestCase {
         Pipe pipe = new Each("log", LINE, parser);
 
         // Ausgehendes Transfervolumen pro IP-Adresse ermitteln
-        pipe = new SumBy("sizeAnalysis", pipe, IP, SIZE, SIZE, Integer.class);
+        pipe = new SumBy("sizeAnalysis", pipe, IP, SIZE, SIZE, Integer.class); 
+        //Alternative: 
+        //pipe = new GroupBy(pipe, IP);
+        //pipe = new Every(pipe, SIZE, new Sum(SIZE));
         
-        // Nach Transfervolumen sortieren
-        pipe = new Each(pipe, Fields.ALL, new Insert(new Fields("syntGroup"), 1), Fields.ALL);
-        pipe = new GroupBy("sort", pipe, new Fields("syntGroup"), SIZE, true);        
-        pipe = new Every(pipe, Fields.join(IP, SIZE), new First(Fields.ARGS, 5), Fields.RESULTS);
-
+        // Nach Transfervolumen sortieren  
+        pipe = new GroupBy(pipe, SIZE, true);
+        pipe = new Each(pipe, Fields.ALL, new Limit(5));
+        // Alternative:
+        //pipe = new Each(pipe, Fields.ALL, new Insert(new Fields("syntGroup"), 1), Fields.ALL);
+        //pipe = new GroupBy("sort", pipe, new Fields("syntGroup"), SIZE, true);  
+        //pipe = new Every(pipe, Fields.join(IP, SIZE), new First(Fields.ARGS, 5), Fields.RESULTS);
+        //pipe = new Each(pipe, DebugLevel.VERBOSE, new Debug());            
+         
         //Flow definieren und ausführen
         Tap inTap = getPlatform().getTextFile(IN_PATH);
         Tap statusOutTap = getPlatform().getTextFile(Fields.join(IP, SIZE), OUT_PATH_SIZE);
         FlowDef flowDef = FlowDef.flowDef()
                 .addSource(pipe, inTap)
-                .addTailSink(pipe, statusOutTap);
+                .addTailSink(pipe, statusOutTap)
+                .setDebugLevel(DebugLevel.VERBOSE);
 
         Flow flow = getPlatform().getFlowConnector().connect(flowDef);
         flow.writeDOT("flow.dot");
