@@ -5,9 +5,9 @@ Autor: Josef Adersberger (josef.adersberger@qaware.de, @adersberger)
 Aktuelle Vorlesung: Hochschule Rosenheim, WS 2015/16
 
 Inhalte:
- 1. Einführung
- 2. Kommunikationsprotokolle in der Cloud
- 3. Programmiermodelle: Reactive Programming
+ 1. [Einführung](00-einfuehrung)
+ 2. [Kommunikationsprotokolle in der Cloud](01-kommunikation)
+ 3. [Programmiermodelle: Reactive Programming](02-programmiermodelle)
  4. Virtualisierung
  5. Provisionierung
  6. Infrastructure-as-a-Service
