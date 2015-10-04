@@ -1,5 +1,7 @@
 ﻿Vorlesung Cloud Computing
 ==============================================================================
+
+[![Join the chat at https://gitter.im/adersberger/cloudcomputing](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/adersberger/cloudcomputing?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Autor: Josef Adersberger (josef.adersberger@qaware.de, @adersberger)
 
 Aktuelle Vorlesung: Hochschule Rosenheim, WS 2015/16
