@@ -1,6 +1,6 @@
 ﻿Vorlesung Cloud Computing
 ==============================================================================
-Autor: Josef Adersberger (josef.adersberger@qaware.de, @adersberger)
+Autor: Josef Adersberger (josef.adersberger@qaware.de, [@adersberger](https://twitter.com/adersberger))
 
 Aktuelle Vorlesung: Hochschule Rosenheim, WS 2015/16
 
