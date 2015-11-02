@@ -29,7 +29,7 @@ public class WikipediaConnector {
         try {          
             //Request absetzen
             Client client = ClientBuilder.newClient();
-            String articles = client.target("http://en.wikipedia.org")
+            String articles = client.target("https://en.wikipedia.org")
                     .path("w/api.php")
                     .queryParam("action", "opensearch")
                     .queryParam("limit", "25")

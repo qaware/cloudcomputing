@@ -2,6 +2,7 @@ package edu.qaware.cc.reactiveZwitscher;
 
 import edu.qaware.cc.reactiveZwitscher.connectors.feedzilla.FeedzillaConnector;
 import edu.qaware.cc.reactiveZwitscher.connectors.feedzilla.NewsCategory;
+import edu.qaware.cc.reactiveZwitscher.connectors.nytimes.NYTimesConnector;
 import edu.qaware.cc.reactiveZwitscher.connectors.wikipedia.WikipediaConnector;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,16 @@ public class Main {
         WikipediaConnector connector = new WikipediaConnector();
         zwitschers.addAll( connector.getArticleTitlesFor(term) );
         
-        FeedzillaConnector feedzilla = new FeedzillaConnector();
-        for(NewsCategory category : categories){
-            zwitschers.addAll( feedzilla.getNewsFor(term, category) );
-        }
+        //Uncomment the following if feedzilla is online again
+        /*
+         FeedzillaConnector feedzilla = new FeedzillaConnector();
+         for(NewsCategory category : categories){
+         zwitschers.addAll( feedzilla.getNewsFor(term, category) );
+         }
+         */
+        NYTimesConnector nyTimes = new NYTimesConnector();
+        zwitschers.addAll(nyTimes.getArticleTitlesFor(term));
+        
         System.out.println(zwitschers.size() + " Items found");
         for (String s : zwitschers){
             System.out.println(s);
