@@ -5,7 +5,7 @@
 
 ## Vorbereitung
 1. Prüfen sie, ob VirtualBox und Vagrant installiert sind. Installieren Sie beides für den Fall, dass sich auf ihrem Notebook die Software nicht befindet. Schauen sie sich mit dem Kommando `vagrant help` alle verfügbaren Kommandos von Vagrant an.
-* Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) und laden sie die Vorlage zur Übung von github herunter.
+* Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) und laden sie die Vorlage zur Übung von github herunter (die ZIP-Datei). Entpacken sie die ZIP-Datei und starten sie die Konsole mit `console.bat`.
 * Initialisieren sie mit Vagrant eine Box auf Basis der Vorlage *hashicorp/boot2docker* (`vagrant init`)
 * Starten sie die Vagrant Box (`vagrant up`). Im Hintergrund lädt Vagrant dabei das virtuelle Image aus dem Internet.
 * Überprüfen sie den Status der Vagrant Boxen (`vagrant status`), fahren sie die Box herunter (`vagrant halt`) und überprüfen sie abermals den Status.
