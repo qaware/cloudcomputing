@@ -12,11 +12,11 @@
 ## Aufgaben
 
 ### Images erstellen
-Zunächst erstellen wir Images für den Webserver (*NGINX*) und den Load-Balancer (*HAproxy*). Das Dockerfile für NGINX ist unter der URL http://goo.gl/Ye6l2s verfügbar. Das Dockerfile für HAproxy ist hier zu finden: http://goo.gl/pGkdfl.
+Zunächst erstellen wir Images für den Webserver (*NGINX*) und den Load-Balancer (*HAproxy*). Die jeweiligen Dockerfiles sind auf github im Lösungsordner der Übung verfügbar. Dem Kommando `docker build` kann direkt die github-URL auf die Datei mitgegeben werden (URL wird ermittelt, indem man zur jeweiligen Datei navigiert und bei der Datei-Anzeige den Button *Raw* drückt).
 * Greifen sie zunächst per Browser auf die beiden Dockerfile zu und analysieren sie den Provisionierungsablauf und die hinterlegten Konfigurationsdateien.
-* Erstellen sie ein Image mit dem Namen *cloudcomputing/nginx-node* aus dem NGNIX-Dockerfile. Das Dockerfile kann direkt per URL referenziert werden.
+* Erstellen sie ein Image mit dem Namen *cloudcomputing/nginx-node* aus dem NGNIX-Dockerfile.
 * Erstellen sie ein Image mit dem Namen *cloudcomputing/haproxy-node* aus dem HAproxy-Dockerfile.
-* Vergewissern sie sich über das entsprechende Docker Kommando, dass beide Images im lokalen Repository zur Verfügung stehen.
+* Vergewissern sie sich über das entsprechende Docker Kommando, dass beide Images lokal vorliegen.
 
 ### NGINX-Cluster
 Nun erstellen wir ein Cluster aus drei NGINX Webservern, die aus dem Host-System heraus unter den Ports 81, 82 und 83 erreichbar sind.
@@ -31,5 +31,8 @@ Nun starten sie einen HAProxy Container, der mit den drei NGINX Containern verbu
 * Beantworten sie die folgende Frage: Wie bekommt der HAproxy mit, auf welchen IP-Adressen und unter welchen Ports er die NGINX-Server findet?
 
 ### Testlauf
-* Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://localhost:8080/haproxy?stats. Greifen sie dazu parallel mehrfach auf die Loadbalancer-URL zu: http://localhost:8080. Welche Informationen können sie der Statistik entnehmen?
-* Unter der URL http://localhost:2375 haben sie Zugriff auf die REST-Schnittstelle des Docker Daemons. Sie finden eine Dokumentation der Schnittstelle unter https://docs.docker.com/reference/api. Lassen sie sich die laufenden Container im Browser über einen entsprechenden REST-Aufruf anzeigen.
+* Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://localhost:8080/haproxy?stats (Zugang mit *admin/admin*). Greifen sie dazu parallel mehrfach auf die Loadbalancer-URL zu: http://localhost:8080. Welche Informationen können sie der Statistik entnehmen?
+
+## Optionale Zusatzaufgaben
+* Nutzen sie den Docker-Provisionierer von Vagrant, um die Docker Images zu erstellen und die Container laufen zu lassen (Dokumentation: https://docs.vagrantup.com/v2/provisioning/docker.html).
+* Automatisieren sie die Provisionierung anstelle von Dockerfiles mit Ansible und nutzen sie hierfür den Ansbile Provisioner von Vagrant (https://docs.vagrantup.com/v2/provisioning/ansible.html). Wie der Ansible-Provisoner von Vagrant von Windows aus genutzt werden kann ist hier beschrieben: https://gist.github.com/tknerr/291b765df23845e56a29. Nutzen sie hier die beschriebene Variante "Within the Target VM".
