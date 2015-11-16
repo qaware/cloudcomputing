@@ -34,5 +34,5 @@ Nun starten sie einen HAProxy Container, der mit den drei NGINX Containern verbu
 * Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://localhost:8080/haproxy?stats (Zugang mit *admin/admin*). Greifen sie dazu parallel mehrfach auf die Loadbalancer-URL zu: http://localhost:8080. Welche Informationen können sie der Statistik entnehmen?
 
 ## Optionale Zusatzaufgaben
-* Nutzen sie den Docker-Provisionierer von Vagrant, um die Docker Images zu erstellen und die Container laufen zu lassen (Dokumentation: https://docs.vagrantup.com/v2/provisioning/docker.html).
+* Nutzen sie den Docker-Provisionierer von Vagrant, um die Docker Images zu erstellen und die Container laufen zu lassen (Dokumentation: https://docs.vagrantup.com/v2/docker/basics.html).
 * Automatisieren sie die Provisionierung anstelle von Dockerfiles mit Ansible und nutzen sie hierfür den Ansbile Provisioner von Vagrant (https://docs.vagrantup.com/v2/provisioning/ansible.html). Wie der Ansible-Provisoner von Vagrant von Windows aus genutzt werden kann ist hier beschrieben: https://gist.github.com/tknerr/291b765df23845e56a29. Nutzen sie hier die beschriebene Variante "Within the Target VM".
