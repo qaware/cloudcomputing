@@ -32,6 +32,7 @@ Nun starten sie einen HAProxy Container, der mit den drei NGINX Containern verbu
 
 ### Testlauf
 * Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://localhost:8080/haproxy?stats (Zugang mit *admin/admin*). Greifen sie dazu parallel mehrfach auf die Loadbalancer-URL zu: http://localhost:8080. Welche Informationen können sie der Statistik entnehmen?
+* Recherchieren sie, unter welchem Port die Docker Remote API (REST) zur Verfügung steht und lassen sie sich über diese die aktuell laufenden Container ausgeben.
 
 ## Optionale Zusatzaufgaben
 * Nutzen sie den Docker-Provisionierer von Vagrant, um die Docker Images zu erstellen und die Container laufen zu lassen (Dokumentation: https://docs.vagrantup.com/v2/docker/basics.html).
