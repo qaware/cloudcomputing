@@ -123,8 +123,7 @@ public class CloudUtils {
         if (fireAndForget){
             ListenableFuture lf = service.submitScriptOnNode(node, command, ro);
             lf.cancel(false);
-        }
-        else {
+        } else {
             ExecResponse response = service.runScriptOnNode(node, command, ro);
             LOG.info(response.toString());
             LOG.info("<= Exit Status: " + response.getExitStatus());
