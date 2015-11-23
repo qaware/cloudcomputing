@@ -3,7 +3,7 @@ package edu.qaware.cc.jclouds;
 public enum Credentials {
 
     USER("AKCAJX6PXHO6XGT5DX5A"),
-    KEY("U1AO7cq3zdU+S8iBN84Cloh1ggI1hWklq0iWbWml"),
+    KEY("U1AO9cq3zdU+S8iBN84Cloh1ggI1hWklq0iWbWml"),
     PROVIDER("aws-ec2");
 
     private final String value;

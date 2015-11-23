@@ -22,7 +22,7 @@ public class LaunchNginxCluster {
 
         //(2) Eine Instanz in der Compute Cloud launchen
         TemplateOptions opts = AWSEC2TemplateOptions.Builder.subnetId("subnet-73da6b4e");
-        NodeMetadata node = launch("",  /** TODO: hier die gewünschte Region setzen */ 
+        NodeMetadata node = launch("us-east-1",
                                    "t2.small", 
                                    "us-east-1/ami-5400463e",
                                    "vl-cc", opts, cs);
