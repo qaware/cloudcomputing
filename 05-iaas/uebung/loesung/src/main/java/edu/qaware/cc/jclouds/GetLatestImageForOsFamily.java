@@ -4,16 +4,20 @@ import edu.qaware.cc.jclouds.utils.CloudUtils;
 import static edu.qaware.cc.jclouds.utils.CloudUtils.connect;
 import java.io.IOException;
 import org.jclouds.compute.ComputeService;
+import org.jclouds.compute.domain.OsFamily;
 
 /**
- * Gibt die Liste der verfügbaren Hardware-Profile aus.
+ * Gibt die aktuellste Image-Version einer Betriebssystem-Familie zurück
  */
-public class ListHardware {
+public class GetLatestImageForOsFamily {
+
     public static void main(String[] args) throws IOException {
         ComputeService cs = connect(
                 Credentials.USER.get(), Credentials.KEY.get(), Credentials.PROVIDER.get())
                 .getComputeService();
-        CloudUtils.printHardwareProfiles(cs);
+        String imageId = CloudUtils.getLastVersionImageForOs(OsFamily.AMZN_LINUX, cs);
+        System.out.println(imageId);
         cs.getContext().close();
     }
+
 }

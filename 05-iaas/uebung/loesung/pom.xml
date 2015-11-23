@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <jclouds.version>1.9.0</jclouds.version>
+        <jclouds.version>1.9.1</jclouds.version>
         <slf4j.version>1.7.2</slf4j.version>
         <guava.version>18.0</guava.version>
     </properties>
@@ -30,11 +30,11 @@
         
         <!-- SSH-Kommandos per JClouds ausführen können -->
         <dependency>
-            <groupId>org.apache.jclouds.driver</groupId>
-            <artifactId>jclouds-sshj</artifactId>
-            <version>${jclouds.version}</version>
+                <groupId>org.apache.jclouds.driver</groupId>
+                <artifactId>jclouds-sshj</artifactId>
+                <version>${jclouds.version}</version>
         </dependency>
-        
+ 
         <!-- Misc -->
         <dependency>
             <groupId>org.slf4j</groupId>

@@ -1,7 +1,6 @@
 package edu.qaware.cc.jclouds;
 
-import edu.qaware.cc.jclouds.utils.CloudUtils;
-import static edu.qaware.cc.jclouds.utils.CloudUtils.connect;
+import static edu.qaware.cc.jclouds.utils.CloudUtils.*;
 import java.io.IOException;
 import org.jclouds.compute.ComputeService;
 
@@ -11,8 +10,8 @@ import org.jclouds.compute.ComputeService;
 public class ListHardware {
     public static void main(String[] args) throws IOException {
         ComputeService cs = connect(
-                "844448415254-61r7t0e6skchhm2hr8r33c2ni77v5gpk@developer.gserviceaccount.com",
-                "vl-cc.pem", "google-compute-engine").getComputeService();  
+                Credentials.USER.get(), Credentials.KEY.get(), Credentials.PROVIDER.get())
+                .getComputeService();
         
         //********************************************************************
         //TODO
