@@ -15,15 +15,15 @@ Wir wollen im Wesentlichen das Ziel der letzten Übung erreichen: Ein NGINX-Clus
 ### Cluster per JClouds API aufbauen
 * Öffnen sie die Klasse `CloudUtils` und erschließen sie sich die dort enthaltenen Methoden.
 * Ergänzen sie in der Klasse `ListHardware` den Quellcode, um die Liste der verfügbaren Hardware-Profile ausgeben zu können. Lassen sie sich die Liste ausgeben.
-* Erstellen sie eine weitere Klasse 'ListRegions', die alle verfügbaren Rechenzentren (Regionen) ausgibt. Wählen sie eine Region ihrer Wahl aus und setzen sie sie in der entsprechenden Stelle in der Klasse `LaunchNginxCluster`.
+* Erstellen sie eine weitere Klasse `ListRegions`, die alle verfügbaren Rechenzentren (Regionen) ausgibt. Wählen sie eine Region ihrer Wahl aus und setzen sie sie in der entsprechenden Stelle in der Klasse `LaunchNginxCluster`.
 * Ergänzen sie in der Klasse `LaunchNginxCluster` den Quellcode, um ein *NGINX* Cluster mit vorgelagertem *HAproxy* analog zur letzten Übung zu starten.
 * Starten sie das NGINX Cluster über das Java Programm und analysieren sie die Stellen in der Konsolenausgabe, die die Rückgabe der Befehle enthalten: Wurden alle Befehle erfolgreich durchgeführt?
 * Extrahieren sie aus der Konsolenausgabe die *IP* ihres erzeugten Knotens und teilen sie diese dem Übungsbetreuer mit.
 
 ### Testlauf
-* Greifen sie auf die NGINX-Ausgabe zu: http://<ip>
-* Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://<ip>/haproxy?stats. Greifen sie dazu parallel mehrfach auf die URL der NGINX-Webserver zu.
-* Überprüfen sie die Liste der laufenden Docker Container: http://<ip>:2375/containers/json.
+* Greifen sie auf die NGINX-Ausgabe zu: http://[IP]/
+* Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://[IP]/haproxy?stats. Greifen sie dazu parallel mehrfach auf die URL der NGINX-Webserver zu.
+* Überprüfen sie die Liste der laufenden Docker Container: http://[IP]:2375/containers/json.
 
 ## Zusatzaufgabe
 Schreiben sie ein Java-Programm, das es erlaubt neue HAproxy/NGINX-Cluster zu starten. Dabei kann die Anzahl der NGINX-Server flexibel angegeben werden. Nutzen sie hierfür die Docker-Java-Bibliothek (https://github.com/docker-java/docker-java). Verbinden sie sich mit dieser Bibliothek mit dem Docker Daemon auf dem bereits gestarteten IaaS-Knoten. Der Docker Daemon ist dort bereits auf dem Port 2375 von Außen erreichbar.
