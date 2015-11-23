@@ -124,9 +124,11 @@ public class CloudUtils {
             ListenableFuture lf = service.submitScriptOnNode(node, command, ro);
             lf.cancel(false);
         }
-        ExecResponse response = service.runScriptOnNode(node, command);
-        LOG.info(response.toString());
-        LOG.info("<= Exit Status: " + response.getExitStatus());
+        else {
+            ExecResponse response = service.runScriptOnNode(node, command, ro);
+            LOG.info(response.toString());
+            LOG.info("<= Exit Status: " + response.getExitStatus());
+        }
     }
     
     /**
