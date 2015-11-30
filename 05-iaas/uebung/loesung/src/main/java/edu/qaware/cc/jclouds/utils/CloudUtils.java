@@ -118,15 +118,16 @@ public class CloudUtils {
     public static void exec(String node, String command, String user, boolean fireAndForget, 
             ComputeService service) throws RunScriptOnNodesException {
         RunScriptOptions ro = RunScriptOptions.NONE;
-        if (user != null) ro.overrideLoginUser(user);
+        if (user != null) ro = RunScriptOptions.Builder.overrideLoginUser(user);
         LOG.info(command + " on " + node + " => ");
         if (fireAndForget){
             ListenableFuture lf = service.submitScriptOnNode(node, command, ro);
             lf.cancel(false);
+        } else {
+            ExecResponse response = service.runScriptOnNode(node, command, ro);
+            LOG.info(response.toString());
+            LOG.info("<= Exit Status: " + response.getExitStatus());
         }
-        ExecResponse response = service.runScriptOnNode(node, command);
-        LOG.info(response.toString());
-        LOG.info("<= Exit Status: " + response.getExitStatus());
     }
     
     /**

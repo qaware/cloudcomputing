@@ -15,7 +15,7 @@ Wir wollen im Wesentlichen das Ziel der letzten Übung erreichen: Ein NGINX-Clus
 ### Cluster per JClouds API aufbauen
 * Öffnen sie die Klasse `CloudUtils` und erschließen sie sich die dort enthaltenen Methoden.
 * Ergänzen sie in der Klasse `ListHardware` den Quellcode, um die Liste der verfügbaren Hardware-Profile ausgeben zu können. Lassen sie sich die Liste ausgeben.
-* Erstellen sie eine weitere Klasse `ListRegions`, die alle verfügbaren Rechenzentren (Regionen) ausgibt. Wählen sie eine Region ihrer Wahl aus und setzen sie sie in der entsprechenden Stelle in der Klasse `LaunchNginxCluster`.
+* Erstellen sie eine weitere Klasse `ListRegions`, die alle verfügbaren Rechenzentren (Regionen) ausgibt.
 * Ergänzen sie in der Klasse `LaunchNginxCluster` den Quellcode, um ein *NGINX* Cluster mit vorgelagertem *HAproxy* analog zur letzten Übung zu starten.
 * Starten sie das NGINX Cluster über das Java Programm und analysieren sie die Stellen in der Konsolenausgabe, die die Rückgabe der Befehle enthalten: Wurden alle Befehle erfolgreich durchgeführt?
 * Extrahieren sie aus der Konsolenausgabe die *IP* ihres erzeugten Knotens und teilen sie diese dem Übungsbetreuer mit.
