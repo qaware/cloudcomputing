@@ -4,8 +4,6 @@ Autor: Josef Adersberger (josef.adersberger@qaware.de, [@adersberger](https://tw
 
 Aktuelle Vorlesung: Hochschule Rosenheim, WS 2015/16
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/adersberger/cloudcomputing?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 Inhalte:
  1. [Einführung](00-einfuehrung)
  2. [Kommunikationsprotokolle in der Cloud](01-kommunikation)
