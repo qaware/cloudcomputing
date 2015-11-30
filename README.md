@@ -12,7 +12,7 @@ Inhalte:
  5. [Provisionierung](04-provisionierung)
  6. [Infrastructure-as-a-Service](05-iaas)
  7. [Cluster-Scheduling](06-cluster-scheduling)
- 8. Orchestrierung von Anwendungen
+ 8. Orchestrierung von Anwendungen im Cluster
  9. Cloud-fähige Softwarearchitekturen
  10. Big Data: Speicherung und Verarbeitung
  11. Plattform-as-a-Service
