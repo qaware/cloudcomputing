@@ -22,8 +22,8 @@ Ziel ist es, eine NGINX-Instanz in Marathon zu starten. Hierfür verwenden wir d
 * Starten sie mit ihrem Programm den NGINX-Job in Marathon und überprüfen sie, ob die NGINX-Seite aus dem Browser heraus aufgerufen werden kann: http://cc-vorles-PublicSl-1E1INOI8RRFB8-1405642716.eu-central-1.elb.amazonaws.com:[MEINPORT]
 
 ### Das NGINX-Cluster hochskalieren
-* Öffnen sie die Datei `nginx-cluster.json
-* Ersetzen sie die bestehende ID durch eine beliebige neue ID und setzen sie den `hostPort` auf 0. Das bedeutet, dass sich Mesos um die Vergabe des Host-Ports kümmert und einen Port-Konflikt vermeidet.
+* Öffnen sie die Datei `nginx-cluster.json` und ersetzen sie die bestehende ID durch eine beliebige neue ID und setzen sie den `hostPort` auf 0. Das bedeutet, dass sich Mesos um die Vergabe des Host-Ports kümmert und einen Port-Konflikt vermeidet.
+* Entfernen sie das Constraint, dass die Tasks nur auf dem öffentlich zugänglichen Slave-Knoten laufen können.
 * Erhöhen sie die Anzahl der Instanzen.
 * Starten sie mit ihrem Programm den NGINX-Job in Marathon.
 
