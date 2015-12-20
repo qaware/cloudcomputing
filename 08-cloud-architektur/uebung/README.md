@@ -13,7 +13,7 @@ Wir entwickeln eine Chat-Anwendung, bei der ein Text in der Kommandozeile eingeg
 
 ## Aufgaben
 1. Wählen sie aus der Hazelcast-Dokumentation eine passende Datenstruktur aus (http://docs.hazelcast.org/docs/3.5/manual/html-single/index.html#distributed-data-structures). Wie Datenstrukturen zu verwenden sind, entnimmt man am besten dem Beispiel direkt von der Hazelcast Homepage (http://hazelcast.org).
-*	Öffnen sie im Editor die Klasse Chatter und ergänzen sie die Code-Abschnitte, die mit einem `TODO`Kommentar versehen sind.
+*	Öffnen sie im Editor die Klasse Chatter und ergänzen sie die Code-Abschnitte, die mit einem `TODO` Kommentar versehen sind.
 *	Starten sie eine Instanz der Chatter Klasse und beobachten sie die Log-Ausgaben. Was passiert bei der Initialisierung von Hazelcast?
 *	Starten sie eine zweite Instanz der Klasse und beobachten sie nun ebenfalls die Log-Ausgaben – auch die Ausgabe der ersten Instanz, die gestartet wurde.
 *	Geben sie in der Konsole beider Instanzen jeweils eine Nachricht ein und beobachten sie die resultierenden Ausgaben auf der Konsole. Hierbei kann es nun passieren, dass sie auch die Nachrichten anderer Übungs-Teilnehmer sehen. Wie können sie dies verhindern?
