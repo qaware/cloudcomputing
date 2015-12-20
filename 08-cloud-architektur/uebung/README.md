@@ -1,6 +1,6 @@
 # Übung: Softwarearchitektur für die Cloud mit Hazelcast
 Hazelcast ist eine Bibliothek, die Datenstrukturen so umsetzt, dass sie im Cluster
-genutzt werden können. Dies bedeutet, dass alle Instanzen in einem Cluster die selben Daten sehen und Änderungen an den Daten cluster-weit synchrnisiert werden. Hazelcast ist somit ein Mechanismus für cluster-weiten Zustand.  
+genutzt werden können. Dies bedeutet, dass alle Instanzen in einem Cluster die selben Daten sehen und Änderungen an den Daten cluster-weit synchronisiert werden. Hazelcast ist somit ein Mechanismus für cluster-weiten Zustand, der als Basis für einen Konfigurationsdienst oder Service-Discovery dienen kann.  
 
 ## Vorbereitung
 * Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) und laden sie die Vorlage zur Übung von github in dieses Verzeichnis herunter (über `git clone` oder Download des Repositories als ZIP).
