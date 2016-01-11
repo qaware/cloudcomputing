@@ -41,7 +41,7 @@ Wechseln sie nun in das Verzeichnis der Beispielapplikation und lassen sie sich 
 4. Testen sie im Browser, ob die Änderungen sichtbar sind.
 
 ## Schritt 5: Applikation skalieren
-1. Skalieren sie die Applikation auf 3 Instanzen mit dem Befehl `flynn scale` oder alternativ über die flynn Web-UI.
+1. Skalieren sie die Applikation auf 3 Instanzen mit dem Befehl `flynn scale`. Die Dokumentation zu diesem Befehl erhalten sie per  `flynn help scale`.
 2. Überprüfen sie per `flynn ps`, ob alle Instanzen laufen.
 3. Überprüfen sie über mehrfache Aufrufe im Browser, dass das automatische Load Balancing funktioniert.
 
