@@ -18,4 +18,13 @@ Inhalte:
 10. [Big Data: Speicherung und Verarbeitung](09-big-data)
 11. [Plattform-as-a-Service](10-paas)
 
+Für die Übungen notwendige Software:
+
+* Netbeans Java SE in der aktuellsten Version: https://netbeans.org/downloads
+* JDK 7 oder 8. Falls neu installiert werden muss, dann das aktuellste JDK 8.
+* MinGW: http://www.mingw.org
+* git in der aktuellsten Version: https://git-scm.com/download/win. Optional: github Desktop (https://desktop.github.com). 
+* Vagrant (inklusive der benötigten VirtualBox Version) in der aktuellsten Version: https://www.vagrantup.com
+
+
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Cloud Computing Vorlesung</span> von <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Josef Adersberger</span> ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz</a>.
