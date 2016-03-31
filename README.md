@@ -6,17 +6,17 @@ Aktuelle Vorlesung: Hochschule München, Sommersemester 2016
 
 Inhalte:
 
-1. [Einführung](00-einfuehrung)
-2. [Kommunikationsprotokolle in der Cloud](01-kommunikation)
-3. [Programmiermodelle: Reactive Programming](02-programmiermodelle)
-4. [Virtualisierung](03-virtualisierung)
-5. [Provisionierung](04-provisionierung)
-6. [Infrastructure-as-a-Service](05-iaas)
-7. [Cluster-Scheduling](06-cluster-scheduling)
-8. [Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
-9. [Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
-10. [Big Data: Speicherung und Verarbeitung](09-big-data)
-11. [Plattform-as-a-Service](10-paas)
+1. [17.3. Einführung](00-einfuehrung)
+2. [31.3. Kommunikationsprotokolle in der Cloud](01-kommunikation)
+3. [14.4. Programmiermodelle: Reactive Programming](02-programmiermodelle)
+4. [21.4. Virtualisierung](03-virtualisierung)
+5. [28.4. Provisionierung](04-provisionierung)
+6. [12.5. Infrastructure-as-a-Service](05-iaas)
+7. [19.5. Cluster-Scheduling](06-cluster-scheduling)
+8. [02.6. Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
+9. [09.6. + 16.6. Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
+10. [23.6. Big Data: Speicherung und Verarbeitung](09-big-data)
+11. [30.6. Plattform-as-a-Service](10-paas)
 
 Für die Übungen notwendige Software:
 
