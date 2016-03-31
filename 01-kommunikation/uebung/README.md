@@ -59,20 +59,20 @@ e.jersey().register(ZwitscherMessageResource.class);
 
 (1) Dokumentieren sie die vorhandenen Klassen der REST-API über Swagger-Annotationen zusätzlich zu den bereits vorhandenen JAX-RS-Annotationen. Nutzen Sie hierfür die folgenden Swagger-Annotationen. Eine Beschreibung der Annotationen ist hier zugänglich: https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X.
 
-
-  | Swagger-Annotation        | Code-Element           |
-  | ------------- | ------------- |
-  | `@Api`      |Ressourcen-Klasse (REST-Schnittstelle) |
-  | `@ApiOperation`      | Methode der Ressourcen-Klasse      |
-  | `@ApiResponses` und `@ApiResponse` | Methode der Ressourcen-Klasse (überlegen Sie sich hier mögliche Fehlersituationen und bilden Sie diese auf http-Status-Codes ab)      |
-  | `@ApiModel` | Entitäts-Klasse      |
-  | `@ApiModelProperty` | Setter-Methoden der Entitätsklasse      |
+| Swagger-Annotation        | Code-Element           |
+| ------------- | ------------- |
+| `@Api`      |Ressourcen-Klasse (REST-Schnittstelle) |
+| `@ApiOperation`      | Methode der Ressourcen-Klasse      |
+| `@ApiResponses` und `@ApiResponse` | Methode der Ressourcen-Klasse (überlegen Sie sich hier mögliche Fehlersituationen und bilden Sie diese auf http-Status-Codes ab)      |
+| `@ApiModel` | Entitäts-Klasse      |
+| `@ApiModelProperty` | Setter-Methoden der Entitätsklasse      |
 
 (2) Integrieren Sie Swagger in Dropwizard. Swagger erzeugt damit automatisch eine API-Beschreibung aus den JAX-RS- und Swagger-Annotationen sowie den Klassen- und Methodenstrukturen. Damit dies erfolgt, müssen Sie den folgenden Code-Abschnitt in der `run()`-Methode der Applikationsklasse ergänzen:
 
 ```java
 //Swagger REST-Schnittstelle registrieren       
-e.jersey().register(new ApiListingResourceJSON());     e.jersey().register(new ApiDeclarationProvider());
+e.jersey().register(new ApiListingResourceJSON());     
+e.jersey().register(new ApiDeclarationProvider());
 e.jersey().register(new ResourceListingProvider());
 
 //Swagger konfigurieren
