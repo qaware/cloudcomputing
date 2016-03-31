@@ -6,9 +6,9 @@
 3. Definieren Sie die Projekteigenschaften wie in der folgenden Abbildung dargestellt:
 ![Netbeans](netbeans-neues-projekt.png)
 4. Öffnen Sie die Datei `pom.xml` (Maven Projektbeschreibung) und fügen Sie dort ein zunächst noch leeres Element `dependencies` ein. Ergänzen Sie innerhalb dieses Elements die folgenden Bibliotheksabhängigkeiten in einer jeweils aktuellen Version. Bitte die hier angegebene Reihenfolge beachten. Die entsprechenden XML-Fragmente für Maven können sie über http://mvnrepository.com beziehen.
-   1. dropwizard-core
-   * dropwizard-assets
-   * swagger-jaxrs_2.10
+   1. `dropwizard-core`
+   * `dropwizard-assets`
+   * `swagger-jaxrs_2.10`
 5. Führen Sie das Maven Goal `clean package` aus.
 
 ## Ziel
