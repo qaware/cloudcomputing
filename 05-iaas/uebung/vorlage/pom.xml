@@ -9,29 +9,43 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <jclouds.version>1.8.1</jclouds.version>
+        <jclouds.version>1.9.1</jclouds.version>
         <slf4j.version>1.7.2</slf4j.version>
+        <guava.version>18.0</guava.version>
     </properties>
-    <dependencies>
+    <dependencies>  
+        <!-- JClouds -->
         <dependency>
             <groupId>org.apache.jclouds</groupId>
-            <artifactId>jclouds-all</artifactId>
+            <artifactId>jclouds-allcompute</artifactId>
             <version>${jclouds.version}</version>
         </dependency>
+        
+        <!-- Provider für die Google Compute Engine -->
         <dependency>
             <groupId>org.apache.jclouds.labs</groupId>
             <artifactId>google-compute-engine</artifactId>
             <version>${jclouds.version}</version>
         </dependency>
+        
+        <!-- SSH-Kommandos per JClouds ausführen können -->
         <dependency>
-            <groupId>org.apache.jclouds.driver</groupId>
-            <artifactId>jclouds-sshj</artifactId>
-            <version>${jclouds.version}</version>
+                <groupId>org.apache.jclouds.driver</groupId>
+                <artifactId>jclouds-sshj</artifactId>
+                <version>${jclouds.version}</version>
         </dependency>
+ 
+        <!-- Misc -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
     </dependencies>
 </project>
