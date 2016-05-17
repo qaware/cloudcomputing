@@ -7,7 +7,7 @@
 * Lassen sie sich vom Übungsbetreuer eine exklusive Port-Nummer im Bereich von 8081 bis 8090 zuteilen.
 
 ## Ziel
-Wir wollen im Rahmen der Übung NGINX-Knoten auf einem Mesos + Marathon Cluster starten. Das Cluster läuft auf Basis der Amazon EC2 IaaS-Cloud und besteht aus 8 Rechnern - es ist bereits fertig eingerichtet.
+Wir wollen im Rahmen der Übung NGINX-Knoten auf einem Mesos + Marathon Cluster starten. Das Cluster läuft auf Basis der Amazon EC2 IaaS-Cloud und besteht aus 8 Rechnern - es ist bereits fertig eingerichtet. Für den Fall, da sie sich auf einem privaten Amazon EC2 Account ein DC/OS Cluster einrichten wollen, folgen sie der folgenden Installationsbeschreibung: https://dcos.io/docs/1.7/administration/installing/cloud/aws.
 
 ![Zielbild](ziel.png)
 
