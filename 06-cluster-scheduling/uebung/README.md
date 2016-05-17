@@ -11,7 +11,7 @@ Wir wollen im Rahmen der Übung NGINX-Knoten auf einem Mesos + Marathon Cluster 
 
 ![Zielbild](ziel.png)
 
-Das Cluster läuft auf Basis der Amazon EC2 IaaS-Cloud und besteht aus 8 Rechnern - es ist bereits fertig eingerichtet. Für den Fall, da sie sich auf einem privaten Amazon EC2 Account ein DC/OS Cluster einrichten wollen, folgen sie der folgenden Installationsbeschreibung: https://dcos.io/docs/1.7/administration/installing/cloud/aws.
+Das Cluster läuft auf Basis der Amazon EC2 IaaS-Cloud und besteht aus 8 Rechnern - es ist bereits fertig eingerichtet. 
 
 ## Aufgaben
 ### Eine NGINX-Instanz starten
@@ -19,7 +19,7 @@ Ziel ist es, eine NGINX-Instanz in Marathon zu starten. Hierfür verwenden wir d
 * Öffnen sie die Datei `nginx-cluster.json` in Netbeans. Diese repräsentiert den Request, den wir an Marathon senden werden um den NGINX-Container zu starten. Erschließen sie sich den Inhalt der Datei mit Hilfe der REST-Dokumentation von Marathon (https://mesosphere.github.io/marathon/docs/rest-api.html#post-v2-apps).
 * Öffnen sie die Klasse `MarathonController` in Netbeans und programmieren sie dort die Methode `printRunningApps()` aus, die alle aktuell in Marathon laufenden Applikationen (Jobs) ausgibt. Nutzen sie für den entsprechenden REST-Aufruf die Bibliothek *Unirest* (http://unirest.io/java.html) und recherchieren sie den notwendigen REST-Aufruf in der Marathon Dokumentation (https://mesosphere.github.io/marathon/docs/rest-api.html).
 * Lassen sie sich die aktuell laufenden Applikationen ausgeben.
-* Ersetzen sie die Platzhalter `[MEINPORT]` in der Datei `nginx-cluster.json` durch den zugeteilten Port.
+* Ersetzen sie die Platzhalter `<MEINPORT>` in der Datei `nginx-cluster.json` durch den zugeteilten Port.
 * Programmieren sie im Anschluss die Methode `submitApp()` aus, mit der ein neuer Job in Marathon eingestellt werden kann.
 * Starten sie mit ihrem Programm den NGINX-Job in Marathon und überprüfen sie, ob die NGINX-Seite aus dem Browser heraus aufgerufen werden kann: http://cc-vorles-PublicSl-N10DDIW0PRT-134027671.eu-central-1.elb.amazonaws.com:[MEINPORT]
 
