@@ -1,4 +1,4 @@
-# Übung: Cluster Scheduling mit DCOS (Mesos und Marathon)
+# Übung: Cluster Scheduling mit DC/OS (Mesos und Marathon)
 
 ## Vorbereitung
 * Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) und laden sie die Vorlage zur Übung von github in dieses Verzeichnis herunter (über `git clone` oder Download des Repositories als ZIP).
