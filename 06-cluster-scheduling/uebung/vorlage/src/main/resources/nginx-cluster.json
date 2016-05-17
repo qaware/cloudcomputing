@@ -1,12 +1,12 @@
 {
-  "id": "nginx-cluster-[MEINPORT]",
+  "id": "nginx-cluster-<MEINPORT>",
   "container": {
     "type": "DOCKER",
     "docker": {
       "image": "qaware/nginx",
       "network": "BRIDGE",
       "portMappings": [
-        { "hostPort": [MEINPORT], "containerPort": 80, "protocol": "tcp"}
+        { "hostPort": <MEINPORT>, "containerPort": 80, "protocol": "tcp"}
       ]
     }
   },
