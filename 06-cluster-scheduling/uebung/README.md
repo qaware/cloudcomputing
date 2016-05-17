@@ -16,6 +16,7 @@ Das Cluster läuft auf Basis der Amazon EC2 IaaS-Cloud und besteht aus 8 Rechner
 ## Aufgaben
 ### Eine NGINX-Instanz starten
 Ziel ist es, eine NGINX-Instanz in Marathon zu starten. Hierfür verwenden wir das Docker Image aus den vorangegangen Übungen. Es ist unter der ID `qaware/nginx` öffentlich in der öffentlichen Docker Registry, dem Docker Hub (https://hub.docker.com/u/qaware), verfügbar. Wir nutzen die REST-API von Marathon aus einem Java-Programm heraus, um NGINX zu starten. Gehen sie dabei wie folgt vor:
+* Besorgen sie sich die Datei `dcos-jwt.txt` beim Übungsbetreuer und legen sie diese im Verzeichnis `src/main/resources` ab.
 * Öffnen sie die Datei `nginx-cluster.json` in Netbeans. Diese repräsentiert den Request, den wir an Marathon senden werden um den NGINX-Container zu starten. Erschließen sie sich den Inhalt der Datei mit Hilfe der REST-Dokumentation von Marathon (https://mesosphere.github.io/marathon/docs/rest-api.html#post-v2-apps).
 * Öffnen sie die Klasse `MarathonController` in Netbeans und programmieren sie dort die Methode `printRunningApps()` aus, die alle aktuell in Marathon laufenden Applikationen (Jobs) ausgibt. Nutzen sie für den entsprechenden REST-Aufruf die Bibliothek *Unirest* (http://unirest.io/java.html) und recherchieren sie den notwendigen REST-Aufruf in der Marathon Dokumentation (https://mesosphere.github.io/marathon/docs/rest-api.html).
 * Lassen sie sich die aktuell laufenden Applikationen ausgeben.
