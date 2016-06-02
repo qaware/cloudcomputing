@@ -75,5 +75,6 @@ Hierzu muss jedoch ein Cluster verfügbar sein ;-)
 * Starten sie anschließend das Cluster. Der Master ist unter der URL http://localhost:8080/ erreichbar.
 * Prüfen sie in der UI ob alle Worker (2 Stück) ebenfalls gestartet sind.
 * Modifizieren sie die Spark-Master URLs in den Anwendungen, indem sie die Master-URL auf spark://{IP}:7077 setzen.
+* Führen sie das Maven Goal `install` aus. Dadurch wird eine Jar-Datei erstellt, die beim Start der Anwendung auf die Worker verteilt wird.
 * Starten sie die Anwendungen. Untersuchen sie die Abarbeitung mittels der Webseiten.
 * Schauen sie sich auch die Job-Informationen unter http://localhost:4040 an. Was sehen sie?
