@@ -40,6 +40,7 @@ Hierzu muss jedoch ein Cluster verfügbar sein ;-)
 ## Wichtige Adressen beim Arbeiten mit Apache Spark
 ### Cluster
 * Spark-Master URL: spark://{IP}:7077
+* Spark-Master UI: http://{IP}:8080
 * Spark-Worker-1 UI: http://{IP}:8081
 * Spark-Worker-2 UI: http://{IP}:8082
 
