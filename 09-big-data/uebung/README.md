@@ -73,6 +73,7 @@ Hierzu muss jedoch ein Cluster verfügbar sein ;-)
 * Stellen sie sicher, dass sie die vorkonfigurierte Variante von Spark heruntergeladen haben und das Verzeichnis stimmt.
 * In der Vorlage finden sie zwei Skripte *startSparkStandalone.sh* und *stopAllsparkProcesses.sh*. Mit diesen können sie das Cluster starten und wieder beenden.
 * Im Skript *startSparkStandalone.sh* muss die Spark-Master URL beim Starten der Spark-Worker (Slaves) angepasst werden.
+* Anschließend müssen sie noch das *SPARK_WORKER_DIR* in der Datei *spark-1.6.1-bin-hadoop2.6/conf/spark-env.sh* anpassen, indem sie ein beliebiges existierendes Verzeichnis angeben.
 * Starten sie anschließend das Cluster. Der Master ist unter der URL http://localhost:8080/ erreichbar.
 * Prüfen sie in der UI ob alle Worker (2 Stück) ebenfalls gestartet sind.
 * Modifizieren sie die Spark-Master URLs in den Anwendungen, indem sie die Master-URL auf spark://{IP}:7077 setzen.
