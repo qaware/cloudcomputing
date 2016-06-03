@@ -12,6 +12,7 @@ und laden sie die Vorlage zur Übung von github in das Verzeichnis herunter
 * Laden sie sich das vorkonfigurierte Apache Spark herunter 
 (https://www.dropbox.com/s/0063mzb2jg3pfdh/spark-1.6.1-bin-hadoop2.6.zip?dl=0) 
 und entpacken sie es in dem Verzeichnis, in dem auch das *vorlage* Verzeichnis zu finden ist.
+* **Nur Windows:** Laden sie noch zusätzlich Hadoop herunter (http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.6.2/hadoop-2.6.2.tar.gz). Setzen sie anschließend die Umgebungsvariable HADOOP_HOME in ihrer Entwicklungsumgebung (z.B.: Eclipse Run -> Run Configurations .. -> Environment).
 
 ## Ziel
 Wir führen verschiedene Berechnungen und Analysen mit Apache Spark durch:
