@@ -14,9 +14,10 @@ Inhalte:
 6. [12. Mai - Infrastructure-as-a-Service](05-iaas)
 7. [19. Mai - Cluster-Scheduling](06-cluster-scheduling)
 8. [2. Juni - Big Data: Speicherung und Verarbeitung](09-big-data)
-9. [9.+16. Juni - Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
-10. [23. Juni - Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
+9. [9. Juni - Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
+10. [16.+23. Juni - Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
 11. [30. Juni - Plattform-as-a-Service](10-paas)
+12. 7. Juli - Prüfungsvorbereitung
 
 Für die Übungen notwendige Software:
 
