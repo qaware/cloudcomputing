@@ -1,11 +1,7 @@
 package edu.qaware.cc.minicloud;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IList;
-import com.hazelcast.core.ItemEvent;
-import com.hazelcast.core.ItemListener;
+import com.hazelcast.core.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,8 +19,7 @@ public class Chatter implements ItemListener<String>{
     public static void main(String[] args) throws IOException {
   
         //Erzeuge eine verteilte Liste als Datenstruktur
-        Config config = new Config();
-        HazelcastInstance hz = Hazelcast.newHazelcastInstance(config);
+        HazelcastInstance hz = Hazelcast.newHazelcastInstance();
         IList<String> messages = hz.getList(CLUSTER_ID);
         
         //Initial werden alle bisherigen Nachrichten ausgegeben
