@@ -17,37 +17,40 @@ import java.net.URL;
  */
 public class MarathonController {
 
-    public static final String MARATHON_ENDPOINT = "http://cc-vorles-elasticl-yo07v3s5a0vp-259392268.eu-central-1.elb.amazonaws.com/service/marathon/";
+    public static final String MARATHON_ENDPOINT = "http://cc-vorles-ElasticL-1W6KQJZFVNO90-835720967.eu-central-1.elb.amazonaws.com/service/marathon/v2/apps/";
+    public static final String JWT_FILE = "dcos-jwt.txt";
     private static final Logger LOG = LoggerFactory.getLogger(MarathonController.class);
 
-    static {
-        Unirest.setDefaultHeader("Content-Type","application/json");
-        Unirest.setDefaultHeader("Accept","application/json");
+    public static void main(String[] args) throws UnirestException, IOException {
+        //Die Default HTTP-Header zur Kommunikation mit dem Marathon-Endpunkt setzen
+        setDefaultHeader();
+        //Anwendung an Marathon übermitteln
+        submitApp("nginx-cluster.json");
+        //Alle laufenden Anwendungen anzeigen
+        printRunningApps();
     }
 
-    public static void main(String[] args) throws UnirestException, IOException {
-        submitApp("nginx-cluster.json");
-        printRunningApps();
+    /**
+     * Die Default HTTP-Header setzen. Muss vor dem ersten Aufruf der REST-API erfolgen.
+     */
+    public static void setDefaultHeader() throws IOException {
+        Unirest.setDefaultHeader("Content-Type","application/json");
+        Unirest.setDefaultHeader("Accept","application/json");
+        String jwt = Resources.toString(Resources.getResource(JWT_FILE), Charsets.UTF_8);
+        Unirest.setDefaultHeader("Authorization", "token=" + jwt);
     }
 
     /**
      * Startet eine App in einem Marathon Cluster
      *
      * @param jsonFile die JSON-Datei mit der Job-Definition. Pfad im Classpath.
-     * @return JSON Antwort von Marathon
      * @throws UnirestException wenn REST Anfrage an Marathon fehlerhaft war.
      * @throws IOException wenn JSON-Datei mit Job-Definition nicht gelesen werden kann.
      */
-    public static JsonNode submitApp(String jsonFile) throws UnirestException, IOException {
-        URL url = Resources.getResource(jsonFile);
-        String req = Resources.toString(url, Charsets.UTF_8);
-
-        HttpResponse<JsonNode> response = Unirest
-                .post(MARATHON_ENDPOINT + "v2/apps/")
-                .body(req).asJson();
-
-        LOG.debug(response.getBody().toString());
-        return response.getBody();
+    public static void submitApp(String jsonFile) throws UnirestException, IOException {
+        String req = Resources.toString(Resources.getResource(jsonFile), Charsets.UTF_8);
+        String response = Unirest.post(MARATHON_ENDPOINT).body(req).asJson().getStatusText();
+        LOG.info(response);
     }
 
     /**
@@ -56,8 +59,7 @@ public class MarathonController {
      * @throws UnirestException wenn REST Anfrage an Marathon fehlerhaft war.
      */
     public static void printRunningApps() throws UnirestException {
-        System.out.println(
-                Unirest.get(MARATHON_ENDPOINT + "v2/apps/")
+        LOG.info(Unirest.get(MARATHON_ENDPOINT)
                         .asString().getBody().toString());
     }
 }

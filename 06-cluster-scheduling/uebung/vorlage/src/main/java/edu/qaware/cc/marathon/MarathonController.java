@@ -2,6 +2,7 @@ package edu.qaware.cc.marathon;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
+import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -12,23 +13,44 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * Fernsteuerung für ein Marathon-Cluster
+ * Fernsteuerung für ein Marathon Cluster
  */
 public class MarathonController {
 
-
-    public static final String MARATHON_ENDPOINT = "http://cc-vorles-elasticl-yo07v3s5a0vp-259392268.eu-central-1.elb.amazonaws.com/service/marathon/";
+    public static final String MARATHON_ENDPOINT = "http://cc-vorles-ElasticL-1W6KQJZFVNO90-835720967.eu-central-1.elb.amazonaws.com/service/marathon/v2/apps/";
+    public static final String JWT_FILE = "dcos-jwt.txt";
     private static final Logger LOG = LoggerFactory.getLogger(MarathonController.class);
 
-    static {
-        Unirest.setDefaultHeader("Content-Type","application/json");
-        Unirest.setDefaultHeader("Accept","application/json");
+    public static void main(String[] args) throws UnirestException, IOException {
+        //Die Default HTTP-Header zur Kommunikation mit dem Marathon-Endpunkt setzen
+        setDefaultHeader();
+        //Anwendung an Marathon übermitteln
+        submitApp("nginx-cluster.json");
+        //Alle laufenden Anwendungen anzeigen
+        printRunningApps();
     }
 
+    /**
+     * Die Default HTTP-Header setzen. Muss vor dem ersten Aufruf der REST-API erfolgen.
+     */
+    public static void setDefaultHeader() throws IOException {
+        Unirest.setDefaultHeader("Content-Type","application/json");
+        Unirest.setDefaultHeader("Accept","application/json");
+        String jwt = Resources.toString(Resources.getResource(JWT_FILE), Charsets.UTF_8);
+        Unirest.setDefaultHeader("Authorization", "token=" + jwt);
+    }
 
-    public static void main(String[] args) throws UnirestException, IOException {
-        submitApp("nginx-cluster.json");
-        printRunningApps();
+    /**
+     * Startet eine App in einem Marathon Cluster
+     *
+     * @param jsonFile die JSON-Datei mit der Job-Definition. Pfad im Classpath.
+     * @throws UnirestException wenn REST Anfrage an Marathon fehlerhaft war.
+     * @throws IOException wenn JSON-Datei mit Job-Definition nicht gelesen werden kann.
+     */
+    public static void submitApp(String jsonFile) throws UnirestException, IOException {
+      //TODO: Implementieren mit Hilfe der Marathon-REST-API und Unirest
+      //Dokumentation Marathon-REST-API: https://mesosphere.github.io/marathon/docs/rest-api.html
+      //Dokumentation Unirest: http://unirest.io/java.html
     }
 
     /**
@@ -37,28 +59,8 @@ public class MarathonController {
      * @throws UnirestException wenn REST Anfrage an Marathon fehlerhaft war.
      */
     public static void printRunningApps() throws UnirestException {
-        //TODO: Implementieren mit Hilfe der Marathon-REST-API und Unirest
-        //Dokumentation Marathon-REST-API: https://mesosphere.github.io/marathon/docs/rest-api.html
-        //Dokumentation Unirest: http://unirest.io/java.html
+      //TODO: Implementieren mit Hilfe der Marathon-REST-API und Unirest
+      //Dokumentation Marathon-REST-API: https://mesosphere.github.io/marathon/docs/rest-api.html
+      //Dokumentation Unirest: http://unirest.io/java.html
     }
-
-    /**
-     * Startet eine App in einem Marathon Cluster
-     *
-     * @param jsonFile die JSON-Datei mit der Job-Definition. Pfad im Classpath.
-     * @return JSON Antwort von Marathon
-     * @throws UnirestException wenn REST Anfrage an Marathon fehlerhaft war.
-     * @throws IOException wenn JSON-Datei mit Job-Definition nicht gelesen werden kann.
-     */
-    public static JsonNode submitApp(String jsonFile) throws UnirestException, IOException {
-        URL url = Resources.getResource(jsonFile);
-        String req = Resources.toString(url, Charsets.UTF_8);
-
-        //TODO: Implementieren mit Hilfe der Marathon-REST-API und Unirest
-        //Dokumentation Marathon-REST-API: https://mesosphere.github.io/marathon/docs/rest-api.html
-        //Dokumentation Unirest: http://unirest.io/java.html
-
-        return null; //TODO: JSON-Rückgabe von Marathon als Ergebnis rückgeben
-    }
-
 }
