@@ -17,7 +17,7 @@ Inhalte:
 9. [9. Juni - Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
 10. [16.+23. Juni - Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
 11. [30. Juni - Plattform-as-a-Service (Teil 1)](10-paas) und Prüfungsvorbereitung
-12. [7. Juli - Plattform-as-a-Service (Teil 2)](10-paas) und Prüfungsvorbereitung
+12. [7. Juli - Plattform-as-a-Service (Teil 2)](10-paas)
 
 Für die Übungen notwendige Software:
 
