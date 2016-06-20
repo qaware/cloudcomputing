@@ -5,6 +5,7 @@ import com.hazelcast.core.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,6 +21,10 @@ public class Chatter implements ItemListener<String>{
   
         //Erzeuge eine verteilte Liste als Datenstruktur
         HazelcastInstance hz = Hazelcast.newHazelcastInstance();
+        Collection<DistributedObject> cd =  hz.getDistributedObjects();
+        for (DistributedObject d : cd) {
+            System.out.println("Distributed Object found >>>>" + d.getName());
+        }
         IList<String> messages = hz.getList(CLUSTER_ID);
         
         //Initial werden alle bisherigen Nachrichten ausgegeben
