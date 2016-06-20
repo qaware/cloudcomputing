@@ -17,7 +17,7 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
 ## Aufgaben
 
 ### Consul starten (Configuration & Coordination)
- 1. Consul starten: `consul agent -dev -ui`. Consul kann später per `Ctrl + C` gestoppt werden.
+ 1. Consul starten: `consul agent -dev -ui -bind=127.0.0.1`. Consul kann später per `Ctrl + C` gestoppt werden.
  2. Die Ausgabe von Consul analysieren. Hier wird dargestellt, wie das Raft-Protokoll den Leader wählt und anschließend den Zustand synchronisiert.
  3. Die Consul Web-UI prüfen: http://localhost:8500/ui. Consul muss selbst als Service hier erfolgreich laufen.
  4. Über die REST API von Consul prüfen, ob der Service läuft: http://localhost:8500/v1/catalog/services.
