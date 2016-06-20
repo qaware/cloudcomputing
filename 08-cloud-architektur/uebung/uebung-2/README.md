@@ -26,7 +26,7 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
  1. Den Zwischer Service so modifizieren, dass der Service an Consul registriert wird.
  Hierfür eine entsprechende Consul API als Bibliothek einbinden (https://github.com/OrbitzWorldwide/consul-client).
  Ebenso den Microservice so modifizieren, dass ein dynamischer Port ausgewählt wird.
- 2. In Consul prüfen, ob der Service registriert ist. UI oder per REST: http://localhost:8500/v1/catalog/service/zwitscher.
+ 2. In Consul prüfen, ob der Service registriert ist. UI (http://localhost:8500/ui) oder per REST API (http://localhost:8500/v1/catalog/service/zwitscher).
  3. Den Zwitscher-Service direkt aufrufen: http://localhost:2890/messages
  4. In Consul den Health-Status des Zwitscher-Service prüfen. Sollte grün sein.
  5. 3 weitere Service-Instanzen starten und in Consul nachvollziehen, dass sie dort registriert und gesund sind.
