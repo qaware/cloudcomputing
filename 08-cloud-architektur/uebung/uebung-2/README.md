@@ -24,8 +24,8 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
  4. Über die REST API von Consul prüfen, ob der Service "consul" läuft: http://localhost:8500/v1/catalog/services.
 
 ### Den Microservice bei Consul registrieren (Service Discovery)
- 1. Den Zwischer Service so modifizieren, dass der Service an Consul registriert wird.
- Hierfür wird die Orbiz Java-API für Consul genutzt (https://github.com/OrbitzWorldwide/consul-client).
+ 1. Den Zwischer Service so modifizieren, dass der Service an Consul registriert wird (siehe entsprechenden TODO-Kommentar).
+ Hierfür wird die Orbiz Java-API für Consul genutzt (https://github.com/OrbitzWorldwide/consul-client). Beantworten sie dabei auch die Fragen, die im Quellcode gestellt werden.
  2. In Consul prüfen, ob der Zwitscher-Service registriert ist. Per UI (http://localhost:8500/ui) oder per REST API (http://localhost:8500/v1/catalog/service/zwitscher).
  3. Den Zwitscher-Service direkt aufrufen: http://localhost:2890/messages.
  4. In Consul den Health-Status des Zwitscher-Service prüfen. Sollte grün sein.
