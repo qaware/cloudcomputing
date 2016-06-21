@@ -21,35 +21,7 @@ import java.net.URL;
 /**
  * Die Zwitscher-Applikation. Diese exponiert einen REST-Webservice inkl. Swagger Dokumentation.
  *
- * ***********************
- * Q&A
- * ***********************
- * Q: Wie schafft man dynamische Port-Zuordnung und damit einen flexiblen Start neuer Zwitscher-Instanzen?
- * A: Indem man in der Dropwizard-Konfiguration die Ports auf "0" setzt und den Port programmatisch ausliest.
- *
- * Q: Was ist der Unterschied zwischen serviceName und serviceId?
- * A: <code>serviceName</code> = Name des Services
- *    <code>serviceId</code> = spezifische Instanz des Services.
- *    Mehre <code>serviceIds</code> pro <code>serviceName</code> möglich.
- *
- * Q: Warum funktioniert das hier, wenn kein Host angegeben ist?
- * A: Es handelt sich hierbei um den Quell-Host, der von Außen aufgerufen wird.
- *    Die Routing-Tabelle ist sortiert nach Host-Namen. Zunächst die Einträge mit
- *    explizitem Host-Namen, dann die Einträge ohne Host-Namen. Bei einer Anfrage
- *    wird diese Tabelle von Oben nach Unten durchgegangen und bei einem Treffer
- *    ge-routet. (siehe Abschnitt über Routing im fabio-Doku).
- *
- * Q: Wo positioniert man die Consul-Registrierung am besten?
- * A: Man registriert in der <code>run()</code>-Methode der Applikation einen ServerLifecycleListener.
- *    Dort kann man dann die Consul-Registrierung anstoßen, sobald der Server gestartet ist
- *    (und auch der Port vergeben wurde).
- *
- * Q: Hier wird ein Consul HTTP Check verwendet. Wann nutzt man diesen, wann einen TTL Check?
- * A: In Produktion würde eher ein TTL-Check (Deadman's Switch) eingesetzt werden,
- *    was Consul Arbeit erspart und der Service hierbei seinen Hostnamen nicht kennen muss.
- *    Hierfür kann der <code>ScheduledExecutorService</code> von Java genutzt werden.
- * ***********************
- */
+*/
 public class ZwitscherApplication extends Application<ZwitscherConfiguration> {
 
     public static final Logger LOG = LoggerFactory.getLogger(ZwitscherApplication.class);
@@ -105,11 +77,14 @@ public class ZwitscherApplication extends Application<ZwitscherConfiguration> {
                     }
                 }
 
-                //2) registriert einen Service bei Consul
+                //2) registriert einen Service bei Consul (siehe https://github.com/OrbitzWorldwide/consul-client)
                 try {
                     String serviceName = "zwitscher";
-                    String serviceId = "zwitscher-" + applicationHost + ":" + applicationPort; //Eindeutige Instanz
-                    String fabioServiceTag = "urlprefix-/messages"; //Quell-URL, die auf den Service routen soll
+                    //TODO: Warum enthält die ServiceId den Host und den Port der Applikation?
+                    String serviceId = "zwitscher-" + applicationHost + ":" + applicationPort;
+                    //TODO: Was hat es mit dem Fabio Service Tag auf sich?
+                    String fabioServiceTag = "urlprefix-/messages";
+                    //TODO: Für was wird die Service URL wohl benötigt?
                     URL serviceUrl = UrlBuilder.empty()
                             .withScheme("http")
                             .withHost(applicationHost)
@@ -120,14 +95,7 @@ public class ZwitscherApplication extends Application<ZwitscherConfiguration> {
                     LOG.info("Registering service with ID {} on NAME {} with healthcheck URL {} and inbound ROUTE {}",
                               serviceId, serviceName, serviceUrl, fabioServiceTag);
 
-                    Consul consul = Consul.builder().build(); // connect to Consul on localhost
-                    AgentClient agentClient = consul.agentClient();
-                    agentClient.register(applicationPort,
-                                         serviceUrl,
-                                         HEALTHCHECK_INTERVAL,
-                                         serviceName,
-                                         serviceId,
-                                         fabioServiceTag);
+                    //TODO: Service bei Consul registrieren
 
                 } catch (ConsulException e) {
                     LOG.error("No service registered @ Consul!", e);
