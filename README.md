@@ -4,6 +4,8 @@ Autor: Josef Adersberger (josef.adersberger@qaware.de, [@adersberger](https://tw
 
 Aktuelle Vorlesung: Hochschule Rosenheim, Wintersemester 2016/17
 
+Veranstaltungshinweis: [Cloud Native Night Meetup am 24.11.2016 in München](https://www.meetup.com/de-DE/cloud-native-muc/events/234936523/)
+
 Inhalte:
 
 1. [Einführung](00-einfuehrung)
