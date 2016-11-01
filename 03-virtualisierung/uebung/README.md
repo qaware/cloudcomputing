@@ -32,6 +32,22 @@
 * Inspizieren sie die Docker Container mit `docker inspect` und lassen sie sich die Systemlogs in den Containern per `docker logs` ausgeben.
 * Fahren sie innerhalb der Vagrant Box zunächst per `docker stop` die beiden Docker Container herunter und beenden sie anschließend die Vagrant Box über `vagrant halt`.
 
+## Fundierter Einstieg in Docker
+Für die Vorlesung wird empfohlen einen tieferen Einstieg in Docker zu machen, als dies im Rahmen der Übung möglich ist. Nutzen sie hierfür den dreien Docker-Kurs auf Katacoda: https://katacoda.com/courses/docker. Arbeiten Sie die folgenden Szenarien im Sinne einer Hausaufgabe durch:
+ * Launching Containers
+ * Deploy Static HTML Websites as Container
+ * Building Container Images
+ * Dockerizing Node.js
+ * Optimise Builds With Docker OnBuild
+ * Ignoring Files During Build
+ * Create Data Containers
+ * Creating Networs Between Containers Using Links
+ * Creating Networks Between Containers Using Networks
+ * Persisting Data Using Volumes
+ * Manage Container Log Files
+ * Ensuring Container Updatime With Restart Policies
+ * Adding Docker Metadata & Labels
+
 ## Quellen
 Diese Übung soll auch eine eigenständige Problemlösung auf Basis von Informationen aus dem Internet vermitteln. Sie können dazu für die eingesetzten Technologien z.B. die folgenden Quellen nutzen:
 * Die Dokumentation von Vagrant: https://docs.vagrantup.com
