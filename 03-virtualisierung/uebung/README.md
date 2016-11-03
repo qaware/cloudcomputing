@@ -10,13 +10,15 @@
 * Starten sie die Vagrant Box (`vagrant up`). Im Hintergrund lädt Vagrant dabei das virtuelle Image aus dem Internet.
 * Überprüfen sie den Status der Vagrant Boxen (`vagrant status`), fahren sie die Box herunter (`vagrant halt`) und überprüfen sie abermals den Status.
 
+*Hinweis:* Sollte Vargant nicht funktionieren oder der Download der Virtuellen Maschine zu lange dauern, dann können Sie die folgende Übung ab Schritt 3 auch hier durchführen: https://www.katacoda.com/courses/docker/playground
+
 ## Aufgaben
 1. Starten sie die vorbereitend erzeugte Vagrant Box und überprüfen sie die Log-Ausgaben dabei.
 * Verbinden sie sich per `vagrant ssh` per Kommandozeile in die Vagrant Box. Das Passwort dafür ist *tcuser*.
 * Starten sie einen Docker Container auf Basis des *alpine* Images und lassen sie darin eine interaktive Konsole als Entrypoint-Prozess laufen.
 * Initialisieren sie die Paketmanager *apk* mit `apk update`
 * Installieren sie den NGINX Webserver mit `apk add nginx` und analog das curl Paket.
-* Starten sie den NGINX Webserver mit dem Befehl `nginx`.
+* Starten sie den NGINX Webserver mit dem Befehl `nginx`. Hinweis: Sollte dabei der Fehler _open() "/run/nginx/nginx.pid" failed_ auftreten, dann bitte das entsprechende Verzeichnis erstellen mit `mkdir /run/nginx`. 
 * Lassen sie sich mit dem `curl` Befehl die Website auf der Kommandozeile ausgeben, die der NGINX Webserver auf *localhost* Port 80 zur Verfügung stellt. Überprüfen sie, ob eine Begrüßungs-Website von NGINX ausgegeben wird.
 * Steigen sie aus der Bash im Docker Container per `exit` Befehl aus. Wo befinden sie sich nun?
 * Lassen sie sich alle von Docker verwalteten Container anzeigen mit `docker ps –a` und ermitteln sie die Container-Id des gerade erzeugten Containers. Warum sehen sie den Container nicht mit `docker ps`?
