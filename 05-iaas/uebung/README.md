@@ -19,11 +19,11 @@ Wir wollen im Wesentlichen das Ziel der letzten Übung erreichen: Ein NGINX-Clus
 * Erstellen sie eine weitere Klasse `ListRegions`, die alle verfügbaren Rechenzentren (Regionen) ausgibt.
 * Ergänzen sie in der Klasse `LaunchNginxCluster` den Quellcode, um ein *NGINX* Cluster mit vorgelagertem *HAproxy* analog zur letzten Übung zu starten.
 * Starten sie das NGINX Cluster über das Java Programm und analysieren sie die Stellen in der Konsolenausgabe, die die Rückgabe der Befehle enthalten: Wurden alle Befehle erfolgreich durchgeführt?
-* Extrahieren sie aus der Konsolenausgabe die *IP* ihres erzeugten Knotens und teilen sie diese dem Übungsbetreuer mit.
+* Extrahieren sie aus der Konsolenausgabe die *IP* ihres erzeugten Knotens.
 
 ### Testlauf
 * Greifen sie auf die NGINX-Ausgabe zu: http://[IP]/
-* Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://[IP]/haproxy?stats. Greifen sie dazu parallel mehrfach auf die URL der NGINX-Webserver zu.
+* Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://[IP]/haproxy?stats (Zugriff per "admin", "admin"). Greifen sie dazu parallel mehrfach auf die URL der NGINX-Webserver zu.
 * Überprüfen sie die Liste der laufenden Docker Container: http://[IP]:2375/containers/json.
 
 ## Zusatzaufgabe
