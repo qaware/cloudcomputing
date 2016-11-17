@@ -2,7 +2,8 @@
 
 ## Vorbereitung
 * Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) und laden sie die Vorlage zur Übung von github in dieses Verzeichnis herunter (über `git clone` oder Download des Repositories als ZIP).
-* Öffnen sie das Verzeichnis dann als Projekt innerhalb von Netbeans.
+* Öffnen sie das Verzeichnis dann als Projekt innerhalb ihrer Entwicklungsumgebung.
+* Ergänzen sie die Zugriffsdaten auf die Amazon Cloud innerhalb der Klasse _Credentials_. Sie erhalten die Zugriffsdaten beim Übungsbetreuer.
 * Führen Sie das *Maven Goal* `clean package` aus.
 
 ## Ziel
