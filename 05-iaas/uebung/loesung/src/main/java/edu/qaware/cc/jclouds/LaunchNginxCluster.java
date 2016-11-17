@@ -1,12 +1,11 @@
 package edu.qaware.cc.jclouds;
 
-import static edu.qaware.cc.jclouds.utils.CloudUtils.connect;
-import static edu.qaware.cc.jclouds.utils.CloudUtils.exec;
-import static edu.qaware.cc.jclouds.utils.CloudUtils.launch;
 import org.jclouds.aws.ec2.compute.AWSEC2TemplateOptions;
 import org.jclouds.compute.ComputeService;
 import org.jclouds.compute.domain.NodeMetadata;
 import org.jclouds.compute.options.TemplateOptions;
+
+import static edu.qaware.cc.jclouds.utils.CloudUtils.*;
 
 
 public class LaunchNginxCluster {
@@ -22,10 +21,11 @@ public class LaunchNginxCluster {
 
         //(2) Eine Instanz in der Compute Cloud launchen
         TemplateOptions opts = AWSEC2TemplateOptions.Builder.subnetId("subnet-73da6b4e");
-        NodeMetadata node = launch("us-east-1a", 
-                                   "t2.small", 
-                                   "us-east-1/ami-5400463e",
-                                   "vl-cc", opts, cs);
+        NodeMetadata node = launch("us-east-1a",             //Region US east (N. Virginia)
+                                   "t2.small",               //Maschinentyp
+                                   "us-east-1/ami-5400463e", //"centos-docker" Image
+                                   "vl-cc",                  //Gruppe
+                                    opts, cs);
 
         //(3) SSH Kommandos ausführen      
         final String shellUser = "centos";

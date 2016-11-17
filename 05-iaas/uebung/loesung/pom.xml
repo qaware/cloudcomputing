@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <jclouds.version>1.9.1</jclouds.version>
+        <jclouds.version>1.9.2</jclouds.version>
         <slf4j.version>1.7.2</slf4j.version>
         <guava.version>18.0</guava.version>
     </properties>
@@ -18,13 +18,6 @@
         <dependency>
             <groupId>org.apache.jclouds</groupId>
             <artifactId>jclouds-allcompute</artifactId>
-            <version>${jclouds.version}</version>
-        </dependency>
-        
-        <!-- Provider für die Google Compute Engine -->
-        <dependency>
-            <groupId>org.apache.jclouds.labs</groupId>
-            <artifactId>google-compute-engine</artifactId>
             <version>${jclouds.version}</version>
         </dependency>
         
