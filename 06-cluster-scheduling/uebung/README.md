@@ -29,8 +29,3 @@ Ziel ist es, eine NGINX-Instanz in Marathon zu starten. Hierfür verwenden wir d
 * Entfernen sie das Constraint, dass die Tasks nur auf dem öffentlich zugänglichen Slave-Knoten laufen können.
 * Erhöhen sie die Anzahl der Instanzen.
 * Starten sie mit ihrem Programm den NGINX-Job in Marathon.
-
-### Optionale Aufgabe: NGINX-Cluster mit vorgelagertem HAproxy
-Ziel dieser Aufgabe ist es, eine Konstellation wie in den vorangegangenen Übungen auf einem Mesos-Cluster zu starten. Gehen sie dabei wie folgt vor:
-* Erstellen sie drei NGINX-Instanzen und ermitteln sie die jeweiligen Container-IDs. Stellen sie per Constraint sicher, dass alle drei Instanzen auf einem Host laufen.
-* Starten sie eine HAproxy-Instanz auf Basis des Docker-Images `qaware/haproxy-nginx-lb`. Stellen sie auch hier sicher, dass die Instanz auf dem Host mit den NGINX-Instanzen läuft. Linken sie dabei den Docker-Container des HAproxy gegen die drei NGINX-Instanzen. Dies erfolgt durch entsprechende Parameter-Definition im JSON-Request: `"parameters": [ { "key": "link", "value": "CONTAINER NAME" } ]`. Nutzen sie den oben bereits verwendeten Port für den HAproxy. Fahren sie vorab das vorherige Cluster herunter.
