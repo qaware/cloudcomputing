@@ -23,7 +23,7 @@ Inhalte:
 
 Für die Übungen notwendige Software:
 
-* Netbeans Java SE in der aktuellsten Version: https://netbeans.org/downloads
+* Netbeans Java SE in der aktuellsten Version: https://netbeans.org/downloads. Alternativ: Vergleichbare Java-Entwicklungsumgebung wie Eclipse oder intelliJ.
 * JDK 8: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 * git in der aktuellsten Version: https://git-scm.com/download/win. Optional: github Desktop (https://desktop.github.com). 
 * Vagrant (inklusive der benötigten VirtualBox Version) in der aktuellsten Version: https://www.vagrantup.com
