@@ -17,7 +17,7 @@ import java.net.URL;
  */
 public class MarathonController {
 
-    public static final String MARATHON_ENDPOINT = "http://cc-vorles-ElasticL-1W6KQJZFVNO90-835720967.eu-central-1.elb.amazonaws.com/service/marathon/v2/apps/";
+    public static final String MARATHON_ENDPOINT = "http://<MASTER-IP>/service/marathon/v2/apps/";
     public static final String JWT_FILE = "dcos-jwt.txt";
     private static final Logger LOG = LoggerFactory.getLogger(MarathonController.class);
 
