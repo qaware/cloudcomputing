@@ -11,7 +11,7 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
 ## Vorbereitung
  * Laden sie die Vorlage zur Übung von github herunter. Machen sie sich mit dem Code wieder vertraut und starten sie den Service aus der Entwicklungsumgebung heraus, rufen sie die Endpunkte im Browser auf und stoppen sie den Service wieder. Zwitscher läuft nun nicht auf einem fix vorgegebenen Port sondern sucht sich selbst einen freien Port. Wie wurde dies erreicht?
  * Laden sie Consul herunter (https://www.consul.io/downloads.html) und entpacken die ZIP-Datei im Wurzelverzeichnis der Übung.
- * Laden sie das letzte stabile Release von Fabio herunter (Linux und Mac OS X Version: https://github.com/eBay/fabio/releases - Datei im Anschluss in `fabio` umbenennen; Windows-Version 64 Bit: https://github.com/adersberger/cloudcomputing/tree/master/08-cloud-architektur/uebung/uebung-2/bin/win64). Legen sie die Fabio executable ebenfalls im Wurzelverzeichnis deer Übung ab. Bei Linux und Mac OS X muss die Datei eventuell noch als ausführbar markiert werden: `chmod +x fabio`.
+ * Laden sie das letzte stabile Release von Fabio herunter (Linux und Mac OS X Version: https://github.com/eBay/fabio/releases - Datei im Anschluss in `fabio` umbenennen. Legen sie die Fabio executable ebenfalls im Wurzelverzeichnis deer Übung ab. Bei Linux und Mac OS X muss die Datei eventuell noch als ausführbar markiert werden: `chmod +x fabio`.
  * Legen sie im Wurzelverzeichnis der Übung eine Konfigurationsdatei für Fabio mit dem Dateinamen `fabio.properties` an und befüllen sie diese mit dem Default-Inhalt
  (https://raw.githubusercontent.com/eBay/fabio/master/fabio.properties).
 
