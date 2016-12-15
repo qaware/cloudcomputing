@@ -69,6 +69,7 @@ public class ZwitscherApplication extends Application<ZwitscherConfiguration> {
     @Override
     /**
      * Prüft die Konfiguration.
+     *
      * Semantik <code>initialize()</code>:
      * <i>An initialize method is used to configure aspects of the application required before
      * the application is run, like bundles, configuration source providers, etc.</i>
@@ -91,7 +92,7 @@ public class ZwitscherApplication extends Application<ZwitscherConfiguration> {
             @Override
             public void serverStarted(Server server) {
 
-                //1) ermittelt den Host und der Port der Applikation
+                //1) ermittelt den Host und den Port der Applikation
                 int applicationPort = 0;
                 String applicationHost = server.getURI().getHost();
                 LOG.info("Application launched on host {}", applicationHost);
