@@ -45,7 +45,7 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
 ## Aufgabenblock 1: Microservice Stack in auf ein Kubernetes Cluster deployen
 
 ### Vorbereitung
- * Laden sie minikube herunter (https://github.com/kubernetes/minikube/releases) und legen sie die Datei im Wurzelverzeichnis der Übung ab. Über minikube kann ein lokales Kubernetes Cluster erzeugt und verwaltet werden. Nennen sie die heruntergeladene Datei in _minikube_ / _minikube.exe_ um.
+ 1. Laden sie minikube herunter (https://github.com/kubernetes/minikube/releases) und legen sie die Datei im Wurzelverzeichnis der Übung ab. Über minikube kann ein lokales Kubernetes Cluster erzeugt und verwaltet werden. Nennen sie die heruntergeladene Datei in _minikube_ / _minikube.exe_ um.
  * Laden sie kubectl herunter und legen sie die Datei im Wurzelverzeichnis ab. Mit kubectl kann ein Kubernetes Cluster gesteuert werden. Die Dokumentation zu kubectl finden sie hier: http://kubernetes.io/docs/user-guide/kubectl-overview. Die ausführbare kubectl Datei ist unter den folgenden URLs zugreifbar:
    * Win64: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/windows/amd64/kubectl.exe
    * Win32: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/windows/386/kubectl.exe
@@ -63,14 +63,14 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
  * Prüfen sie mit `docker ps`, ob die Verbindung zum Docker Daemon klappt. Hier sollten ein paar Docker Container aufgelistet werden, die innerhalb von minikube laufen.
 
 ### Consul deployen
- * Öffnen sie die Service- und RC-Deskriptoren für Consul und analysieren sie diese
+ 1. Öffnen sie die Service- und RC-Deskriptoren für Consul und analysieren sie diese
  * Deployen sie zunächst den den Service und dann den RC und prüfen sie im Anschluss im Dashboard, ob beide erfolgreich laufen
    * `kubectl create -f ./src/infrastructure/k8s/consul-svc.yaml`
    * `kubectl create -f ./src/infrastructure/k8s/consul-rc.yaml`
  * Greifen sie auf die Consul Web-UI zu. Dazu müssen sie zunächst per `minikube ip` die IP des Kubernetes Cluster ermitteln. Der Zugriff auf die Consul Web-UI erfolgt dann über die URL: http://MINIKUBE-IP:30850/ui
  
 ### Microservice mit Consul verbinden (Bonusaufgabe)
- * Modifizieren sie den Microservice so, dass er sich mit dem Consul Service innerhalb von Kubernetes verbindet. Wie ein Service-Endpunkt innerhalb von Kubernetes ermittelt werden kann ist hier beschrieben: http://kubernetes.io/docs/user-guide/services.
+ 1. Modifizieren sie den Microservice so, dass er sich mit dem Consul Service innerhalb von Kubernetes verbindet. Wie ein Service-Endpunkt innerhalb von Kubernetes ermittelt werden kann ist hier beschrieben: http://kubernetes.io/docs/user-guide/services.
  * Sie müssen dabei auch die IP des Microservice Pods ermitteln. Welche Möglichkeiten es hierfür gibt, sind z.B. hier beschrieben:
     * http://stackoverflow.com/questions/30746888/how-to-know-a-pods-own-ip-address-from-a-container-in-the-pod
     * http://stackoverflow.com/questions/9481865/getting-the-ip-address-of-the-current-machine-using-java
@@ -78,8 +78,8 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
  * Erstellen sie einen Kubernetes Service- und RC-Deskriptor für den Microservice und deployen sie beides in den Kubernetes Cluster
  * Prüfen sie im Anschluss per Dashboard und Consul UI, ob der Microservice läuft und bei Consul registriert ist
  
- ### Fabio vor Consul schalten (Bonusaufgabe)
-  * Erstellen sie einen Service- und RC-Deskriptor für fabio. 
+### Fabio vor Consul schalten (Bonusaufgabe)
+  1. Erstellen sie einen Service- und RC-Deskriptor für fabio. 
     * Ein Docker Image für fabio ist hier zu finden: https://hub.docker.com/r/magiconair/fabio. 
     * Wie die Verbindung zwischen fabio und Consul per Kommandozeilen-Parameter aufgebaut werden kann ist hier zu finden: https://github.com/eBay/fabio/wiki/Configuration
   * Deployen sie den fabio Service und RC und prüfen sie, ob sie die fabio UI und den fabio Endpunkt erreichen können.
