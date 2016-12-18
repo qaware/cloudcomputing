@@ -42,7 +42,7 @@ Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu
    die Verteilung der Requests nachvollziehen. Fabio auf random-Verteilung umstellen und die Request-Verteilung dann
    nachvollziehen.
 
-## Aufgabenblock 1: Microservice Stack in auf ein Kubernetes Cluster deployen
+## Aufgabenblock 2: Microservice Stack in auf ein Kubernetes Cluster deployen
 
 ### Vorbereitung
  1. Laden sie minikube herunter (https://github.com/kubernetes/minikube/releases) und legen sie die Datei im Wurzelverzeichnis der Übung ab. Über minikube kann ein lokales Kubernetes Cluster erzeugt und verwaltet werden. Nennen sie die heruntergeladene Datei in _minikube_ / _minikube.exe_ um.
