@@ -16,8 +16,8 @@ Inhalte:
 8. [Big Data: Speicherung und Verarbeitung](09-big-data)
 9. [Orchestrierung von Anwendungen im Cluster](07-orchestrierung)
 10. [Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
-11. [Plattform-as-a-Service (Teil 1)](10-paas) und [Prüfungsvorbereitung](11-zusammenfassung)
-12. [Plattform-as-a-Service (Teil 2)](10-paas)
+11. [Plattform-as-a-Service (Teil 1)](10-paas) 
+12. [Plattform-as-a-Service (Teil 2)](10-paas) und [Prüfungsvorbereitung](11-zusammenfassung)
 
 Für die Übungen notwendige Software:
 
