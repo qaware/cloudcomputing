@@ -7,8 +7,11 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
+/**
+ * A CORS filter provider implementation.
+ */
 @Provider
-public class CQRSFilter implements ContainerResponseFilter {
+public class CORSFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
