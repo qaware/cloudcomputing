@@ -1,12 +1,17 @@
 package de.qaware.edu.cc.bookservice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+/**
+ * Simple book POJO.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel("Book")
 public class Book {
     private String title;
     private String author;
