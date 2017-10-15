@@ -61,4 +61,35 @@ public class Bookshelf {
     }
 
 
+    /**
+     * Delete book by ISBN.
+     *
+     * @param isbn
+     */
+    public void delete(String isbn) {
+        books.removeIf(b -> b.getIsbn().equals(isbn));
+    }
+
+    /**
+     * Create book of not already present.
+     *
+     * @param book the book to create
+     * @return true of created, otherwise false
+     */
+    public boolean create(Book book) {
+        return books.add(book);
+    }
+
+    /**
+     * Find and update the book with given ISBN.
+     *
+     * @param isbn the ISBN to update
+     * @param book the updated book
+     */
+    public void update(String isbn, Book book) {
+        Book found = findByIsbn(isbn);
+
+        found.setTitle(book.getTitle());
+        found.setAuthor(book.getAuthor());
+    }
 }
