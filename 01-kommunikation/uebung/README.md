@@ -119,15 +119,17 @@ Diese Übung soll auch eine eigenständige Problemlösung auf Basis von Informat
 Maven
 * http://maven.apache.org/guides/getting-started
 
+Spring Boot
+* https://start.spring.io
+* https://docs.spring.io/spring-boot/docs/current/reference/html/index.html
+* https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html
+
 JAX-RS
-* https://github.com/wordnik/swagger-core/wiki/Java-JAXRS-Quickstart
 * https://jersey.java.net/documentation/latest/jaxrs-resources.html
+* https://dzone.com/articles/using-jax-rs-with-spring-boot-instead-of-mvc
 
 Swagger
 * http://swagger.io
-* https://github.com/wordnik/swagger-core/tree/master/modules/swagger-annotations/src/main/java/com/wordnik/swagger/annotations
-* http://java.dzone.com/articles/swagger-make-developers-love
-
-Beispiele für REST APIs
-* https://dev.twitter.com/rest/tools/console
-* http://www.programmableweb.com/apis/directory
+* https://github.com/swagger-api/swagger-core
+* http://springfox.github.io/springfox/docs/current/#introduction
+* http://springfox.github.io/springfox/
