@@ -17,6 +17,7 @@ public class BookstoreAPI extends ResourceConfig {
         register(BookResource.class);
         register(BookExceptionMapper.class);
 
+        register(ManagementEndpoints.class);
         register(CORSFilter.class);
     }
 }
