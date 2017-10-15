@@ -1,18 +1,24 @@
 # Übung: Das REST Protokoll
 
-## Vorbereitung
-1. Starten Sie Netbeans (die Startdateien befinden sich im bin Ordner).
-2. Erstellen Sie innerhalb von Netbeans ein neues Projekt (`Datei -> Neues Projekt`). Wählen Sie dabei eine `Maven / Java Application` als Projektart aus.
-3. Definieren Sie die Projekteigenschaften wie in der folgenden Abbildung dargestellt:
-![Netbeans](netbeans-neues-projekt.png)
-4. Öffnen Sie die Datei `pom.xml` (Maven Projektbeschreibung) und fügen Sie dort ein zunächst noch leeres Element `dependencies` ein. Ergänzen Sie innerhalb dieses Elements die folgenden Bibliotheksabhängigkeiten in einer jeweils aktuellen Version. Bitte die hier angegebene Reihenfolge beachten. Die entsprechenden XML-Fragmente für Maven können sie über http://mvnrepository.com beziehen.
-   1. `dropwizard-core`
-   * `dropwizard-assets`
-   * `swagger-jaxrs_2.10`
-5. Führen Sie das Maven Goal `clean package` aus.
+Ziel dieser Übung ist es ein einfaches REST API für eine Bibliothek zu erstellen. Das API soll einfache Abfragen,
+sowie ein CRUD Interface zum Anlegen, Aktualisieren und Löschen von Büchern ermöglichen.
 
-## Ziel
-Wir erstellen und dokumentieren eine REST-API, mit dem auf eine Nachricht mit beliebigem Inhalt zugegriffen werden kann.
+## Vorbereitung
+
+1. Zunächst muss ein Anwendungsrumpf für den Microservice und das REST API erstellt werden. Wir verwenden hierfür
+den Spring Boot Initializr. Rufen sie hierfür die folgende URL auf: https://start.spring.io
+
+2. Passen sie die Projekt Metadaten nach ihren Bedürfnissen an. Wählen sie Java als Sprache und Maven als Build-Tool.
+
+3. Fügen sie die folgenden Dependencies hinzu:
+  * Jersey (JAX-RS)
+  * Actuator
+
+
+4. Generieren und laden sie das Projekt und speichern sie es in ihrem Arbeitsbereich.
+
+5. Öffnen sie eine Console, gehen sie in das Projektverzeichnis und führen sie folgendes Kommand aus: `mvnv install`
+
 
 ## Aufgaben
 ### Aufgabe 1: REST-API mit Dropwizard erstellen
@@ -109,8 +115,6 @@ Bauen Sie die REST-Schnittstelle weiter aus. Gehen Sie dabei so vor, wie im Vort
 ## Quellen
 Diese Übung soll auch eine eigenständige Problemlösung auf Basis von Informationen aus dem Internet vermitteln. Sie können dazu für die eingesetzten Technologien z.B. die folgenden Quellen nutzen:
 
-Netbeans
-* http://netbeanside61.blogspot.de/2008/04/top-10-netbeans-ide-keyboard-shortcuts.html
 
 Maven
 * http://maven.apache.org/guides/getting-started
@@ -118,10 +122,6 @@ Maven
 JAX-RS
 * https://github.com/wordnik/swagger-core/wiki/Java-JAXRS-Quickstart
 * https://jersey.java.net/documentation/latest/jaxrs-resources.html
-
-Dropwizard
-* http://dropwizard.io/manual/core.html
-* http://kielczewski.eu/2013/04/developing-restful-web-services-using-dropwizard  
 
 Swagger
 * http://swagger.io
