@@ -21,49 +21,131 @@ den Spring Boot Initializr. Rufen sie hierfür die folgende URL auf: https://sta
 
 
 ## Aufgaben
-### Aufgabe 1: REST-API mit Dropwizard erstellen
-Bei dieser Aufgabe geht es darum, eine einfache REST-Schnittstelle aufzubauen und auf Basis von Dropwizard ausführbar zu machen. Dazu gehen Sie bitte wie folgt vor:
-#### Schritt 1: REST-Schnittstelle auf Basis JAX-RS aufbauen
-1. Erstellen Sie unterhalb des Applikationspakets (`edu.qaware.cc.zwitscher`) die Unterpakete `api` und `core`. In `api` wird sich die eigentliche REST-Schnittstelle befinden und in `core` die Anbindung an Dropwizard.
-* Erstellen Sie unterhalb des `api` Pakets noch zwei weitere Pakete: `resources` für die eigentliche REST-Schnittstelle und `entities` für die an der REST-Schnittstelle genutzten Entitäten.
-* Erstellen Sie im Paket `api.resources` eine Klasse `ZwitscherMessageResource` und im Paket `api.entities` eine Klasse `ZwitscherMessage`.
-*  Programmieren Sie das Grundgerüst für die beiden Klassen.
-  * Die Klasse `ZwitscherMessage` besitzt die Felder `timestamp` (Typ: `Date`) und `message` (Typ: `String`) sowie die entsprechenden Getter- und Setter-Methoden.
-  * Die Klasse `ZwitscherMessageResource` besitzt eine Methode: `ZwitscherMessage getRandomMessage()``
-* Implementieren Sie die Methode `getRandomMessage()` so, dass sie eine Nachricht mit beliebigem Inhalt und aktuellem `timestamp` zurückliefert.
-* Ergänzen Sie die Klassen so, dass sie durch JAX-RS als REST-Schnittstelle angeboten werden können. Die Methode `getRandomMessage()` soll dabei wie folgt aufgerufen werden können GET `{basis-url}/messages/random` und ein JSON-Objekt zurückliefern.
 
-#### Schritt 2: Die REST-Schnittstelle in Dropwizard integrieren und ausführen
-1. Erstellen sie die Klasse `ZwitscherConfiguration` im Paket `core`. Diese Klasse dient Dropwizard dazu, Konfigurationsparameter in einer Konfigurationsdatei zugänglich zu machen. Die Klasse muss dazu von `Configuration` erben. Damit werden auf jeden Fall alle Dropwizard Konfigurationsparameter verfügbar gemacht. Da wir keine applikationsspezifischen Konfigurationsparameter verwenden, können wir die Klasse leer lassen.
-* Erstellen sie die Klasse `ZwitscherApplication` im Paket `core`. Dies ist die Startklasse für unseren Service. Sie erbt von `Application<ZwitscherConfiguration>`. Ergänzen Sie dafür eine `main()`-Methode, die die Applikation startet wie folgt:
+### Aufgabe 1: REST-API mit JAX-RS erstellen
+
+Bei dieser Aufgabe geht es darum, eine einfache REST-Schnittstelle aufzubauen. Wir verwenden hierfür JAX-RS. Ein Getting Started finden sie hier: https://jersey.github.io/documentation/latest/getting-started.html
+
+(1) Entwerfen sie zunächst eine einfache Datenklasse um Bücher zu repräsentieren. Die Klasse soll mindestens die Felder `titel`, `isbn` und `author` enthalten. Zusätzlich soll die Klasse beim Deserialisieren unbekannte
+JSON Felder ignorieren.
+
 ```java
-new ZwitscherApplication().run(
-        new String[]{"server",
-                     "./src/main/resources/zwitscher-config.yml"});
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Book {
+    private String title;
+    private String author;
+    private String isbn;
+
+    // getter and setter
+}
 ```
-Der hier übergebene Parameter `server` bedeutet, dass ein REST-Server hochgefahren werden soll. Der zweite Parameter verweist auf die Konfigurationsdatei mit allen notwendigen Konfigurationsparametern.
-* Erstellen Sie die entsprechende Konfigurationsdatei und fügen Sie die folgenden Konfigurationsparameter ein:
-```yaml
-server:
-  applicationConnectors:
-    - type: http
-      port: 2890
-  adminConnectors:
-    - type: http
-      port: 2891      
-logging:
-  level: INFO
-```
-* Überschreiben Sie die beiden Methoden `initialize()` und `run()` aus der Basisklasse `Application`. Hinweis: Netbeans unterstützt dabei per Alt + Return. Die Methode `initialize()` kann leer bleiben. In der Methode `run()` muss noch die REST-Ressource registriert werden:
+
+(2) Fügen sie nun eine REST Resource Klasse hinzu. Diese dient als Haupteinstiegspunkt für das Book API. Das API soll unter dem Pfad `/api/books` erreichbar sein und als Media-Type `application/json` produzieren.
+
 ```java
-e.jersey().register(ZwitscherMessageResource.class);
+@Component
+@Path("/api/books")
+@Produces(MediaType.APPLICATION_JSON)
+public class BookResource {
+  // implement methods
+}
 ```
-* Starten Sie im Anschluss die Applikation in Netbeans und rufen Sie die REST-Schnittstelle im Browser auf (URL: http://localhost:2890/messages/random).   
 
-### Aufgabe 2: API mit Swagger dokumentieren
-#### Schritt 1: API dokumentieren
+(3) Fügen sie der REST Resource nun entsprechende Methoden zum Abruf von Büchern hinzu. Es soll die Möglichkeit geben alle Bücher per `GET /api/books` abzurufen sowie einzelne Bücher mittels ISBN per `GET /api/books/{isbn}`. Implementieren sie die Business-Logik rudimentär (statische Liste statt DB). Achten sie bei
+der Implementierung auf die Verwendung der korrekten HTP Verben und Status-Codes, z.B. für den Fall das ein Buch per ISBN nicht gefunden wurde.
 
-(1) Dokumentieren sie die vorhandenen Klassen der REST-API über Swagger-Annotationen zusätzlich zu den bereits vorhandenen JAX-RS-Annotationen. Nutzen Sie hierfür die folgenden Swagger-Annotationen. Eine Beschreibung der Annotationen ist hier zugänglich: https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X.
+```java
+    @GET
+    public Response books(@QueryParam("title") String title) {
+        Collection<Book> books = bookshelf.findByTitle(title);
+        return Response.ok(books).build();
+    }
+
+    @GET
+    @Path("/{isbn}")
+    public Response byIsbn(@PathParam("isbn") String isbn) {
+        Book book = bookshelf.findByIsbn(isbn);
+        return Response.ok(book).build();
+    }
+```
+
+(4) Implementieren sie eine JAX-RS `ResourceConfig` und registrieren sie die REST Resource Klasse sowie den Jackson JSON Marshaller.
+
+```java
+@Component
+public class BookstoreAPI extends ResourceConfig {
+    public BookstoreAPI() {
+        super();
+
+        register(JacksonFeature.class);
+        register(BookResource.class);
+        register(BookExceptionMapper.class);
+    }
+}
+```
+
+(5) Kompilieren sie den Microservice und führen sie die Applikation aus: `mvnv install spring-boot:run`. Die Anwendung und das REST API sollte nun unter der folgenden URL erreichbar sein: `http://localhost:8080/api/books`.
+
+### Aufgabe 2: API Dokumentation
+
+Eine gute REST API braucht Dokumentation bzw. eine Beschreibung der angeboten
+Funktionalität die von Maschinen verarbeitet werden kann.
+
+#### Aufgabe 2.1: WADL Definition hinzufügen
+
+(1) In einem ersten Schritt fügen sie die `WadlResource` Klasse aus dem
+Jersey Modul in der REST API `ResourceConfig` hinzu.
+
+```java
+  register(WadlResource.class);
+```
+
+(2) Starten sie den Microservice und prüfen sie die korrekte Funktionsweise.
+Die WADL Definition sollten unter `http://localhost:8080/api/application.wadl`
+aufrufbar sein (abhängig von der Jersey Servlet URL).
+
+#### Aufgabe 2.2: Swagger Definition hinzufügen
+
+(1) Fügen sie zunächst in der `pom.xml` die folgenden Dependencies hinzu:
+```xml
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>2.7.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>2.7.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jersey2-jaxrs</artifactId>
+        <version>1.5.13</version>
+    </dependency>
+```
+
+(2) Im nächsten Schritt müssen die Swagger REST Resource Klasse mit der JAX-RS Applikation registriert werden. Siehe https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-Jersey-2.X-Project-Setup-1.5#using-a-custom-application-subclass für weitere Details.
+
+```java
+    resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
+    resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+```
+
+(3) Zusätzlich muss Swagger und die Basis-Parameter für das API noch entsprechend konfiguriert werden. Siehe https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-Jersey-2.X-Project-Setup-1.5#using-a-custom-application-subclass für weitere Details.
+
+```java
+    BeanConfig beanConfig = new BeanConfig();
+    beanConfig.setVersion("1.0.1");
+    beanConfig.setSchemes(new String[]{"http"});
+    beanConfig.setHost("localhost:8080");
+    beanConfig.setPrettyPrint(true);
+    beanConfig.setBasePath("/api/");
+    beanConfig.setResourcePackage("de.qaware.edu.cc.bookservice");
+    beanConfig.setScan(true);
+```
+
+(4) Annotieren und dokumentieren sie nun die vorhandenen Klassen der REST-API über Swagger-Annotationen zusätzlich zu den bereits vorhandenen JAX-RS-Annotationen. Nutzen Sie hierfür die folgenden Swagger-Annotationen, eine Beschreibung der Annotationen ist hier zugänglich: https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X.
 
 | Swagger-Annotation        | Code-Element           |
 | ------------- | ------------- |
@@ -73,48 +155,22 @@ e.jersey().register(ZwitscherMessageResource.class);
 | `@ApiModel` | Entitäts-Klasse      |
 | `@ApiModelProperty` | Setter-Methoden der Entitätsklasse      |
 
-(2) Integrieren Sie Swagger in Dropwizard. Swagger erzeugt damit automatisch eine API-Beschreibung aus den JAX-RS- und Swagger-Annotationen sowie den Klassen- und Methodenstrukturen. Damit dies erfolgt, müssen Sie den folgenden Code-Abschnitt in der `run()`-Methode der Applikationsklasse ergänzen:
+(5) Starten Sie die Anwendung nun neu. Die API-Beschreibung durch Swagger sollte nun unter der URL http://localhost:8080/api/swagger.json zugänglich sein.
 
-```java
-//Swagger REST-Schnittstelle registrieren       
-e.jersey().register(new ApiListingResourceJSON());     
-e.jersey().register(new ApiDeclarationProvider());
-e.jersey().register(new ResourceListingProvider());
-
-//Swagger konfigurieren
-ScannerFactory.setScanner(new DefaultJaxrsScanner());
-ClassReaders.setReader(new DefaultJaxrsApiReader());
-
-SwaggerConfig config = ConfigFactory.config();
-config.setApiVersion("1.0.0");
-config.setBasePath("..");
-```
-
-(3) Starten Sie die Anwendung nun neu. Die API-Beschreibung durch Swagger ist nun unter der URL http://localhost:2890/api-docs/ zugänglich. Alle verfügbaren REST-Endpunkte können Sie auch der Log-Ausgabe von Dropwizard entnehmen.   
-Analysieren Sie die JSON-Struktur der Swagger-Schnittstellenbeschreibung. Beachten Sie dabei, dass http://localhost:2890/api-docs lediglich der Einstieg in die Beschreibung ist. Die Beschreibung der bisher entwickelten Ressource ist unter http://localhost:2890/api-docs/messages/random zu finden.
-Hinweis: Die JSON-Struktur wird einfacher lesbar, wenn Sie innerhalb von Netbeans eine JSON-Datei anlegen, die Inhalte aus dem Browser dorthin kopieren und den JSON-Code layouten (Alt + Umschalt + F im Editor).
-
-
-#### Schritt 2: Schnittstelle über Swagger UI zugänglich machen
-* Laden Sie sich den Quellcode der Swagger UI von github herunter (https://github.com/wordnik/swagger-ui, „Download ZIP“).
-* Kopieren Sie die Inhalte aus dem `dist`-Verzeichnis in das Verzeichnis `src/main/resources/assets/swagger-ui` im Entwicklungsprojekt.
-* Ergänzen Sie in der `initialize()` Methode der Applikationsklasse den folgenden Code, der die Dateien der Swagger-UI per URL http://localhost:2890/api-browser/ verfügbar macht:
-```java
-bootstrap.addBundle(new AssetsBundle("/assets/swagger-ui", "/api-browser", "index.html"));
-```
-* Starten Sie die Anwendung neu und rufen Sie die Swagger UI im Browser auf. Ersetzen Sie die dort angegebene URL der Schnittstellenbeschreibung durch die entsprechende URL des Swagger-REST-Schnittstelle im Projekt. Erkunden Sie im Anschluss die Möglichkeiten der Swagger UI.
+(6) Laden sie nun die Swagger-UI von Github. Folgen sie den Anweisungen unter https://swagger.io/docs/swagger-tools/#swagger-ui-documentation-29
+Öffnen sie die UI und rufen sie die Swagger JSON URL auf. **Hinweis: sie benötigen einen JAX-RS CORS Filter um die Datei lokal aufrufen zu können.**
 
 ### Kür: REST-API weiter ausbauen
-Bauen Sie die REST-Schnittstelle weiter aus. Gehen Sie dabei so vor, wie im Vortrag vorgestellt:
-* Überlegen Sie sich die Anwendungsfälle, die die Schnittstelle abbilden soll als einfache Liste (auf Papier). Hinweis: Authentifizierung und Autorisierung brauchen Sie nicht zu berücksichtigen.
-* Leiten Sie aus den Anwendungsfällen ein Datenmodell ab (auf Papier).
-* Erstellen Sie aus den Anwendungsfällen, dem Datenmodell und den vorgestellten Entwurfsregeln eine REST-Schnittstelle. Zunächst genügt dabei eine Liste an URL-Signaturen als Kommentar in einer Textdatei.
-* Erweitern Sie die vorhandene REST-Schnittstelle entsprechend. Implementieren Sie die Methoden dabei so, dass sie Testdaten zurückgeben. Fügen Sie JAX-RS- und Swagger-Annotationen hinzu.
-* Starten Sie die REST-Schnittstelle und überprüfen Sie mit der Swagger UI, ob sie soweit funktioniert.
+Bauen Sie die REST-Schnittstelle weiter aus und fügen sie Logik zum Anlegen, Aktualisieren und Löschen von Büchern hinzu:
+
+* `DELETE /api/books/{isbn}` löscht ein Buch und gibt bei Erfolg HTTP 202 zurück
+* `POST /api/books` legt ein Buch an, akzeptiert `application/json` und gibt HTTP 201 mit der neuen URL zurück.
+* `PUT /api/books/{isbn}` aktualisiert das Buch, akzeptiert `application/json` und gibt HTTP 200 zurück.
+
+Überlegen Sie sich weitere Anwendungsfälle, die die Schnittstelle abbilden soll als einfache Liste (auf Papier). Leiten Sie aus den Anwendungsfällen ein Datenmodell ab (auf Papier). Erstellen Sie aus den Anwendungsfällen, dem Datenmodell und den vorgestellten Entwurfsregeln eine REST-Schnittstelle.
 
 ## Quellen
 Diese Übung soll auch eine eigenständige Problemlösung auf Basis von Informationen aus dem Internet vermitteln. Sie können dazu für die eingesetzten Technologien z.B. die folgenden Quellen nutzen:
-
 
 Maven
 * http://maven.apache.org/guides/getting-started
@@ -125,7 +181,8 @@ Spring Boot
 * https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html
 
 JAX-RS
-* https://jersey.java.net/documentation/latest/jaxrs-resources.html
+* https://jersey.github.io/documentation/latest/index.html
+* https://jersey.github.io/documentation/latest/getting-started.html
 * https://dzone.com/articles/using-jax-rs-with-spring-boot-instead-of-mvc
 
 Swagger
