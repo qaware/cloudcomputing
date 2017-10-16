@@ -128,8 +128,8 @@ aufrufbar sein (abhängig von der Jersey Servlet URL).
 (2) Im nächsten Schritt müssen die Swagger REST Resource Klasse mit der JAX-RS Applikation registriert werden. Siehe https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-Jersey-2.X-Project-Setup-1.5#using-a-custom-application-subclass für weitere Details.
 
 ```java
-    resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
-    resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+    register(io.swagger.jaxrs.listing.ApiListingResource.class);
+    register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
 ```
 
 (3) Zusätzlich muss Swagger und die Basis-Parameter für das API noch entsprechend konfiguriert werden. Siehe https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-Jersey-2.X-Project-Setup-1.5#using-a-custom-application-subclass für weitere Details.
