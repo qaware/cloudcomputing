@@ -32,7 +32,7 @@ public class BookstoreAPI extends ResourceConfig {
         beanConfig.setSchemes(new String[]{"http"});
         beanConfig.setHost("localhost:8080");
         beanConfig.setPrettyPrint(true);
-        beanConfig.setBasePath("http://localhost:8080/api/");
+        beanConfig.setBasePath("/api/");
         beanConfig.setResourcePackage("de.qaware.edu.cc.bookservice");
         beanConfig.setScan(true);
     }
