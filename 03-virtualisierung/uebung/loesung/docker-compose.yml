@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  nginx-php5:
+    build: .
+    image: nginx-php5:1.0.0
+    ports:
+      - "80:18080"
+    networks:
+      - cc2017
+
+  mysql:
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    networks:
+      - cc2017
+
+networks:
+  cc2017:
+    driver: bridge

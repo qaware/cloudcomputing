@@ -106,7 +106,7 @@ $ wget localhost:80/info.php
 In dieser Aufgabe sollen sie den Technologie Stack aus NGINX, PHP und MySQL mittels Docker Compose hochfahren.
 Verwenden sie dafür Images von Docker Hub.
 
-
+(1)
 
 ## Quellen
 Diese Übung soll auch eine eigenständige Problemlösung auf Basis von Informationen aus dem Internet vermitteln.

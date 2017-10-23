@@ -73,8 +73,9 @@ Vagrant.configure("2") do |config|
     sudo apt-get -y install php5-fpm php5-mysqlnd
     sudo service php5-fpm start
 
-    sudo cp /vagrant/nginx/default /etc/nginx/sites-available/default
-    sudo cp /vagrant/nginx/info.php /usr/share/nginx/www/info.php
+    sudo cp /vagrant/nginx/etc/default /etc/nginx/sites-available/default
+    sudo cp /vagrant/nginx/www/info.php /usr/share/nginx/www/info.php
+    sudo cp /vagrant/nginx/www/cc2017.html /usr/share/nginx/www/cc2017.html
 
     sudo service nginx reload
   SHELL
