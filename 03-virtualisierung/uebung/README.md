@@ -24,15 +24,10 @@ mit Hilfe von Vagrant hochzufahren.
 $ vagrant init hashicorp/precise64
 ```
 
-Editieren sie das `Vagrantfile` und weisen sie der virtuellen Maschine anschließend 1024MB Hauptspeicher
-zu und aktivieren sie die GUI.
-
+Editieren sie das `Vagrantfile` und weisen sie der virtuellen Maschine anschließend 1024MB Hauptspeicher zu.
 ```ruby
 config.vm.box_check_update = false
-config.vm.provider "virtualbox" do |vb|
-  # Display the VirtualBox GUI when booting the machine
-  vb.gui = true
-
+config.vm.provider "hyperv" do |vb|
   # Customize the amount of memory on the VM:
   vb.memory = "1024"
 end
@@ -46,11 +41,11 @@ $ vagrant ssh
 ```
 
 (2) Installieren sie nun als ersten den NGINX Server in der VM mittels Shell Provisioner. Editieren sie hierfür
-erneut das `Vagrantfile`. Leiten sie außerdem den Port `80` des Gast-Betriebssystems als Port `8080` auf das
+erneut das `Vagrantfile`. Leiten sie außerdem den Port `80` des Gast-Betriebssystems als Port `18080` auf das
 Hostbetriebssystem weiter.
 
 ```ruby
-config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+config.vm.network "forwarded_port", guest: 80, host: 18080, host_ip: "127.0.0.1"
 
 config.vm.provision "shell", inline: <<-SHELL
   sudo apt-get update
@@ -60,7 +55,7 @@ SHELL
 ```
 
 Führen sie die Provisionierung mit Vagrant aus, prüfen sie die erfolgreiche Installation indem sie mit einem Browser
-die Index-Seite auf `http://localhost:8080/` aufrufen.
+die Index-Seite auf `http://localhost:18080/` aufrufen.
 
 ```bash
 $ vagrant provision
@@ -102,7 +97,7 @@ Führen sie die Provisionierung durch prüfen sie dass die `info.php` erfolgreic
 ```bash
 $ vagrant provision
 $ vagrant ssh
-$ wget localhost:8080/info.php
+$ wget localhost:80/info.php
 ```
 
 
