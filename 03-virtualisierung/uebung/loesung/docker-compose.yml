@@ -3,13 +3,11 @@ version: '3'
 services:
   nginx-php7:
     build: .
-    image: nginx-php7:1.0.0
+    image: nginx-php7:1.0.1
     ports:
       - "18080:80"
     volumes:
-      - "./nginx/etc:/etc/nginx/sites-available"
-      - "./nginx/www:/var/www/html"
-      - "./php/pool.d:/etc/php/7.0/fpm/pool.d"
+      - "./docker/:/usr/share/nginx/html/:ro"
     networks:
       - cc2017
 

@@ -15,8 +15,8 @@ RUN yum install -y epel-release && \
 
 COPY docker/php.conf /etc/nginx/default.d/
 
-COPY docker/index.html /usr/share/nginx/html/
-COPY docker/info.php /usr/share/nginx/html/
+# COPY docker/index.html /usr/share/nginx/html/
+# COPY docker/info.php /usr/share/nginx/html/
 
 EXPOSE 80
 ENTRYPOINT php-fpm && nginx -g 'daemon off;'
