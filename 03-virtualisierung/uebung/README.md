@@ -55,7 +55,7 @@ SHELL
 ```
 
 Führen sie die Provisionierung mit Vagrant aus, prüfen sie die erfolgreiche Installation indem sie mit einem Browser
-die Index-Seite auf `http://localhost:18080/` aufrufen.
+die Index-Seite auf `http://<IP>:80/` aufrufen.
 
 ```bash
 $ vagrant provision
@@ -85,9 +85,14 @@ Provisionierung und installieren sie die Pakete `php5-fpm` und `php5-mysqlnd`.
 ```bash
 sudo apt-get -y install php5-fpm php5-mysqlnd
 sudo service php5-fpm start
+```
 
-sudo cp /vagrant/nginx/default /etc/nginx/sites-available/default
-sudo cp /usr/nginx/info.php /usr/share/nginx/www/info.php
+Im nächsten Schritt kopieren sie die folgenden Dateien von Host in das Gast-Betriebssystems und starten Nginx neu.
+
+```bash
+sudo cp /vagrant/vagrant/default /etc/nginx/sites-available/default
+sudo cp /vagrant/vagrant/info.php /usr/share/nginx/www/info.php
+sudo cp /vagrant/vagrant/index.html /usr/share/nginx/www/index.html
 
 sudo service nginx reload
 ```
@@ -97,7 +102,7 @@ Führen sie die Provisionierung durch prüfen sie dass die `info.php` erfolgreic
 ```bash
 $ vagrant provision
 $ vagrant ssh
-$ wget localhost:80/info.php
+$ wget <IP>:80/info.php
 ```
 
 
