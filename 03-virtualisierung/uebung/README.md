@@ -108,10 +108,12 @@ $ wget <IP>:80/info.php
 
 ### Aufgabe 2: Docker Compose
 
-In dieser Aufgabe sollen sie den Technologie Stack aus NGINX, PHP und MySQL mittels Docker Compose hochfahren.
-Verwenden sie dafür Images von Docker Hub.
+In dieser Aufgabe sollen sie den Technologie Stack aus NGINX, PHP und MySQL mittels Docker Compose hochfahren. Verwenden sie hierfür Images von Docker Hub sowie selbst erzeugte Images.
 
-(1)
+(1) Legen sie ein Docker Compose File an. Definieren sie einen MySQL Server sowie einen Service um für einen Nginx+PHP7 Container.
+
+(2) Legen sie für das Nginx+PHP7 Image ein Dockerfile an. Folgen sie im Wesentlichen den Installationsanweisungen auf https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-7
+
 
 ## Quellen
 Diese Übung soll auch eine eigenständige Problemlösung auf Basis von Informationen aus dem Internet vermitteln.
@@ -121,7 +123,7 @@ Vagrant
 * https://www.vagrantup.com/docs/boxes.html
 * https://askubuntu.com/questions/134666/what-is-the-easiest-way-to-enable-php-on-nginx
 * https://unix.stackexchange.com/questions/147261/installing-mysql-server-in-vagrant-bootstrap-shell-script-how-to-skip-setup
-*  
+* https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-7
 
 Docker
 * https://docs.docker.com/compose/overview/
