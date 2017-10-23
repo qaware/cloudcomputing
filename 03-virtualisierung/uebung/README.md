@@ -110,15 +110,15 @@ Verwenden sie dafür Images von Docker Hub.
 
 ## Quellen
 Diese Übung soll auch eine eigenständige Problemlösung auf Basis von Informationen aus dem Internet vermitteln.
-Sie können dazu für die eingesetzten Technologien z.B. die folgenden Quellen nutzen:
-
+ö
 Vagrant
 * https://www.vagrantup.com/docs/index.html
 * https://www.vagrantup.com/docs/boxes.html
 * https://askubuntu.com/questions/134666/what-is-the-easiest-way-to-enable-php-on-nginx
 * https://www.howtoforge.com/tutorial/installing-nginx-with-php7-fpm-and-mysql-on-ubuntu-16.04-lts-lemp/
-https://unix.stackexchange.com/questions/147261/installing-mysql-server-in-vagrant-bootstrap-shell-script-how-to-skip-setup
+* https://unix.stackexchange.com/questions/147261/installing-mysql-server-in-vagrant-bootstrap-shell-script-how-to-skip-setup
 * https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-7
 
 Docker
 * https://docs.docker.com/compose/overview/

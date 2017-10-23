@@ -1,11 +1,15 @@
 version: '3'
 
 services:
-  nginx-php5:
+  nginx-php7:
     build: .
-    image: nginx-php5:1.0.0
+    image: nginx-php7:1.0.0
     ports:
-      - "80:18080"
+      - "18080:80"
+    volumes:
+      - "./nginx/etc:/etc/nginx/sites-available"
+      - "./nginx/www:/var/www/html"
+      - "./php/pool.d:/etc/php/7.0/fpm/pool.d"
     networks:
       - cc2017
 
