@@ -76,7 +76,7 @@ Melden sie sich nach der Installation per SSH an und prüfen sie ob mySQL läuft
 ```bash
 $ vagrant provision
 $ vagrant ssh
-$ mysql -u root
+$ mysql -u root -p
 ```
 
 (4) In diesem Schritt installieren wir nun PHP5 und konfigurieren den NGINX Server entsprechend. Erweitern sie die
