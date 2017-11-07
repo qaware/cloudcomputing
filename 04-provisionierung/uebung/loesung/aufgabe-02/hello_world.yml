@@ -1,5 +1,5 @@
-- hosts:
-  - local
+- hosts: all
+
   tasks:
   - name: Create a directory
     file: path=/home/vagrant/hello-world state=directory
