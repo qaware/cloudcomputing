@@ -1,0 +1,5 @@
+- hosts:
+  - local
+  tasks:
+  - name: Create a directory
+    file: path=/hello-world state=directory
