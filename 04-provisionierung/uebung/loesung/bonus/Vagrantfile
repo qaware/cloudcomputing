@@ -14,19 +14,31 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = "512"
   end
 
   # config.vm.provider "hyperv" do |vb|
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
+  #   vb.memory = "512"
   # end
 
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "/vagrant/hello_world.yml"
-    ansible.inventory_path = "/vagrant/inventory"
-    ansible.limit = "vagrant-machine"
-    ansible.verbose = true
+  config.vm.define "node1" do |machine|
+    machine.vm.network "private_network", ip: "172.17.177.21"
   end
+
+  config.vm.define "node2" do |machine|
+    machine.vm.network "private_network", ip: "172.17.177.22"
+  end
+
+  config.vm.define 'controller' do |machine|
+      machine.vm.network "private_network", ip: "172.17.177.11"
+
+      config.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "/vagrant/playbook.yml"
+        ansible.inventory_path = "/vagrant/inventory"
+        ansible.verbose = true
+        ansible.limit = "all"
+      end
+    end
 
 end
