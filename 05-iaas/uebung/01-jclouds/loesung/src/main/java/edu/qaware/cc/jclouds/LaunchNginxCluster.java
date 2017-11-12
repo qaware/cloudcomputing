@@ -20,10 +20,10 @@ public class LaunchNginxCluster {
                 .getComputeService();
 
         //(2) Eine Instanz in der Compute Cloud launchen
-        TemplateOptions opts = AWSEC2TemplateOptions.Builder.subnetId("subnet-73da6b4e");
-        NodeMetadata node = launch("us-east-1a",             //Region US east (N. Virginia)
+        TemplateOptions opts = AWSEC2TemplateOptions.Builder.subnetId("subnet-7c745915"); // default subnet  eu-central-1a
+        NodeMetadata node = launch("eu-central-1",             // Frankfurt
                                    "t2.small",               //Maschinentyp
-                                   "us-east-1/ami-5400463e", //"centos-docker" Image
+                                   "eu-central-1/ami-f970ae96", //"centos-docker" Image
                                    "vl-cc",                  //Gruppe
                                     opts, cs);
 
