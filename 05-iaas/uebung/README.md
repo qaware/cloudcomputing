@@ -1,5 +1,1 @@
-# Übung: Infrastructure-as-a-Service
-
-## Vorbereitung
-
-* Holen sie sich ihre Zugriffsdaten beim Übungsbetreuer.
+# Übungen: Infrastructure-as-a-Service
