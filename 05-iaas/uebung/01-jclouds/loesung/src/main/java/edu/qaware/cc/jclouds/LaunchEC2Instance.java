@@ -17,6 +17,9 @@ public class LaunchEC2Instance {
                 Credentials.USER.get(), Credentials.KEY.get(), Credentials.PROVIDER.get())
                 .getComputeService();
 
+        // CloudUtils.printHardwareProfiles(cs);
+        // CloudUtils.printRegions(cs);
+
         //(2) Eine Instanz in der Compute Cloud launchen
         TemplateOptions opts = AWSEC2TemplateOptions.Builder.subnetId("subnet-7c745915"); // default
         NodeMetadata node = launch("eu-central-1",             // Frankfurt
@@ -30,7 +33,7 @@ public class LaunchEC2Instance {
                 + " mit IP: " + node.getPublicAddresses().toString());
 
         //(4) SSH Kommandos ausführen
-        // exec(node.getId(), "sudo whoami", null, true, cs);
+        exec(node.getId(), "sudo whoami", null, false, cs);
 
         //(5) Verbindung zur Cloud schließen
         cs.getContext().close();
