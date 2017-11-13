@@ -1,0 +1,24 @@
+---
+- hosts: webservers
+  remote_user: root
+  tasks:
+  - name: ensure httpd is at the latest version
+    yum:
+      name: httpd
+      state: latest
+  - name: ensure that httpd is started
+    service:
+      name: httpd
+      state: started
+
+- hosts: databases
+  remote_user: root
+  tasks:
+  - name: ensure postgresql is at the latest version
+    yum:
+      name: postgresql
+      state: latest
+  - name: ensure that postgresql is started
+    service:
+      name: postgresql
+      state: started

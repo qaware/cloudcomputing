@@ -13,7 +13,7 @@ Vagrant eine neue VM (siehe Übung 03-virtualisierung) und installieren sie entw
 in der VM das Ansible Paket.
 
 Legen sie anschließend ein neues Playbook YAML File an und führen sie es lokal aus. Erweitern sie das Hello World
-Beispiel nach belieben, z.B. kopieren sie eine Datei vom Host-System in das `hell-world/` Verzeichnis mit dem `copy`
+Beispiel nach belieben, z.B. kopieren sie eine Datei vom Host-System in das `hello-world/` Verzeichnis mit dem `copy`
 Command Modul.
 
 ```yaml
