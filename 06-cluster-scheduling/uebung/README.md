@@ -1,4 +1,4 @@
-# Übung: Cluster Scheduling mit Amazon EC2 Container Service (ECS)
+# Übung: Cluster Scheduling mit Amazon ECS
 
 ## Vorbereitung
 
@@ -15,12 +15,14 @@ Wir verwenden dafür die Anwendung aus der Vorlesung und Übung __"Kommunikation
 
 ## Aufgaben
 
-### Dockerfile erzeugen
+### Vorbereitung
+
+#### Dockerfile erzeugen
 
 Schreiben sie für den Microservice aus der Übung __"Kommunikation"__ ein `Dockerfile`. Verwenden sie als Basis-Image
 ein aktuelles JDK8 oder JRE8. Achtung Größe! (siehe https://hub.docker.com/_/openjdk/)
 
-### Docker Image lokal bauen
+#### Docker Image lokal bauen
 
 Bauen und testen sie das Image lokal. Verwenden sie hierfür die Kommandos aus der Übung __"Virtualisierung"__.
 
