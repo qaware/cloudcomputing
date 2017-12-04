@@ -34,6 +34,14 @@ $ kubectl get pods --namespace kube-system
 $ kubectl describe pod kubernetes-dashboard-pkvsc --namespace kube-system
 ```
 
+Starten sie nun mit `kubectl` einen NGINX Server mit 3 Replicas und überwachen sie
+den Start der Pods.
+
+```bash
+$ kubectl run nginx --image=nginx:1.7.9 --replicas=3
+$ kubectl get pods -w
+```
+
 ### 2) Containerization
 
 In diesem Schritt müssen wir den Microservice nun Containerisieren und anschließend in eine Docker
