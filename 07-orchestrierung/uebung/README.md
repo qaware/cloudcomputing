@@ -17,7 +17,7 @@ und Virtualisierungssoftware sehen die Start-Parameter leicht anders aus, spezie
 
 ```bash
 $ minikube start --help
-$ minikube start --memory 2048 --vm-driver [virtualbox, hyperv] --hyperv-virtual-switch External-LAN
+$ minikube start --memory 4096 --vm-driver [virtualbox, hyperv] --hyperv-virtual-switch External-LAN
 $ minikube dashboard
 ```
 
@@ -119,6 +119,7 @@ für die Probes können sie die Actuator Endpoints verwenden.
 
 Weitere Infos:
 * https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/
+* https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 * https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#define-a-liveness-http-request
 * https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/
 * https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/
