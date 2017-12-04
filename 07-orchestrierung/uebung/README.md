@@ -1,4 +1,4 @@
-# Übung: Cluster-Orchestrierung einer Spring Applikation mit Kubernetes
+# Übung: Cluster-Orchestrierung mit Kubernetes
 
 Ziel dieser Übung ist es, den Microservice aus Übung 1 mit Kubernetes zu betrieben.
 
