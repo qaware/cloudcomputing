@@ -42,6 +42,14 @@ $ kubectl run nginx --image=nginx:1.7.9 --replicas=3
 $ kubectl get pods -w
 ```
 
+Exponieren sie den NGINX Server mittels `kubectl expose` auf Port 80 und mit Type `NodePort`
+und rufen sie den Service mit `minikube service` auf.
+
+```bash
+$ kubectl expose deployment nginx --name=nginx --port=80 --protocol=TCP --target-port=80 --type=NodePort
+$ minikube service nginx
+```
+
 ### 2) Containerization
 
 In diesem Schritt müssen wir den Microservice nun Containerisieren und anschließend in eine Docker
