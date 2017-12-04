@@ -183,3 +183,8 @@ die Image Versions des Containers im Pod neu setzen.
 
 Für den externen Zugriff auf den Service und das Deployment erstellen sie einen Ingress Controller
 der auf den Service zeigt. Siehe https://kubernetes.io/docs/concepts/services-networking/ingress/
+
+#### Help Package Management
+
+Installieren sie in ihrer Minikube Installation den Helm Paket Manager https://github.com/kubernetes/helm
+Installieren sie anschließend das Jenkins Chart.
