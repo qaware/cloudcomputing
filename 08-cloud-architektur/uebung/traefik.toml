@@ -1,6 +1,7 @@
 ################################################################
 # Consul Catalog configuration backend
 ################################################################
+defaultEntryPoints = ["http"]
 
 [entryPoints]
   [entryPoints.http]
@@ -28,13 +29,13 @@ endpoint = "consul:8500"
 #
 # Optional
 #
-domain = "consul.localhost"
+domain = "localhost"
 
 # Expose Consul catalog services by default in traefik
 #
 # Optional
 #
-exposedByDefault = false
+exposedByDefault = true
 
 # Prefix for Consul catalog tags
 #

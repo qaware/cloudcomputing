@@ -10,6 +10,11 @@ services:
       - "8500:8500"
       - "8600:53"
     command: "-server -bootstrap-expect 3 -ui-dir /ui"
+    networks:
+      cloud-architecture:
+        aliases:
+          - consul
+
   consul2:
     image: "progrium/consul:latest"
     container_name: "consul2"
@@ -21,6 +26,9 @@ services:
     command: "-server -join consul1"
     depends_on:
       - consul1
+    networks:
+      - cloud-architecture
+
   consul3:
     image: "progrium/consul:latest"
     container_name: "consul3"
@@ -32,13 +40,36 @@ services:
     command: "-server -join consul1"
     depends_on:
       - consul1
+    networks:
+      - cloud-architecture
 
   traefik:
     image: traefik
-    command: --web --consulcatalog.endpoint=consul1:8500 --logLevel=DEBUG
+    command: --web --consulcatalog.endpoint=consul:8500 --logLevel=DEBUG
     ports:
       - "80:80"
       - "8080:8080"
     volumes:
       - ./traefik.toml:/etc/traefik/traefik.toml
       - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - consul1
+      - consul2
+      - consul3
+    networks:
+      - cloud-architecture
+
+  book-service:
+    build: ./book-service
+    image: book-service:1.1.0
+    ports:
+      - 18080:18080
+    depends_on:
+      - consul1
+      - consul2
+      - consul3
+    networks:
+      - cloud-architecture
+
+networks:
+  cloud-architecture:
