@@ -15,6 +15,8 @@ für Service Discovery und Configuration und Traeffik als Edge Server aufzusetze
 Ziel dieser Aufgabe ist es, einen kleinen Consul Cluster aus 3 Knoten mittels Docker Compose
 aufzusetzen. Siehe auch https://www.consul.io/intro/getting-started/install.html
 
+
+
 ### Traefik Edge Server mit Consul Backend
 
 Ziel dieser Aufgabe ist es, den Traefik Edge Server mittels Docker Compose zu betreiben und den
@@ -32,4 +34,4 @@ Ziel dieser Aufgabe ist es, die Microservice aus Übung 1 so zu erweitern, dass 
 
 ### Orchestrierung mit Kubernetes
 
-Bringen sie das Gespann aus Consul, Traefik und dem Microservice in Kubernetes zum Laufen. 
+Bringen sie das Gespann aus Consul, Traefik und dem Microservice in Kubernetes zum Laufen.
