@@ -29,3 +29,4 @@ Anschließend bringen sie unsere Beispiel-Anwendung aus [Übung 1](../../01-komm
 
 In dieser Bonus Aufgabe können sie sich mit Pivotal CloudFoundry vertraut machen. Führen sie hierzu die Schritte des [PCF Tutorials](
 https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction) unter https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction aus und studieren sie den Source Code der Beispiel-Anwendung.
+**Achtung: PCF Dev funktioniert derzeit nur mit Virtualbox und nicht mit Hyper-V!!!**
