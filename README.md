@@ -1,6 +1,8 @@
 ![Vorlesung Cloud Computing](https://github.com/qaware/cloudcomputing/blob/master/vl-cc-logo.jpg "Vorlesung Cloud Computing")
 
-Aktuelle Vorlesung: Hochschule München, Sommersemester 2018
+__Aktuelle Vorlesung: Hochschule München, Sommersemester 2018__
+
+[Slack Channel](https://slackin-hnosdftsnr.now.sh) zur Vorlesung: ![Slack Channel](https://slackin-hnosdftsnr.now.sh/badge.svg "Slack")
 
 Inhalte:
 
