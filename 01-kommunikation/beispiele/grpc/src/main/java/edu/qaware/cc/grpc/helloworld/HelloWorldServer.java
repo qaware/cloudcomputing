@@ -79,6 +79,9 @@ public class HelloWorldServer {
     private class GreeterImpl implements GreeterGrpc.Greeter {
 
         public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
+
+            logger.info("Say hello to " + req.getName() + " ...");
+
             HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();

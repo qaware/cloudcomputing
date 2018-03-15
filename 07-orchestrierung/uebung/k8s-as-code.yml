@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: everything-as-code
+  labels:
+    app: everything-as-code
+    tier: backend
+spec:
+  # use NodePort here to be able to access the port on each node
+  type: NodePort
+  ports:
+  - port: 18080
+  selector:
+    app: everything-as-code
+    tier: backend
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: everything-as-code
+  labels:
+    app: everything-as-code
+    tier: backend
+    cloudcontrol.enabled: "true"
+    cloudcontrol.index: "2"
+    LAUNCHPAD_ENABLE: "true"
+    LAUNCHPAD_COLOR: PURPLE
+    LAUNCHPAD_ROW: "5"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: everything-as-code
+        tier: backend
+    spec:
+      containers:
+      - name: everything-as-code
+        image: "qaware-oss-docker-registry.bintray.io/lreimer/everything-as-code:1.2.3"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "125m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 18080
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 18080
+          initialDelaySeconds: 60
+          timeoutSeconds: 30
+        env:
+        - name: JAVA_OPTS
+          value: -Xmx128m
+        - name: PORT
+          value: "18080"

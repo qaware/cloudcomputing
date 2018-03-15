@@ -1,89 +1,107 @@
-# Übung: Cloud-native Anwendung mit Dropwizard, Consul und Fabio
+# Übung: Cloud-native Anwendung mit Spring Cloud, Consul und Traefik
 
-In einer vorhergehenden Übung wurde bereits der Microservice _Zwitscher_ auf Basis von Dropwizard
-(http://www.dropwizard.io) umgesetzt. Nun soll dieser Microservice um die notwendige Cloud-Infrastruktur
-ergänzt werden. Dies ist Consul (https://www.consul.io) für Configuration & Coordination sowie Service Discovery
-und Fabio (https://github.com/eBay/fabio) als Edge Server.
+Ziel dieser Übung ist es einen einfachen Spring Cloud REST Service zusammen mit Consul
+für Service Discovery und Configuration und Traeffik als Edge Server aufzusetzen.
 
-## Ziel
-Ziel ist es den Zwitscher Microservice in die Consul- und Fabio-Infrastruktur zu integrieren und dann auf einem Kubernetes Cluster zum Laufen zu bringen.
+## Vorbereitung
 
-## Aufgabenblock 1: Microservice Stack lokal ausführen
+* Das Aufsetzen eines Spring Cloud Microservice ist in Übung 1 beschrieben. Die Lösung dieser
+Übung dient als Startpunkt und wird in dieser Übung erweitert.
 
-### Vorbereitung
- * Laden sie die Vorlage zur Übung von github herunter. Machen sie sich mit dem Code wieder vertraut und starten sie den Service aus der Entwicklungsumgebung heraus, rufen sie die Endpunkte im Browser auf und stoppen sie den Service wieder. Zwitscher läuft nun nicht auf einem fix vorgegebenen Port sondern sucht sich selbst einen freien Port. Wie wurde dies erreicht?
- * Laden sie Consul herunter (https://www.consul.io/downloads.html) und entpacken die ZIP-Datei im Wurzelverzeichnis der Übung.
- * Laden sie das letzte stabile Release von Fabio herunter (Linux und Mac OS X Version: https://github.com/eBay/fabio/releases - Datei im Anschluss in `fabio` umbenennen. Legen sie die Fabio executable ebenfalls im Wurzelverzeichnis deer Übung ab. Bei Linux und Mac OS X muss die Datei eventuell noch als ausführbar markiert werden: `chmod +x fabio`.
- * Legen sie im Wurzelverzeichnis der Übung eine Konfigurationsdatei für Fabio mit dem Dateinamen `fabio.properties` an und befüllen sie diese mit dem Default-Inhalt
- (https://raw.githubusercontent.com/eBay/fabio/master/fabio.properties).
+## Aufgaben
 
-### Consul starten (Configuration & Coordination)
- 1. Consul starten: `consul agent -dev -ui -bind=127.0.0.1`. Consul kann später per `Ctrl + C` gestoppt werden.
- 2. Die Ausgabe von Consul analysieren. Hier kann man sehen, wie das Raft-Protokoll den Leader wählt und anschließend den Zustand synchronisiert.
- 3. Die Consul Web-UI aufrufen: http://localhost:8500/ui. Consul muss hier selbst als Service erfolgreich registriert sein.
- 4. Über die REST API von Consul prüfen, ob der Service "consul" läuft: http://localhost:8500/v1/catalog/services.
+### Consul Cluster mit Docker Compose
 
-### Den Microservice bei Consul registrieren (Service Discovery)
- 1. Den Zwischer Service so modifizieren, dass der Service an Consul registriert wird (siehe entsprechenden TODO-Kommentar).
- Hierfür wird die Orbiz Java-API für Consul genutzt (https://github.com/OrbitzWorldwide/consul-client). Beantworten sie dabei auch die Fragen, die im Quellcode gestellt werden.
- 2. In Consul prüfen, ob der Zwitscher-Service registriert ist. Per UI (http://localhost:8500/ui) oder per REST API (http://localhost:8500/v1/catalog/service/zwitscher).
- 3. Den Zwitscher-Service direkt aufrufen: http://localhost:2890/messages.
- 4. In Consul den Health-Status des Zwitscher-Service prüfen. Sollte grün sein.
- 5. 3 weitere Service-Instanzen starten und in Consul nachvollziehen, dass sie dort registriert und gesund sind.
+Ziel dieser Aufgabe ist es, einen kleinen Consul Cluster aus 3 Knoten mittels Docker Compose
+aufzusetzen. Siehe auch https://www.consul.io/intro/getting-started/install.html
 
-### Fabio konfigurieren und starten (Edge Server)
- 1. In der Konfigurationsdatei die Proxy-Adresse und die lokale IP auf `localhost` bzw. `127.0.0.1` setzen
- sowie die LB-Strategie auf Round Robin umsetzen.
- 2. Fabio per `fabio -cfg fabio.properties` starten. Fabio setzt dabei einen lokal laufenden Consul-Agent auf dem Port 8500 voraus.
- 3. In Consul prüfen, ob fabio als Service registriert und gesund ist.
- 4. Auf die Fabio Web-UI zugreifen: http://localhost:9998 und die dort definierten Routen analysieren.
- Was bedeutet "Weight" bei einer Route?
- 5. Den Zwitscher Service über fabio aufrufen: http://localhost:9999/messages. In den Logs der Service-Instanzen
-   die Verteilung der Requests nachvollziehen. Fabio auf random-Verteilung umstellen und die Request-Verteilung dann
-   nachvollziehen.
+### Traefik Edge Server mit Consul Backend
 
-## Aufgabenblock 2: Microservice Stack in auf ein Kubernetes Cluster deployen
+Ziel dieser Aufgabe ist es, den Traefik Edge Server mittels Docker Compose zu betreiben und den
+Consul als Discovery Backend für Traefik zu verwenden.
 
-### Vorbereitung
- 1. Laden sie minikube herunter (https://github.com/kubernetes/minikube/releases) und legen sie die Datei im Wurzelverzeichnis der Übung ab. Über minikube kann ein lokales Kubernetes Cluster erzeugt und verwaltet werden. Nennen sie die heruntergeladene Datei in _minikube_ / _minikube.exe_ um.
- * Laden sie kubectl herunter und legen sie die Datei im Wurzelverzeichnis ab. Mit kubectl kann ein Kubernetes Cluster gesteuert werden. Die Dokumentation zu kubectl finden sie hier: http://kubernetes.io/docs/user-guide/kubectl-overview. Die ausführbare kubectl Datei ist unter den folgenden URLs zugreifbar:
-   * Win64: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/windows/amd64/kubectl.exe
-   * Win32: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/windows/386/kubectl.exe
-   * macOS64: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/darwin/amd64/kubectl
-   * macOS32: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/darwin/386/kubectl
-   * Linux64: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/linux/amd64/kubectl
-   * Linux32: https://storage.googleapis.com/kubernetes-release/release/v1.4.7/bin/linux/386/kubectl
- * Starten sie ein lokales Kubernetes Cluster, lassen sie sich die dabei den Status und die verfügbaren Knoten ausgeben und öffnen sie das Kubernetes Web-Dashboard:
-   * `minikube start`
-   * `minikube status`
-   * `kubectl get nodes`
-   * `minikube dashboard`
- * Installieren sie das Docker Kommandozeilen-Werkzeug. Laden sie dieses entsprechend herunter (https://docs.docker.com/engine/installation/binaries) und legen sie die ausführbare _docker_ Datei ins Wurzelverzeichnis.
- * Führen sie die Kommandos aus, die der Befehl `minikube docker-env` ausgibt. Dies verbindet den Docker Client mit dem Docker Daemon innerhalb von minikube.
- * Prüfen sie mit `docker ps`, ob die Verbindung zum Docker Daemon klappt. Hier sollten ein paar Docker Container aufgelistet werden, die innerhalb von minikube laufen.
+```
+# configure the entry points
+defaultEntryPoints = ["http"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
 
-### Consul deployen
- 1. Öffnen sie die Service- und RC-Deskriptoren für Consul und analysieren sie diese
- * Deployen sie zunächst den den Service und dann den RC und prüfen sie im Anschluss im Dashboard, ob beide erfolgreich laufen
-   * `kubectl create -f ./src/infrastructure/k8s/consul-svc.yaml`
-   * `kubectl create -f ./src/infrastructure/k8s/consul-rc.yaml`
- * Greifen sie auf die Consul Web-UI zu. Dazu müssen sie zunächst per `minikube ip` die IP des Kubernetes Cluster ermitteln. Der Zugriff auf die Consul Web-UI erfolgt dann über die URL: http://MINIKUBE-IP:30850/ui
- 
-### Microservice mit Consul verbinden (Bonusaufgabe)
- 1. Modifizieren sie den Microservice so, dass er sich mit dem Consul Service innerhalb von Kubernetes verbindet. Wie ein Service-Endpunkt innerhalb von Kubernetes ermittelt werden kann ist hier beschrieben: http://kubernetes.io/docs/user-guide/services.
- * Sie müssen dabei auch die IP des Microservice Pods ermitteln. Welche Möglichkeiten es hierfür gibt, sind z.B. hier beschrieben:
-    * http://stackoverflow.com/questions/30746888/how-to-know-a-pods-own-ip-address-from-a-container-in-the-pod
-    * http://stackoverflow.com/questions/9481865/getting-the-ip-address-of-the-current-machine-using-java
- * Erstellen sie ein Dockerfile für den Microservice und bauen sie mit dem Docker Kommandozeilenwerkzeug ein Image 
- * Erstellen sie einen Kubernetes Service- und RC-Deskriptor für den Microservice und deployen sie beides in den Kubernetes Cluster
- * Prüfen sie im Anschluss per Dashboard und Consul UI, ob der Microservice läuft und bei Consul registriert ist
- 
-### Fabio vor Consul schalten (Bonusaufgabe)
-  1. Erstellen sie einen Service- und RC-Deskriptor für fabio. 
-    * Ein Docker Image für fabio ist hier zu finden: https://hub.docker.com/r/magiconair/fabio. 
-    * Wie die Verbindung zwischen fabio und Consul per Kommandozeilen-Parameter aufgebaut werden kann ist hier zu finden: https://github.com/eBay/fabio/wiki/Configuration
-  * Deployen sie den fabio Service und RC und prüfen sie, ob sie die fabio UI und den fabio Endpunkt erreichen können.
+# Enable web configuration backend
+[web]
+address = ":8080"
 
-Bei Interesse finden sie auch eine etwas umfangreichere Version von Zwitscher auf github (https://github.com/qaware/cloud-native-zwitscher),
-die auf Spring Cloud (Microservice Container, Integrationen in Infrastruktur, Configuration & Coordination)
-und dem Netflix OSS Stack (Edge Server, Service Connector, Monitoring Service) basiert. Diese läuft sowohl mit Docker Compose, Kubernetes als auch Marathon als Cluster Orchestrierer.
+# Enable Consul Catalog configuration backend
+[consulCatalog]
+endpoint = "consul:8500"
+domain = "localhost"
+exposedByDefault = true
+prefix = "traefik"
+```
+
+### Spring Cloud Microservice
+
+Ziel dieser Aufgabe ist es, die Microservice aus Übung 1 so zu erweitern, dass sich dieser
+
+* beim Start bei der Consul Service Discovery anmeldet,
+* beim Start seine Konfigurationswerte bei Consul abholt,
+* die Service-Schnittstellen (nicht die Admin Schnittstellen) über Traefik aufgerufen werden können
+
+Die folgenden Dependencies müssen der `pom.xml` hinzugefügt werden:
+
+```xml
+<!-- required for Consol discovery and configuration -->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-config</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+</dependency>
+```
+
+Danach muss unter `src/main/resources` die Datei `bootstrap.properties` angelegt werden:
+
+```
+spring.application.name=book-service
+
+# specify Consul host and port
+# we use the CONSUL_HOST and CONSUL_PORT env variables
+# later set in docker compose as well as Kubernetes
+spring.cloud.consul.host=${consul.host:consul}
+spring.cloud.consul.port=${consul.port:8500}
+
+spring.cloud.consul.config.enabled=true
+spring.cloud.consul.config.prefix=configuration
+spring.cloud.consul.config.default-context=application
+
+# do not fail at startup if Consul is not there
+spring.cloud.consul.config.fail-fast=false
+
+# store properties as blob in property syntax
+# e.g. configuration/book-service/data
+spring.cloud.consul.config.format=properties
+spring.cloud.consul.config.data-key=data
+```
+
+In der `application.properties` müssen zudem folgende Properties angelegt werden, um die Service-Registrierung
+in Consul und die Tags für Traefik korrekt zu konfigurieren:
+
+```
+# assign a unique instance ID
+spring.cloud.consul.discovery.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+# required by Docker compose and Consul to run the health check
+# register IP address and heartbeats
+spring.cloud.consul.discovery.prefer-ip-address=true
+spring.cloud.consul.discovery.heartbeat.enabled=true
+
+spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/book-service,traefik.tags=api,traefik.frontend.entrypoint=http
+```
+
+## Bonusaufgabe
+
+### Orchestrierung mit Kubernetes
+
+Bringen sie das Gespann aus Consul, Traefik und dem Microservice in Kubernetes zum Laufen.

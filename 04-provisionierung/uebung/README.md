@@ -1,39 +1,75 @@
-# Übung: Provisionierung mit DockerFile
+# Übung: Provisionierung mit Ansible
 
 ## Vorbereitung
-1. Prüfen sie, ob VirtualBox und Vagrant installiert sind. Installieren Sie beides für den Fall, dass sich auf ihrem Notebook die Software nicht befindet.
-* Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) und laden sie die Vorlage zur Übung von github herunter (die ZIP-Datei). Entpacken sie die ZIP-Datei und starten sie die Konsole mit `console.bat`.
-* Starten sie die Vagrant Box (`vagrant up`).
-* Verbinden sie sich mit `vagrant ssh` per Kommandozeile in die Vagrant Box (Passwort: *tcuser*).
+* Prüfen sie, ob VirtualBox / Hyper-V und Vagrant installiert sind. Falls nicht: installieren.
 
-## Ziel
-![Zielbild](ziel.png)
 
 ## Aufgaben
 
-### Images erstellen
-Zunächst erstellen wir Images für den Webserver (*NGINX*) und den Load-Balancer (*HAproxy*). Die jeweiligen Dockerfiles sind auf github im Lösungsordner der Übung verfügbar. Dem Kommando `docker build` kann direkt die github-URL auf die Datei mitgegeben werden (URL wird ermittelt, indem man zur jeweiligen Datei navigiert und bei der Datei-Anzeige den Button *Raw* drückt).
-* Greifen sie zunächst per Browser auf die beiden Dockerfile zu und analysieren sie den Provisionierungsablauf und die hinterlegten Konfigurationsdateien.
-* Erstellen sie ein Image mit dem Namen *cloudcomputing/nginx-node* aus dem NGNIX-Dockerfile.
-* Erstellen sie ein Image mit dem Namen *cloudcomputing/haproxy-node* aus dem HAproxy-Dockerfile.
-* Vergewissern sie sich über das entsprechende Docker Kommando, dass beide Images lokal vorliegen.
+### Hello Ansible (manuell)
 
-### NGINX-Cluster
-Nun erstellen wir ein Cluster aus drei NGINX Webservern, die aus dem Host-System heraus unter den Ports 81, 82 und 83 erreichbar sind.
-* Starten sie drei Container aus dem NGINX-Image. Der Container soll dabei im Hintergrund laufen (Parameter `-d`). Geben sie per `--name` Parameter den Containern die Namen nginx1, nginx2 und nginx3. Aufrufbeispiel:
-`docker run -d -p 81:80 --name nginx1 cloudcomputing/nginx-node`
-* Prüfen sie, ob die drei Container laufen.
-* Prüfen sie, ob die drei in den Containern enthaltenen NGINX-Server eine http-Antwort geben.
+In dieser Aufgabe wollen wir zunächst erste Gehversuche mit Ansible machen. Erzeugen sie sich hierfür mittels
+Vagrant eine neue VM (siehe Übung 03-virtualisierung) und installieren sie entweder manuell oder per Shell-Provisioning
+in der VM das Ansible Paket.
 
-### HAproxy
-Nun starten sie einen HAProxy Container, der mit den drei NGINX Containern verbunden ist.
-* Starten sie einen Container aus dem HAproxy Image und bilden sie dessen Port 80 auf den Host-Port 80 ab. Der Container soll dabei ebenfalls im Hintergrund laufen. Bauen sie dabei auch über entsprechende Kommandozeilen-Parameter eine Verbindung zwischen dem HAproxy Container und den NGINX Containern auf: `--link nginx1:nginx1`.
-* Beantworten sie die folgende Frage: Wie bekommt der HAproxy mit, auf welchen IP-Adressen und unter welchen Ports er die NGINX-Server findet?
+Legen sie anschließend ein neues Playbook YAML File an und führen sie es lokal aus. Erweitern sie das Hello World
+Beispiel nach belieben, z.B. kopieren sie eine Datei vom Host-System in das `hello-world/` Verzeichnis mit dem `copy`
+Command Modul.
 
-### Testlauf
-* Überprüfen sie die HAproxy Statistiken aus einem Browser heraus: http://localhost:8080/haproxy?stats (Zugang mit *admin/admin*). Greifen sie dazu parallel mehrfach auf die Loadbalancer-URL zu: http://localhost:8080. Welche Informationen können sie der Statistik entnehmen?
-* Recherchieren sie, unter welchem Port die Docker Remote API (REST) zur Verfügung steht und lassen sie sich über diese die aktuell laufenden Container ausgeben.
+```yaml
+# To run this, name this file hello_world.yml and run the following in the same directory
+# ansible-playbook hello_world.yml -i 'local,' --connection=local
 
-## Optionale Zusatzaufgaben
-* Nutzen sie den Docker-Provisionierer von Vagrant, um die Docker Images zu erstellen und die Container laufen zu lassen (Dokumentation: https://docs.vagrantup.com/v2/docker/basics.html).
-* Automatisieren sie die Provisionierung anstelle von Dockerfiles mit Ansible und nutzen sie hierfür den Ansbile Provisioner von Vagrant (https://docs.vagrantup.com/v2/provisioning/ansible.html). Wie der Ansible-Provisoner von Vagrant von Windows aus genutzt werden kann ist hier beschrieben: https://gist.github.com/tknerr/291b765df23845e56a29. Nutzen sie hier die beschriebene Variante "Within the Target VM".
+- hosts:
+  - local
+  tasks:
+  - name: Create a directory
+    file: path=hello-world state=directory
+```
+
+### Hello Ansible Local Provisioner
+
+In dieser Aufgabe soll nun der Ansible Local Provisioner (https://www.vagrantup.com/docs/provisioning/ansible_local.html)
+verwendet werden. Ändern sie das Vagrantfile entsprechend, bzw. legen sie einfach ein neues an. Führen sie das Playbook aus
+der ersten Aufgabe aus.
+
+### Bonus-Aufgabe: Multi-Host Provisionierung
+
+Führen sie eine komplexere Provisionierung von mehreren Hosts durch. Erzeugen sie hierfür mittels Vagrant einfach mehrfache
+VMs. Die Provisionierung wird auf der `controller` VM ausgeführt. Installieren sie mittels Ansible, ähnlich zur Übung 03, einen NGINX, PHP und mySQL Stack auf den anderen beiden VMs.
+
+```yaml
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.define "webserver" do |machine|
+    machine.vm.network "private_network", ip: "172.17.177.21"
+  end
+
+  config.vm.define "database" do |machine|
+    machine.vm.network "private_network", ip: "172.17.177.22"
+  end
+
+  config.vm.define 'controller' do |machine|
+    machine.vm.network "private_network", ip: "172.17.177.11"
+
+    machine.vm.provision :ansible_local do |ansible|
+      ansible.playbook       = "example.yml"
+      ansible.verbose        = true
+      ansible.install        = true
+      ansible.limit          = "all" # or only "nodes" group, etc.
+      ansible.inventory_path = "inventory"
+    end
+  end
+
+end
+```
+
+## Referenzen
+
+* https://www.ansible.com/quick-start-video
+* https://www.vagrantup.com/docs/provisioning/ansible_intro.html
+* https://www.vagrantup.com/docs/provisioning/ansible_local.html
+* https://docs.ansible.com/ansible/latest/modules_by_category.html
+* https://docs.ansible.com/ansible/latest/playbooks.html

@@ -1,29 +1,79 @@
-# Übung: Cluster Scheduling mit DC/OS (Mesos und Marathon)
+# Übung: Cluster Scheduling mit Amazon ECS
 
 ## Vorbereitung
-* Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) und laden sie die Vorlage zur Übung von github in dieses Verzeichnis herunter (über `git clone` oder Download des Repositories als ZIP).
-* Öffnen sie das Verzeichnis dann als Projekt innerhalb von Netbeans.
-* Führen Sie das *Maven Goal* `clean package` aus.
-* Lassen sie sich vom Übungsbetreuer eine exklusive Port-Nummer im Bereich von 8081 bis 8090 zuteilen.
+
+* Legen sie sich auf Docker Hub einen privaten Account an.
+* Installieren sie die AWS CLI auf ihrem System. https://docs.aws.amazon.com/cli/latest/userguide/installing.html
+* Sie erhalten die AWS Zugriffsdaten beim Übungsbetreuer.
+* Konfigurieren sie die AWS CLI: `aws configure`
 
 ## Ziel
-Wir wollen im Rahmen der Übung NGINX-Knoten auf einem Mesos + Marathon Cluster starten. 
 
-![Zielbild](ziel.png)
+Wir wollen im Rahmen dieser Übung eine Beispiel Anwendung auf Amazon EC2 Container Service (ECS) bereitstellen.
+Wir verwenden dafür die Anwendung aus der Vorlesung und Übung __"Kommunikation"__.
+
 
 ## Aufgaben
-### Eine NGINX-Instanz starten
-Ziel ist es, eine NGINX-Instanz in Marathon zu starten. Hierfür verwenden wir das Docker Image aus den vorangegangen Übungen. Es ist unter der ID `qaware/nginx` öffentlich in der öffentlichen Docker Registry, dem Docker Hub (https://hub.docker.com/u/qaware), verfügbar. Wir nutzen die REST-API von Marathon aus einem Java-Programm heraus, um NGINX zu starten. Gehen sie dabei wie folgt vor:
-* Besorgen sie sich die Datei `dcos-jwt.txt` und die IP des Master-Knotens (MASTER-IP) beim Übungsbetreuer und legen sie diese im Verzeichnis `src/main/resources` ab.
-* Öffnen sie die Datei `nginx-cluster.json` in Netbeans. Diese repräsentiert den Request, den wir an Marathon senden werden um den NGINX-Container zu starten. Erschließen sie sich den Inhalt der Datei mit Hilfe der REST-Dokumentation von Marathon (https://mesosphere.github.io/marathon/docs/rest-api.html#post-v2-apps).
-* Öffnen sie die Klasse `MarathonController` in Netbeans, setzen sie die MASTER-IP ein und programmieren sie die Methode `printRunningApps()` aus, die alle aktuell in Marathon laufenden Applikationen (Jobs) ausgibt. Nutzen sie für den entsprechenden REST-Aufruf die Bibliothek *Unirest* (http://unirest.io/java.html) und recherchieren sie den notwendigen REST-Aufruf in der Marathon Dokumentation (https://mesosphere.github.io/marathon/docs/rest-api.html).
-* Lassen sie sich die aktuell laufenden Applikationen ausgeben.
-* Ersetzen sie die Platzhalter `<MEINPORT>` in der Datei `nginx-cluster.json` durch den zugeteilten Port.
-* Programmieren sie im Anschluss die Methode `submitApp()` aus, mit der ein neuer Job in Marathon eingestellt werden kann.
-* Starten sie mit ihrem Programm den NGINX-Job in Marathon und überprüfen sie, ob die NGINX-Seite aus dem Browser heraus aufgerufen werden kann: http://http://[NODE-IP]:[MEINPORT]. Lassen sie hierfür vom Übungsbetreuer auf der DC/OS Web-Oberfläche die IP des Knotens ermitteln, auf dem ihr Container deployed wurde.
 
-### Das NGINX-Cluster hochskalieren
-* Öffnen sie die Datei `nginx-cluster.json` und ersetzen sie die bestehende ID durch eine beliebige neue ID und setzen sie den `hostPort` auf 0. Das bedeutet, dass sich Mesos um die Vergabe des Host-Ports kümmert und einen Port-Konflikt vermeidet.
-* Entfernen sie das Constraint, dass die Tasks nur auf dem öffentlich zugänglichen Slave-Knoten laufen können.
-* Erhöhen sie die Anzahl der Instanzen.
-* Starten sie mit ihrem Programm den NGINX-Job in Marathon.
+### Vorbereitung
+
+#### Dockerfile erzeugen
+
+Schreiben sie für den Microservice aus der Übung __"Kommunikation"__ ein `Dockerfile`. Verwenden sie als Basis-Image
+ein aktuelles JDK8 oder JRE8. Achtung Größe! (siehe https://hub.docker.com/_/openjdk/)
+
+#### Docker Image lokal bauen
+
+Bauen und testen sie das Image lokal. Verwenden sie hierfür die Kommandos aus der Übung __"Virtualisierung"__.
+
+```bash
+$ docker build -t book-service:1.0.1 .
+$ docker run -it -p 8080:8080 book-service:1.0.1
+```
+
+### Getting Started with Amazon EC2 Container Service (ECS)
+
+1. Melden sie sich mit den AWS Zugriffsdaten über den Browser an der AWS Web Console an.
+2. Erstellen sie einen Amazon EC2 Container Service (ECS) und folgen den Anweisungen.
+
+#### Step 1: Configure repository
+
+Erstellen sie ein Repository für ihren Service. Am besten bauen sie den AWS Account-Namen ein, z.B: `cc2017/cc2017-00`.
+* Repository Name: `cc2017/cc2017-00`
+* Repository URI: 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00
+
+#### Build, tag, and push Docker image
+
+```bash
+aws ecr get-login --no-include-email --region eu-central-1
+
+# kopieren sie den Output und führen diesen in der Shell aus
+
+docker build -t cc2017/cc2017-00 .
+docker tag cc2017/cc2017-00:latest 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00:latest
+
+# oder
+
+docker tag book-service:1.0.1 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00:latest
+
+docker push 450802564356.dkr.ecr.eu-central-1.amazonaws.com/cc2017/cc2017-00:latest
+```
+
+#### Create a task definition
+
+Nachdem das Image hochgeladen wurde, gehen sie nun zum nächsten Schritt und erzeugen die Task-Definition.
+Vergeben sie sprechende Namen für `Task definition name` und `Container name`. Als `Memory Limits (MiB)*` setzen sie `500`.
+Bei den Port `Port mappings` setzen sie den Container-Port `8080`.
+
+#### Configure service
+
+Konfigurieren sie einen Service für die Task Definition. Setzen sie einen `Service name` und starten sie `2` Tasks.
+Konfigurieren sie ebenfalls einen Load-Balancer für den Service.
+
+#### Configure cluster
+
+Konfigurieren sie den EC2 Cluster. Vergeben sie einen eindeutigen `Cluster name*`. Verwenden sie `t2.micro` als `EC2 instance type*` und `2` `Number of instances*`.
+
+#### Review
+
+Prüfen sie alle Angaben und starten sie den Cluster.
