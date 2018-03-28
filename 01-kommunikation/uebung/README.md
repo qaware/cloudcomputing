@@ -8,16 +8,16 @@ sowie ein CRUD Interface zum Anlegen, Aktualisieren und Löschen von Büchern er
 1. Zunächst muss ein Anwendungsrumpf für den Microservice und das REST API erstellt werden. Wir verwenden hierfür
 den Spring Boot Initializr. Rufen sie hierfür die folgende URL auf: https://start.spring.io
 
-2. Passen sie die Projekt Metadaten nach ihren Bedürfnissen an. Wählen sie Java als Sprache und Maven als Build-Tool.
+2. Passen sie die Projekt Metadaten nach ihren Bedürfnissen an. Wählen sie Java als Sprache und Maven als Build-Tool. Verwenden sie nicht Spring Boot 2 sondern die letzte Version der Spring Boot 1.x Linie.
 
 3. Fügen sie die folgenden Dependencies hinzu:
   * Jersey (JAX-RS)
   * Actuator
 
 
-4. Generieren und laden sie das Projekt und speichern sie es in ihrem Arbeitsbereich.
+4. Generieren (`mvnw idea:idea` oder `eclipse:eclipse`) und laden sie das Projekt und speichern sie es in ihrem Arbeitsbereich.
 
-5. Öffnen sie eine Console, gehen sie in das Projektverzeichnis und führen sie folgendes Kommand aus: `mvnv install`
+5. Öffnen sie eine Console, gehen sie in das Projektverzeichnis und führen sie folgendes Kommand aus: `mvnw install`
 
 
 ## Aufgaben
@@ -84,7 +84,7 @@ public class BookstoreAPI extends ResourceConfig {
 }
 ```
 
-(5) Kompilieren sie den Microservice und führen sie die Applikation aus: `mvnv install spring-boot:run`. Die Anwendung und das REST API sollte nun unter der folgenden URL erreichbar sein: `http://localhost:8080/api/books`.
+(5) Kompilieren sie den Microservice und führen sie die Applikation aus: `mvnw install spring-boot:run`. Die Anwendung und das REST API sollte nun unter der folgenden URL erreichbar sein: `http://localhost:8080/api/books`.
 
 ### Aufgabe 2: API Dokumentation
 
