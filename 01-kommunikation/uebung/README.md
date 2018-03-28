@@ -111,17 +111,17 @@ aufrufbar sein (abhängig von der Jersey Servlet URL).
     <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger2</artifactId>
-        <version>2.7.0</version>
+        <version>2.8.0</version>
     </dependency>
     <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger-ui</artifactId>
-        <version>2.7.0</version>
+        <version>2.8.0</version>
     </dependency>
     <dependency>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-jersey2-jaxrs</artifactId>
-        <version>1.5.13</version>
+        <version>1.5.18</version>
     </dependency>
 ```
 
