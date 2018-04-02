@@ -6,13 +6,13 @@
 3. Führen Sie das Maven Goal `clean package` aus.
 
 ## Ziel
-Das Ziel der heutigen Übung ist es, einen Service für Zwitscher zu erstellen, mit dem Nachrichten der New York Times und Artikel aus Wikipedia zu einem Suchwort extrahiert werden können.
+Das Ziel der heutigen Übung ist es, ein Aktorensystem zu erstellen, mit dem Buchtitel aus der OpenLibrary und Artikel aus Wikipedia zu einem bestimmten Suchwort gemeinsam durchsucht werden können.
 
 ![Ziel](ziel.png)
 
 ## Aufgaben
 ### Aufgabe 1: Den Code in der Vorlage sichten
-In der Vorlage sind die Connectoren zu finden (Paket `connectors`), mit denen Wikipedia und NY-Times aufgerufen werden kann (synchron). Ferner existieren Vorlagen zu allen notwendigen Aktoren (Paket `actors`). Dabei stehen zwei Klassen mit `main()`-Methoden zur Verfügung: `Mai`n nutzt die Connectoren direkt und sequenziell. `MainWithActors` nutzt das Aktorensystem, um die Ergebnisse zu ermitteln. Die jeweiligen Aktoren nutzen dann intern jeweils auch wieder die Connectoren. Ferner ist noch eine Konfigurationsdatei für akka hinterlegt (`application.conf`), die die Log-Ausgaben konfiguriert.
+In der Vorlage sind die Connectoren zu finden (Paket `connectors`), mit denen Wikipedia und die OpenLibrary aufgerufen werden können (synchron). Ferner existieren Vorlagen zu allen notwendigen Aktoren (Paket `actors`). Dabei stehen zwei Klassen mit `main()`-Methoden zur Verfügung: `Mai`n nutzt die Connectoren direkt und sequenziell. `MainWithActors` nutzt das Aktorensystem, um die Ergebnisse zu ermitteln. Die jeweiligen Aktoren nutzen dann intern jeweils auch wieder die Connectoren. Ferner ist noch eine Konfigurationsdatei für akka hinterlegt (`application.conf`), die die Log-Ausgaben konfiguriert.
 
 Machen sie ausgehend von den Main-Klassen einen Rundgang durch den Code und erschließen sie sich das definierte Aktorensystem dadurch. Nutzen sie bei Bedarf die akka Online-Dokumentation bei Verständnisproblemen. Lassen sie die sequentielle Variante (`Main`) einmal laufen und notieren sie sich die dabei gemessene Laufzeit (siehe Konsolenausgabe).
 
