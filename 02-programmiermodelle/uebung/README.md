@@ -1,8 +1,8 @@
 # Übung: Functional Reactive Programming mit akka
 
 ## Vorbereitung
-1. Holen sie sich die Vorlage zur Übung aus dem github Repository der Vorlesung (entweder indem sie sich das gesamte Repository als ZIP-Datei herunterladen oder per Befehl `git clone https://github.com/adersberger/cloudcomputing.git`).
-2. Öffnen sie in Netbeans das Vorlagen-Verzeichnis der Übung als Projekt.
+1. Holen sie sich die Vorlage zur Übung aus dem github Repository der Vorlesung (entweder indem sie sich das gesamte Repository als ZIP-Datei herunterladen oder per Befehl `git clone https://github.com/qaware/cloudcomputing.git`).
+2. Öffnen sie in der IDE das Vorlagen-Verzeichnis der Übung als Projekt.
 3. Führen Sie das Maven Goal `clean package` aus.
 
 ## Ziel
@@ -18,6 +18,3 @@ Machen sie ausgehend von den Main-Klassen einen Rundgang durch den Code und ersc
 
 ### Aufgabe 2: Das Aktorensystem lauffähig machen
 Füllen sie die Lücken im Aktor-System. Gehen sie dazu durch den Code und füllen sie alle Code-Stellen, an denen ein `TODO` als Kommentar hinterlegt ist. Führen sie das Aktorensystem aus (`MainWithActors`) und vergleichen sie die Laufzeit mit der sequenziellen Variante.
-
-### Aufgabe 3 (Kür): Das Aktorensystem in Dropwizard integrieren
-Falls sie schnell durch die vorherigen Übungen gekommen sind, so können sie noch einen Schritt weiter gehen: Den Code, der bisher nur aus den `Main`-Klassen angestoßen wird, in den Code der Übung zu REST auf Basis von Dropwizard integrieren. Sie müssen dazu das Aktorensystem bei der Initialisierung der Dropwizard-Applikation erzeugen und dann eine REST-Schnittstelle entwerfen, die einen Request an das Aktorensystem delegiert und die Ergebnisse nach Außen reicht.
