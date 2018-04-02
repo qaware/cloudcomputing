@@ -1,4 +1,4 @@
-package edu.qaware.cc.reactiveZwitscher.connectors.openlibrary;//(c) by QAware GmbH, Josef Adersberger (josef.adersberger@qaware.de)
+package edu.qaware.cc.reactive.connectors.openlibrary;
 
 import com.jayway.jsonpath.JsonPath;
 
@@ -10,15 +10,17 @@ import java.util.List;
 /**
  * Holt Bücher mit einem bestimmten Titel vom OpenLibrary Dienst des Internet Archive.
  *
- * REST API: http://openlibrary.org/search.json?title=TERM
+ * @author Josef Adersberger
  */
 public class OpenLibraryConnector {
 
     /**
+     * Holt Buchtitel zu dem vorgegebenen Suchbegriff.
+     * Der Request wird dabei entsprechend der folgenden API aufgebaut:
+     * http://openlibrary.org/search.json?title=TERM
      *
-     *
-     * @param term
-     * @return
+     * @param term Suchbegriff im Titel
+     * @return Liste an Buchtiteln. Die Liste ist leer, wenn keine Artikel gefunden wurden.
      */
     public List<String> getBooksWithTitleContaining(String term){
         //Request absetzen ()

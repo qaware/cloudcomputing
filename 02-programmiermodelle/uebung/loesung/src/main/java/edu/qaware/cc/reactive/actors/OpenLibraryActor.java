@@ -1,11 +1,12 @@
-package edu.qaware.cc.reactiveZwitscher.actors;
+package edu.qaware.cc.reactive.actors;
 
+import akka.actor.UntypedAbstractActor;
 import akka.actor.UntypedActor;
-import edu.qaware.cc.reactiveZwitscher.connectors.openlibrary.OpenLibraryConnector;
+import edu.qaware.cc.reactive.connectors.openlibrary.OpenLibraryConnector;
 
 import java.util.List;
 
-public class OpenLibraryActor extends UntypedActor {
+public class OpenLibraryActor extends UntypedAbstractActor {
      
     private OpenLibraryConnector connector = new OpenLibraryConnector();
     

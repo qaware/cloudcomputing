@@ -1,9 +1,10 @@
-package edu.qaware.cc.reactiveZwitscher.actors;
+package edu.qaware.cc.reactive.actors;
 
+import akka.actor.UntypedAbstractActor;
 import akka.actor.UntypedActor;
-import edu.qaware.cc.reactiveZwitscher.connectors.wikipedia.WikipediaConnector;
+import edu.qaware.cc.reactive.connectors.wikipedia.WikipediaConnector;
 
-public class WikipediaActor extends UntypedActor {
+public class WikipediaActor extends UntypedAbstractActor {
 
     private WikipediaConnector connector = new WikipediaConnector();
 
