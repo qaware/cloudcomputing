@@ -1,4 +1,4 @@
-package edu.qaware.cc.reactiveZwitscher.connectors.wikipedia;
+package edu.qaware.cc.reactive.connectors.wikipedia;
 
 import com.jayway.jsonpath.JsonPath;
 import java.util.List;

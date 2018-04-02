@@ -1,17 +1,18 @@
 package edu.qaware.cc.reactiveZwitscher.actors;
 
 import akka.actor.UntypedActor;
-import edu.qaware.cc.reactiveZwitscher.connectors.nytimes.NYTimesConnector;
+import edu.qaware.cc.reactiveZwitscher.connectors.openlibrary.OpenLibraryConnector;
+
 import java.util.List;
 
-public class NYTimesActor extends UntypedActor {
+public class OpenLibraryActor extends UntypedActor {
      
-    private NYTimesConnector connector = new NYTimesConnector();
+    private OpenLibraryConnector connector = new OpenLibraryConnector();
     
     @Override
     public void onReceive(Object message) throws Exception {
         if (message instanceof String){
-            List<String> result = connector.getArticleTitlesFor((String)message);
+            List<String> result = connector.getBooksWithTitleContaining((String)message);
             getSender().tell(result, self());
         } else {
             unhandled(message);

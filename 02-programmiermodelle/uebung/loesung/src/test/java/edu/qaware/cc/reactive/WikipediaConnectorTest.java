@@ -1,13 +1,13 @@
-package edu.qaware.cc.reactiveZwitscher;
+package edu.qaware.cc.reactive;
 
-import edu.qaware.cc.reactiveZwitscher.connectors.wikipedia.WikipediaConnector;
+import edu.qaware.cc.reactive.connectors.wikipedia.WikipediaConnector;
 import java.util.List;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.empty;
 
-public class TestWikipediaConnector {
+public class WikipediaConnectorTest {
  
     @Test
      public void testConnector(){

@@ -9,17 +9,17 @@ import java.util.List;
 public class MessageCollectorActor extends UntypedActor {
 
     private ActorRef wikipedia;
-    private ActorRef nytimes;
+    private ActorRef openlibrary;
 
     private ActorRef caller;
     private final List<String> result = new ArrayList<String>();
     private boolean wikipediaFinished;
-    private boolean nyTimesFinished;
+    private boolean openlibraryFinished;
 
     @Override
     public void preStart() throws Exception {
         wikipedia = getContext().actorOf(Props.create(WikipediaActor.class), "Wikipedia");
-        nytimes = getContext().actorOf(Props.create(NYTimesActor.class), "NY-Times");
+        openlibrary = getContext().actorOf(Props.create(OpenLibraryActor.class), "OpenLibrary");
 
     }
 
@@ -28,16 +28,16 @@ public class MessageCollectorActor extends UntypedActor {
         if (message instanceof String) {
             caller = getSender();
             wikipedia.tell(message, self());
-            nytimes.tell(message, self());
+            openlibrary.tell(message, self());
 
         } else if (message instanceof List) {
             result.addAll((List) message);
             if (getSender().equals(wikipedia)) {
                 wikipediaFinished = true;
-            } else if (getSender().equals(nytimes)) {
-                nyTimesFinished = true;
+            } else if (getSender().equals(openlibrary)) {
+                openlibraryFinished = true;
             }
-            if (wikipediaFinished && nyTimesFinished) {
+            if (wikipediaFinished && openlibraryFinished) {
                 caller.tell(result, self());
             }
         } else {
