@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  nginx-php7:
+    build: .
+    image: nginx-php7:1.0.1
+    ports:
+      - "18080:80"
+    volumes:
+      - "./docker/:/usr/share/nginx/html/:ro"
+    networks:
+      - cc2017
+
+  mysql:
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    networks:
+      - cc2017
+
+networks:
+  cc2017:
+    driver: bridge
