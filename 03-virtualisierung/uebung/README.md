@@ -15,3 +15,5 @@ Arbeiten Sie die folgenden Tutorials auf Katacoda durch. Sie vermitteln typische
 4. [Eine Node.JS Anwendung mit Docker containerisieren](https://www.katacoda.com/courses/docker/3)
 5. [Kommunikation zwischen Docker Containern](https://www.katacoda.com/courses/docker/5)
 6. [Daten in einem Docker Container persistieren](https://www.katacoda.com/courses/docker/persisting-data-using-volumes)
+
+Kür: das [Tutorial zu Docker Security](https://katacoda.com/courses/docker-security) durcharbeiten.
