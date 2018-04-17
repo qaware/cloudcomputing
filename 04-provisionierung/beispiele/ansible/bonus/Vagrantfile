@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "centos/7"
+  config.vm.box_check_update = false
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine and only allow access
+  # via 127.0.0.1 to disable public access
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+  config.vm.provider "virtualbox" do |vb|
+    # Customize the amount of memory on the VM:
+    vb.memory = "512"
+  end
+
+  # config.vm.provider "hyperv" do |vb|
+  #   # Customize the amount of memory on the VM:
+  #   vb.memory = "512"
+  # end
+
+  config.vm.define "node1" do |machine|
+    machine.vm.network "private_network", ip: "172.17.177.21"
+  end
+
+  config.vm.define "node2" do |machine|
+    machine.vm.network "private_network", ip: "172.17.177.22"
+  end
+
+  config.vm.define 'controller' do |machine|
+      machine.vm.network "private_network", ip: "172.17.177.11"
+
+      config.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "/vagrant/playbook.yml"
+        ansible.inventory_path = "/vagrant/inventory"
+        ansible.verbose = true
+        ansible.limit = "all"
+      end
+    end
+
+end
