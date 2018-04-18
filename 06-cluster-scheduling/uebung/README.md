@@ -2,6 +2,7 @@
 
 ## Vorbereitung
 
+* Installieren sie Docker auf ihrem Übungsrechner
 * Legen sie sich auf Docker Hub einen privaten Account an.
 * Installieren sie die AWS CLI auf ihrem System. https://docs.aws.amazon.com/cli/latest/userguide/installing.html
 * Sie erhalten die AWS Zugriffsdaten beim Übungsbetreuer.
@@ -10,8 +11,6 @@
 ## Ziel
 
 Wir wollen im Rahmen dieser Übung eine Beispiel Anwendung auf Amazon EC2 Container Service (ECS) bereitstellen.
-Wir verwenden dafür die Anwendung aus der Vorlesung und Übung __"Kommunikation"__.
-
 
 ## Aufgaben
 
