@@ -3,10 +3,7 @@ Apache Spark ist ein Framework, um Berechnungen in einem Cluster zu verteilen.
 Damit Somit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein einzelner Rechner üblicherweise nicht in der Lage ist.
 
 ## Vorbereitung
-* Erstellen sie ein Verzeichnis für die Übung (auf ihrem Home-Laufwerk oder lokal auf dem Rechner) 
-und laden sie die Vorlage zur Übung von github in das Verzeichnis herunter 
-(über `git clone` oder Download des Repositories als ZIP).
-* Öffnen sie das Verzeichnis dann als Projekt innerhalb von Netbeans.
+* Öffnen sie das Vorlagen-Verzeichnis der Übung als Projekt innerhalb der Entwicklungsumgebung.
 * Führen Sie das *Maven Goal* `clean install` aus.
 * Öffnen sie die Website von Apache Spark (http://spark.apache.org/) für Recherchezwecke.
 * Laden sie sich das vorkonfigurierte Apache Spark herunter 
