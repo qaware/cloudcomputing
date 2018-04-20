@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
+import scala.concurrent.duration.Duration;
 
 /**
  * Sammelt die Nachrichten über ein akka Aktorensystem zusammen
@@ -38,8 +39,7 @@ public class MainWithActors {
 
         System.out.println( "Duration to collect results (reactive): " + (System.currentTimeMillis() - start) + " ms");
         
-        actorSystem.shutdown();
-        actorSystem.awaitTermination();
+        Await.ready(actorSystem.terminate(), Duration.Inf());
         
     }
     
