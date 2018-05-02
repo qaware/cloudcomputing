@@ -1,6 +1,6 @@
 # Übung: Verteile Berechnung mit Apache Spark
 Apache Spark ist ein Framework, um Berechnungen in einem Cluster zu verteilen.
-Damit Somit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein einzelner Rechner üblicherweise nicht in der Lage ist.
+Damit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein einzelner Rechner üblicherweise nicht in der Lage ist.
 
 ## Vorbereitung
 * Öffnen sie das Vorlagen-Verzeichnis der Übung als Projekt innerhalb der Entwicklungsumgebung.
