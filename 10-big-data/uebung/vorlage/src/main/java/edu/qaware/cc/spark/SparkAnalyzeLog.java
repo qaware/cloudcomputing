@@ -16,7 +16,7 @@ import java.io.IOException;
 import static edu.qaware.cc.spark.Constants.*;
 
 /**
- * S simple spark use case to analyze a solr log by counting the queries and sum up the query time
+ * A simple spark use case to analyze a solr log by counting the queries and sum up the query time
  *
  * @author f.lautenschlager
  */
