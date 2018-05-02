@@ -37,6 +37,7 @@ public class SparkInProcessTester {
 
         rdd.foreach((VoidFunction<Integer>) integer -> LOGGER.info("Let's start {}", integer));
 
+        LOGGER.info("====================");
         LOGGER.info("Type any key to stop");
         System.in.read();
     }

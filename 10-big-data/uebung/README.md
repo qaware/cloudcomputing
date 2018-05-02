@@ -6,10 +6,9 @@ Damit Somit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein ein
 * Öffnen sie das Vorlagen-Verzeichnis der Übung als Projekt innerhalb der Entwicklungsumgebung.
 * Führen Sie das *Maven Goal* `clean install` aus.
 * Öffnen sie die Website von Apache Spark (http://spark.apache.org/) für Recherchezwecke.
-* Laden sie sich das vorkonfigurierte Apache Spark herunter 
-(https://www.dropbox.com/s/0063mzb2jg3pfdh/spark-1.6.1-bin-hadoop2.6.zip?dl=0) 
-und entpacken sie es in dem Verzeichnis, in dem auch das *vorlage* Verzeichnis zu finden ist.
-* **Nur Windows:** Laden sie noch zusätzlich Hadoop herunter (http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.6.2/hadoop-2.6.2.tar.gz). Setzen sie anschließend die Umgebungsvariable HADOOP_HOME in ihrer Entwicklungsumgebung (z.B.: Eclipse Run -> Run Configurations .. -> Environment).
+* Laden sie sich Spark und Hadoop (bei der Verwendung von Windows) herunter: https://drive.google.com/drive/folders/1XFahjbu6taD0pltDO9IdRjN8rhBxxrP2?usp=sharing
+  * Laden sie sich das vorkonfigurierte Apache Spark herunter und entpacken sie es in dem Verzeichnis, in dem auch das *vorlage* Verzeichnis zu finden ist.
+  * **Bei Windows:** Laden sie noch zusätzlich Hadoop herunter. Setzen sie anschließend die Umgebungsvariable HADOOP_HOME in ihrer Entwicklungsumgebung (z.B.: Eclipse Run -> Run Configurations .. -> Environment).
 
 ## Ziel
 Wir führen verschiedene Berechnungen und Analysen mit Apache Spark durch:
@@ -71,7 +70,7 @@ Hierzu muss jedoch ein Cluster verfügbar sein ;-)
 * Stellen sie sicher, dass sie die vorkonfigurierte Variante von Spark heruntergeladen haben und das Verzeichnis stimmt.
 * In der Vorlage finden sie zwei Skripte *startSparkStandalone.sh* und *stopAllsparkProcesses.sh*. Mit diesen können sie das Cluster starten und wieder beenden.
 * Im Skript *startSparkStandalone.sh* muss die Spark-Master URL beim Starten der Spark-Worker (Slaves) angepasst werden.
-* Anschließend müssen sie noch das *SPARK_WORKER_DIR* in der Datei *spark-1.6.1-bin-hadoop2.6/conf/spark-env.sh* anpassen, indem sie ein beliebiges existierendes Verzeichnis angeben.
+* Anschließend müssen sie noch das *SPARK_WORKER_DIR* in der Datei *spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh* anpassen, indem sie ein beliebiges existierendes Verzeichnis angeben.
 * Starten sie anschließend das Cluster. Der Master ist unter der URL http://localhost:8080/ erreichbar.
 * Prüfen sie in der UI ob alle Worker (2 Stück) ebenfalls gestartet sind.
 * Modifizieren sie die Spark-Master URLs in den Anwendungen, indem sie die Master-URL auf spark://{IP}:7077 setzen.
