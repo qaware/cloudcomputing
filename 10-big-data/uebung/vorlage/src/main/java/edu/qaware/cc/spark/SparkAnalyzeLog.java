@@ -13,6 +13,8 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.IOException;
 
+import static edu.qaware.cc.spark.Constants.*;
+
 /**
  * S simple spark use case to analyze a solr log by counting the queries and sum up the query time
  *
@@ -21,17 +23,6 @@ import java.io.IOException;
 public class SparkAnalyzeLog {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SparkAnalyzeLog.class);
-
-    /*
-    * TODO: Set the path to the this directory
-    */
-    private static final String PATH_TO_YOUR_DIRECTORY = "/home/flo/Development/cloud-computing/cloudcomputing/09-big-data/uebung/loesung";
-    private static final String PATH_TO_JAR = PATH_TO_YOUR_DIRECTORY + "/spark-lib/user-classes-for-spark.jar";
-
-    /**
-     * TODO: Set the path to your local master. Note: localhost does not work.
-     */
-    private static final String SPARK_MASTER = "spark://flo-ThinkPad-T440p:7077";
 
     /**
      * A simple parser for our log file
@@ -125,7 +116,7 @@ public class SparkAnalyzeLog {
 
         SparkConf conf = new SparkConf()
                 .setAppName("Cloud Computing")
-                .setMaster(SPARK_MASTER);
+                .setMaster(SPARK_MASTER_URL);
         JavaSparkContext jsc = new JavaSparkContext(conf);
         //Required to execute the calculation on each worker
         jsc.addJar(new File(PATH_TO_JAR).getPath());

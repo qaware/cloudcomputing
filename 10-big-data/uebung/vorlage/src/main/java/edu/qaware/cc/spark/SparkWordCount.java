@@ -13,8 +13,10 @@ import scala.Tuple2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Map;
+
+import static edu.qaware.cc.spark.Constants.*;
 
 /**
  * A word count example implemented with Apache Spark
@@ -27,23 +29,12 @@ public class SparkWordCount {
 
 
     /**
-     * TODO: Set the path to the this directory
-     */
-    private static final String PATH_TO_YOUR_DIRECTORY = "/home/flo/Development/cloud-computing/cloudcomputing/09-big-data/uebung/loesung";
-    private static final String PATH_TO_JAR = PATH_TO_YOUR_DIRECTORY + "/spark-lib/user-classes-for-spark.jar";
-
-    /**
-     * TODO: Set the path to your local master. Note: localhost does not work.
-     */
-    private static final String SPARK_MASTER = "spark://flo-ThinkPad-T440p:7077";
-
-    /**
      * The function to extract words from a line
      */
     private static final FlatMapFunction<String, String> WORDS_EXTRACTOR =
             new FlatMapFunction<String, String>() {
                 @Override
-                public Iterable<String> call(String s) throws Exception {
+                public Iterator<String> call(String s) throws Exception {
                     //Implement
                     return null;
                 }
@@ -86,7 +77,7 @@ public class SparkWordCount {
 
         SparkConf conf = new SparkConf()
                 .setAppName("Cloud Computing")
-                .setMaster(SPARK_MASTER);
+                .setMaster(SPARK_MASTER_URL);
         JavaSparkContext jsc = new JavaSparkContext(conf);
         //Required to execute the calculation on each worker
         jsc.addJar(new File(PATH_TO_JAR).getPath());
