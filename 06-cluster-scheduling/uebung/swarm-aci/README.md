@@ -1,4 +1,4 @@
-# Übung: Cluster Scheduling mit Docher Swarm und Azure Container Instances
+# Übung: Cluster Scheduling mit Docker Swarm und Azure Container Instances
 
 Ziel dieser Übung ist es, praktische Erfahrungen mit dem Scheduling von Docker Containers auf einem Cluster zu machen. Als Cluster Scheduler wird dabei Docker Swarm (Scheduling auf beliebigen Rechnern) und Azure Container Instances (Scheduling auf Knoten in der Microsoft Azure Cloud) verwendet. Die Übung basiert dabei auf Tutorials, die auf [Katacoda](https://www.katacoda.com/) verfügbar sind.
 
