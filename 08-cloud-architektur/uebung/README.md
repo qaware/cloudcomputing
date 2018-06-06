@@ -97,10 +97,7 @@ spring.cloud.consul.discovery.instance-id=${spring.application.name}:${spring.ap
 spring.cloud.consul.discovery.prefer-ip-address=true
 spring.cloud.consul.discovery.heartbeat.enabled=true
 
-spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/book-service,traefik.tags=api,traefik.frontend.entrypoint=http
-```
-
-## Bonusaufgabe
+spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/book-service,traefik.tags=api,traefik.frontend.entrypoint=h
 
 ### Orchestrierung mit Kubernetes
 
