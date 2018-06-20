@@ -15,9 +15,9 @@ für Service Discovery und Configuration und Traeffik als Edge Server aufzusetze
 Ziel dieser Aufgabe ist es, einen kleinen Consul Cluster aus 3 Knoten mittels Docker Compose
 aufzusetzen. Siehe auch https://www.consul.io/intro/getting-started/install.html
 
-### Traefik Edge Server mit Consul Backend
+### Traefik Edge Service mit Consul Backend
 
-Ziel dieser Aufgabe ist es, den Traefik Edge Server mittels Docker Compose zu betreiben und den
+Ziel dieser Aufgabe ist es, den Traefik Edge Service mittels Docker Compose zu betreiben und den
 Consul als Discovery Backend für Traefik zu verwenden.
 
 ```
@@ -97,10 +97,8 @@ spring.cloud.consul.discovery.instance-id=${spring.application.name}:${spring.ap
 spring.cloud.consul.discovery.prefer-ip-address=true
 spring.cloud.consul.discovery.heartbeat.enabled=true
 
-spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/book-service,traefik.tags=api,traefik.frontend.entrypoint=http
+spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/book-service,traefik.tags=api,traefik.frontend.entrypoint=h
 ```
-
-## Bonusaufgabe
 
 ### Orchestrierung mit Kubernetes
 
