@@ -2,8 +2,8 @@ package edu.qaware.cc.jclouds;
 
 public enum Credentials {
 
-    USER("<USER>"),
-    KEY("<KEY>"),
+    USER("AKIAJIEQJACNUJNOU5TQ"),
+    KEY("vrCsF4m/sp//nSPWFyJpsbg/Sq9gARLoLeIe1eJI"),
     PROVIDER("aws-ec2");
 
     private final String value;
