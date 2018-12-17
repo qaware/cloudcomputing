@@ -16,8 +16,8 @@ Inhalte:
 8. [Cluster-Orchestrierung](07-orchestrierung)
 9. [Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
 10. [Plattform-as-a-Service](09-paas)
-11. [Big Data: Speicherung und Verarbeitung](10-big-data)
-12. [Serverless](11-serverless)
+11. [Serverless](10-serverless)
+12. [Big Data: Speicherung und Verarbeitung](11-big-data)
 13. [Prüfungsvorbereitung](12-zusammenfassung)
 
 Für die Übungen notwendige Software:
