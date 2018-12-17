@@ -17,7 +17,8 @@ Inhalte:
 9. [Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
 10. [Plattform-as-a-Service](09-paas)
 11. [Big Data: Speicherung und Verarbeitung](10-big-data)
-12. [Prüfungsvorbereitung](11-zusammenfassung)
+12. [Serverless](11-serverless)
+13. [Prüfungsvorbereitung](12-zusammenfassung)
 
 Für die Übungen notwendige Software:
 
