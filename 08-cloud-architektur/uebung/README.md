@@ -1,6 +1,6 @@
 # Übung: Cloud-native Anwendung mit Spring Cloud, Consul und Traefik
 
-Ziel dieser Übung ist es einen einfachen Spring Cloud REST Service zusammen mit Consul
+Ziel dieser Übung ist es, einen einfachen Spring Cloud REST Service zusammen mit Consul
 für Service Discovery und Configuration und Traeffik als Edge Server aufzusetzen.
 
 ## Vorbereitung
