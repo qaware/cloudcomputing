@@ -3,8 +3,12 @@ package edu.qaware.cc.jclouds.utils;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.Set;
+
+import org.jclouds.Constants;
 import org.jclouds.ContextBuilder;
+import org.jclouds.aws.ec2.reference.AWSEC2Constants;
 import org.jclouds.compute.ComputeService;
 import org.jclouds.compute.ComputeServiceContext;
 import org.jclouds.compute.RunNodesException;
@@ -19,6 +23,7 @@ import org.jclouds.compute.options.RunScriptOptions;
 import org.jclouds.compute.options.TemplateOptions;
 import static org.jclouds.compute.predicates.NodePredicates.inGroup;
 import org.jclouds.domain.Location;
+import org.jclouds.logging.slf4j.config.SLF4JLoggingModule;
 import org.jclouds.sshj.config.SshjSshClientModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,9 +54,15 @@ public class CloudUtils {
      */
     public static ComputeServiceContext connect(String accountName, String accountKey, String provider) throws IOException {
         //Kontext für den Zugriff auf die Compute Cloud aufbauen
+        Properties properties = new Properties();
+        properties.setProperty(Constants.PROPERTY_TRUST_ALL_CERTS, Boolean.toString(true));
+        properties.setProperty(Constants.PROPERTY_RELAX_HOSTNAME, Boolean.toString(true));
+        properties.setProperty(AWSEC2Constants.PROPERTY_EC2_AMI_QUERY, "state=available;image-type=machine");
+
         return ContextBuilder.newBuilder(provider)
                 .credentials(accountName, accountKey)
-                .modules(ImmutableSet.of(new SshjSshClientModule()))
+                .overrides(properties)
+                .modules(ImmutableSet.of(new SshjSshClientModule(), new SLF4JLoggingModule()))
                 .buildApi(ComputeServiceContext.class);
     }
 

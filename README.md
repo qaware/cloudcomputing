@@ -1,6 +1,6 @@
 ![Vorlesung Cloud Computing](https://github.com/qaware/cloudcomputing/blob/master/vl-cc-logo.jpg "Vorlesung Cloud Computing")
 
-__Aktuelle Vorlesung: Hochschule München, Sommersemester 2018__
+__Aktuelle Vorlesung: Hochschule Rosenheim, Wintersemester 2018/19__
 
 [Slack Channel](https://slackin-hnosdftsnr.now.sh) zur Vorlesung: ![Slack Channel](https://slackin-hnosdftsnr.now.sh/badge.svg "Slack")
 
@@ -16,8 +16,9 @@ Inhalte:
 8. [Cluster-Orchestrierung](07-orchestrierung)
 9. [Cloud-fähige Softwarearchitekturen](08-cloud-architektur)
 10. [Plattform-as-a-Service](09-paas)
-11. [Big Data: Speicherung und Verarbeitung](10-big-data)
-12. [Prüfungsvorbereitung](11-zusammenfassung)
+11. [Serverless](10-serverless)
+12. [Big Data: Speicherung und Verarbeitung](11-big-data)
+13. [Prüfungsvorbereitung](12-zusammenfassung)
 
 Für die Übungen notwendige Software:
 
