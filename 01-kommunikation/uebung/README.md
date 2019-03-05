@@ -156,7 +156,7 @@ public class BookstoreAPI extends ResourceConfig {
 
 (5) Starten Sie die Anwendung nun neu. Die API-Beschreibung durch Swagger sollte nun unter der URL http://localhost:8080/swagger.json zugänglich sein.
 
-(6) Laden sie nun die Swagger-UI von Github. Folgen sie den Anweisungen unter https://swagger.io/docs/swagger-tools/#swagger-ui-documentation-29
+(6) Laden sie nun die Swagger-UI von Github. Folgen sie den Anweisungen unter https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/
 Öffnen sie die UI und rufen sie die Swagger JSON URL auf. **Hinweis: sie benötigen einen JAX-RS CORS Filter um die Datei lokal aufrufen zu können.**
 
 ### Kür: REST-API weiter ausbauen
