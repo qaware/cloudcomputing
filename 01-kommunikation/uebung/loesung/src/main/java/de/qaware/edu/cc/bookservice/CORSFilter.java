@@ -12,7 +12,6 @@ import java.io.IOException;
  */
 @Provider
 public class CORSFilter implements ContainerResponseFilter {
-
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
         MultivaluedMap<String, Object> headers = responseContext.getHeaders();
