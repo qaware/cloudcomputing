@@ -6,6 +6,7 @@ __Aktuelle Vorlesung: Hochschule München, Sommersemester 2019__
 
 Inhalte:
 
+0. [Organisatorisches](00-einfuehrung/Orga.pdf)
 1. [Einführung Cloud Computing](00-einfuehrung)
 2. [Kommunikation](01-kommunikation)
 3. [Programmiermodelle: Reactive Programming](02-programmiermodelle)
