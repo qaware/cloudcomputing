@@ -1,10 +1,22 @@
 package de.qaware.edu.cc.bookservice;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -15,7 +27,7 @@ import java.util.Collection;
  */
 @Component
 @Path("/books")
-@Api(value = "/books", description = "Operations about books")
+@Api
 @Produces(MediaType.APPLICATION_JSON)
 public class BookResource {
 
@@ -66,24 +78,24 @@ public class BookResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Update book by ISBN")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Updated the book")
+            @ApiResponse(code = 200, message = "Updated the book", response = Book.class)
     })
     @Path("/{isbn}")
     public Response update(@ApiParam(value = "ISBN to search", required = true)
                            @PathParam("isbn") String isbn, Book book) {
-        bookshelf.update(isbn, book);
-        return Response.ok().build();
+        Book updated = bookshelf.update(isbn, book);
+        return Response.ok(updated).build();
     }
 
     @DELETE
     @ApiOperation(value = "Delete book by ISBN")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Book deleted")
+            @ApiResponse(code = 204, message = "Book deleted")
     })
     @Path("/{isbn}")
     public Response delete(@ApiParam(value = "ISBN to delete", required = true)
                            @PathParam("isbn") String isbn) {
         bookshelf.delete(isbn);
-        return Response.ok().build();
+        return Response.noContent().build();
     }
 }

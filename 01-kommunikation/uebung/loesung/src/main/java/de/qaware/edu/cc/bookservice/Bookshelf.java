@@ -86,10 +86,11 @@ public class Bookshelf {
      * @param isbn the ISBN to update
      * @param book the updated book
      */
-    public void update(String isbn, Book book) {
+    public Book update(String isbn, Book book) {
         Book found = findByIsbn(isbn);
 
         found.setTitle(book.getTitle());
         found.setAuthor(book.getAuthor());
+        return found;
     }
 }
