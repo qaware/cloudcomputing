@@ -3,14 +3,16 @@ package edu.qaware.cc.reactive;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import static akka.japi.Util.classTag;
-import static akka.pattern.Patterns.ask;
 import akka.util.Timeout;
 import edu.qaware.cc.reactive.actors.MessageCollectorActor;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static akka.japi.Util.classTag;
+import static akka.pattern.Patterns.ask;
 
 /**
  * Sammelt die Nachrichten über ein akka Aktorensystem zusammen
@@ -18,7 +20,8 @@ import scala.concurrent.Future;
  * @author Josef Adersberger
  */
 public class MainWithActors {
-    
+
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
         
         ActorSystem actorSystem = ActorSystem.create("Reactive");
@@ -27,7 +30,7 @@ public class MainWithActors {
         
         long start = System.currentTimeMillis();
         Timeout timeout = new Timeout(30, TimeUnit.SECONDS);
-        Future resultFuture = ask(messageCollector, "Reactive", timeout)
+        Future<List> resultFuture = ask(messageCollector, "Reactive", timeout)
                               .mapTo(classTag(List.class));
         List<String> result = (List<String>)Await.result(resultFuture, timeout.duration());
         
@@ -37,10 +40,8 @@ public class MainWithActors {
         }
 
         System.out.println( "Duration to collect results (reactive): " + (System.currentTimeMillis() - start) + " ms");
-        
-        actorSystem.shutdown();
-        actorSystem.awaitTermination();
-        
+
+        actorSystem.terminate();
     }
     
 }

@@ -32,7 +32,6 @@ public class OpenLibraryConnector {
                 .get(String.class);
 
         //Das JSON-Dokument auslesen
-        List<String> result = JsonPath.read(articles, "$.docs..title");
-        return result;
+        return JsonPath.read(articles, "$.docs..title");
     }
 }

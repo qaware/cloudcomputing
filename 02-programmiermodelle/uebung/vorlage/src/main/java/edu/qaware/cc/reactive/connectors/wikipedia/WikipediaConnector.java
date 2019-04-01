@@ -1,10 +1,11 @@
 package edu.qaware.cc.reactive.connectors.wikipedia;
 
 import com.jayway.jsonpath.JsonPath;
-import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * Holt Artikeltitel auf Wikipedia zu einem entsprechenden
@@ -39,8 +40,7 @@ public class WikipediaConnector {
                     .get(String.class);
             
             //Das JSON-Dokument auslesen
-            List<String> result = JsonPath.read(articles, "$.*.*");          
-            return result;
+            return JsonPath.read(articles, "$.*.*");
         } catch (Exception ex) { 
             throw new RuntimeException(ex);
         }
