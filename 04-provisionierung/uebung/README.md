@@ -15,6 +15,7 @@ vagrant init ubuntu/trusty64
 vagrant up --provider=virtualbox
 ```
 Mittels `vagrant ssh` kommen Sie auf die Shell der VM.
+
 2. und installieren sie entweder manuell oder per Shell-Provisioning in der VM das Ansible Paket.
 
 Legen sie anschließend ein neues Ansible Playbook YAML File an und führen sie es lokal aus. Erweitern sie das Hello World
