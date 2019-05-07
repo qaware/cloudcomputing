@@ -2,7 +2,7 @@
 
 __Aktuelle Vorlesung: Hochschule München, Sommersemester 2019__
 
-[Slack Channel](https://join.slack.com/t/vlcloudcomput-9mb8973/shared_invite/enQtNTY1Nzc3MDQ0MTI4LTFmMjM2NWE1ZDk2YWMwMDgyYzAzNWY2ZTUwYjFjZGJkYzUxOTQyYzQ1MTUwZDgwN2UxMTYwNWQzNDBlMjRjMTE) zur Vorlesung
+[Slack Channel](https://join.slack.com/t/vlcloudcomput-9mb8973/shared_invite/enQtNjMwMTQwNTY5NzE5LWFjYmNiMWEwZTcxZjUwYTVlZGVkOWMzMWVkNWU2NGYxNDAzM2RlMmRjODI5YzFjMjkzMzRlYzk0ZTdkNzc4ZWM) zur Vorlesung
 
 Inhalte:
 
