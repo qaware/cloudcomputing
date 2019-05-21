@@ -70,6 +70,8 @@ services:
       - consul3
     networks:
       - cloud-architecture
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
 
 networks:
   cloud-architecture:
