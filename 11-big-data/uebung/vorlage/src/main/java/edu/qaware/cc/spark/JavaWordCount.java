@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.AbstractMap;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -28,35 +27,26 @@ public class JavaWordCount {
      * TODO: Implement the extraction of words from a given line
      */
     private static final Function<String, Stream<String>> WORDS_EXTRACTOR =
-            new Function<String, Stream<String>>() {
-                @Override
-                public Stream<String> apply(String s) {
-                   //Implement
-                    return null;
-                }
+            s -> {
+                // TODO: Implement
+                return null;
             };
     /**
      * TODO: Implement the mapping of words
      */
     private static final Function<String, AbstractMap.SimpleEntry<String, Long>> WORDS_MAPPER =
-            new Function<String, AbstractMap.SimpleEntry<String, Long>>() {
-                @Override
-                public AbstractMap.SimpleEntry<String, Long> apply(String word) {
-                    //Implement
-                    return null;
-                }
+            word -> {
+                // TODO: Implement
+                return null;
             };
 
     /**
      * TODO: Implement the reduce step of the mapped words
      */
     private static final Function<AbstractMap.SimpleEntry<String, Long>, String> WORDS_REDUCER =
-            new Function<AbstractMap.SimpleEntry<String, Long>, String>() {
-                @Override
-                public String apply(AbstractMap.SimpleEntry<String, Long> t) {
-                    //Implement
-                    return null;
-                }
+            t -> {
+                // TODO: Implement
+                return null;
             };
 
     /**
