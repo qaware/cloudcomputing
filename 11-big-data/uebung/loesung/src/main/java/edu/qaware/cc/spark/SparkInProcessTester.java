@@ -19,8 +19,6 @@ public class SparkInProcessTester {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SparkInProcessTester.class);
 
-    private static final String SPARK_MASTER = "local[4]";
-
     /**
      * Just to ensure that sparks works ;-)
      *
@@ -30,7 +28,7 @@ public class SparkInProcessTester {
     public static void main(String[] args) throws IOException {
         SparkConf conf = new SparkConf()
                 .setAppName("Cloud Computing")
-                .setMaster(SPARK_MASTER);
+                .setMaster("local[4]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
 
         JavaRDD<Integer> rdd = jsc.parallelize(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));

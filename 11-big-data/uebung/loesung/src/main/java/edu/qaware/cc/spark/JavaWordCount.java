@@ -28,33 +28,18 @@ public class JavaWordCount {
      * TODO: Implement the extraction of words from a given line
      */
     private static final Function<String, Stream<String>> WORDS_EXTRACTOR =
-            new Function<String, Stream<String>>() {
-                @Override
-                public Stream<String> apply(String s) {
-                    return Arrays.stream(s.trim().split(" "));
-                }
-            };
+            s -> Arrays.stream(s.trim().split(" "));
     /**
      * TODO: Implement the mapping of words
      */
     private static final Function<String, AbstractMap.SimpleEntry<String, Long>> WORDS_MAPPER =
-            new Function<String, AbstractMap.SimpleEntry<String, Long>>() {
-                @Override
-                public AbstractMap.SimpleEntry<String, Long> apply(String word) {
-                    return new AbstractMap.SimpleEntry<>(word, 1L);
-                }
-            };
+            word -> new AbstractMap.SimpleEntry<>(word, 1L);
 
     /**
      * TODO: Implement the reduce step of the mapped words
      */
     private static final Function<AbstractMap.SimpleEntry<String, Long>, String> WORDS_REDUCER =
-            new Function<AbstractMap.SimpleEntry<String, Long>, String>() {
-                @Override
-                public String apply(AbstractMap.SimpleEntry<String, Long> t) {
-                    return t.getKey();
-                }
-            };
+            AbstractMap.SimpleEntry::getKey;
 
     /**
      * Runs the word count example with plain java 8 features.

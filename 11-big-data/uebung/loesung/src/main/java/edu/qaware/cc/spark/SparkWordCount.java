@@ -14,11 +14,7 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Map;
-
-import static edu.qaware.cc.spark.Constants.PATH_TO_JAR;
-import static edu.qaware.cc.spark.Constants.SPARK_MASTER_URL;
 
 /**
  * A word count example implemented with Apache Spark
@@ -34,34 +30,19 @@ public class SparkWordCount {
      * The function to extract words from a line
      */
     private static final FlatMapFunction<String, String> WORDS_EXTRACTOR =
-            new FlatMapFunction<String, String>() {
-                @Override
-                public Iterator<String> call(String s) throws Exception {
-                    return Arrays.asList(s.split(" ")).iterator();
-                }
-            };
+            (FlatMapFunction<String, String>) s -> Arrays.asList(s.split(" ")).iterator();
 
     /**
      * The function to map the extracted words into word, integer pairs
      */
     private static final PairFunction<String, String, Integer> WORDS_MAPPER =
-            new PairFunction<String, String, Integer>() {
-                @Override
-                public Tuple2<String, Integer> call(String s) throws Exception {
-                    return new Tuple2<String, Integer>(s, 1);
-                }
-            };
+            (PairFunction<String, String, Integer>) s -> new Tuple2<String, Integer>(s, 1);
 
     /**
      * The function to reduce the pairs of word and integer
      */
     private static final Function2<Integer, Integer, Integer> WORDS_REDUCER =
-            new Function2<Integer, Integer, Integer>() {
-                @Override
-                public Integer call(Integer a, Integer b) throws Exception {
-                    return a + b;
-                }
-            };
+            (Function2<Integer, Integer, Integer>) Integer::sum;
 
 
     /**
@@ -76,10 +57,11 @@ public class SparkWordCount {
 
         SparkConf conf = new SparkConf()
                 .setAppName("Cloud Computing")
-                .setMaster(SPARK_MASTER_URL);
+                .setMaster("local[4]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        //Required to execute the calculation on each worker
-        jsc.addJar(new File(PATH_TO_JAR).getPath());
+        // Required to execute the calculation on each worker
+        // Make sure to read the txt file in the spark-lib directory!
+        jsc.addJar(new File("./spark-lib/user-classes-for-spark.jar").getPath());
 
         //Start the computation below
         long start = System.currentTimeMillis();

@@ -13,9 +13,6 @@ import scala.Tuple2;
 import java.io.File;
 import java.io.IOException;
 
-import static edu.qaware.cc.spark.Constants.PATH_TO_JAR;
-import static edu.qaware.cc.spark.Constants.SPARK_MASTER_URL;
-
 /**
  * A simple spark use case to analyze a solr log by counting the queries and sum up the query time
  *
@@ -30,26 +27,22 @@ public class SparkAnalyzeLog {
      * No rocket science ;-)
      */
     private static final Function<String, SolrLog> SOLR_LOG_EXTRACTOR =
-            new org.apache.spark.api.java.function.Function<String, SolrLog>() {
-                @Override
-                public SolrLog call(String s) throws Exception {
+            (Function<String, SolrLog>) s -> {
 
-                    //Only requests
-                    if (s.contains("QTime")) {
-                        String[] splits = s.split(" ");
+                //Only requests
+                if (s.contains("QTime")) {
+                    String[] splits = s.split(" ");
 
-                        if (splits.length == 13) {
-                            String path = substringFromChar(splits[8], '=');
-                            String params = substringFromChar(splits[9], '=');
-                            String status = substringFromChar(splits[11], '=');
-                            String qtime = substringFromChar(splits[12], '=');
-                            return new SolrLog(path, params, Integer.parseInt(status), Integer.parseInt(qtime));
-                        }
-
+                    if (splits.length == 13) {
+                        String path = substringFromChar(splits[8], '=');
+                        String params = substringFromChar(splits[9], '=');
+                        String status = substringFromChar(splits[11], '=');
+                        String qtime = substringFromChar(splits[12], '=');
+                        return new SolrLog(path, params, Integer.parseInt(status), Integer.parseInt(qtime));
                     }
-                    return null;
-                }
 
+                }
+                return null;
             };
 
 
@@ -62,46 +55,28 @@ public class SparkAnalyzeLog {
      * TODO: Implement the filtering of solr logs entries that are null
      */
     private static final Function<SolrLog, Boolean> FILTER_SOLR_LOGS_THAT_ARE_NULL =
-            new Function<SolrLog, Boolean>() {
-                @Override
-                public Boolean call(SolrLog solrLog) throws Exception {
-                    return solrLog != null;
-                }
-            };
+            (Function<SolrLog, Boolean>) solrLog -> solrLog != null;
 
     /**
      * TODO: Implement the filtering of solr logs that are greater zero
      */
     private static final Function<SolrLog, Boolean> FILTER_SOLR_LOGS_GREATER_ZERO =
-            new Function<SolrLog, Boolean>() {
-                @Override
-                public Boolean call(SolrLog solrLog) throws Exception {
-                    return solrLog.getQtime() > 0;
-                }
-            };
+            (Function<SolrLog, Boolean>) solrLog -> solrLog.getQtime() > 0;
     /**
      * TODO: Implement the mapping fo the solr log entries into a tuple of qtime, occurrence
      */
     private static final PairFunction<SolrLog, Integer, Integer> MAP_SOLR_LOGS_TO_PAIRS =
-            new PairFunction<SolrLog, Integer, Integer>() {
-                @Override
-                public Tuple2<Integer, Integer> call(SolrLog solrLog) throws Exception {
-                    return new Tuple2<Integer, Integer>(solrLog.getQtime(), 1);
-                }
-            };
+            (PairFunction<SolrLog, Integer, Integer>) solrLog -> new Tuple2<Integer, Integer>(solrLog.getQtime(), 1);
 
     /**
      * TODO: Implement the reduce step of the tuples to get the total qtime and occurrence
      */
     private static final Function2<Tuple2<Integer, Integer>, Tuple2<Integer, Integer>, Tuple2<Integer, Integer>> REDUCE_SOLR_LOG_PAIRS =
-            new Function2<Tuple2<Integer, Integer>, Tuple2<Integer, Integer>, Tuple2<Integer, Integer>>() {
-                @Override
-                public Tuple2<Integer, Integer> call(Tuple2<Integer, Integer> first, Tuple2<Integer, Integer> second) throws Exception {
-                    int calls = first._2() + second._2();
-                    int qtime = first._1() + second._1();
+            (Function2<Tuple2<Integer, Integer>, Tuple2<Integer, Integer>, Tuple2<Integer, Integer>>) (first, second) -> {
+                int calls = first._2() + second._2();
+                int qtime = first._1() + second._1();
 
-                    return new Tuple2<Integer, Integer>(qtime, calls);
-                }
+                return new Tuple2<>(qtime, calls);
             };
 
     /**
@@ -116,10 +91,11 @@ public class SparkAnalyzeLog {
 
         SparkConf conf = new SparkConf()
                 .setAppName("Cloud Computing")
-                .setMaster(SPARK_MASTER_URL);
+                .setMaster("local[4]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        //Required to execute the calculation on each worker
-        jsc.addJar(new File(PATH_TO_JAR).getPath());
+        // Required to execute the calculation on each worker
+        // Make sure to read the txt file in the spark-lib directory!
+        jsc.addJar(new File("./spark-lib/user-classes-for-spark.jar").getPath());
 
 
         //Start the computation below
