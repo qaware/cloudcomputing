@@ -1,4 +1,5 @@
 # Übung: Verteile Berechnung mit Apache Spark
+
 Apache Spark ist ein Framework, um Berechnungen in einem Cluster zu verteilen.
 Damit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein einzelner Rechner üblicherweise nicht in der Lage ist.
 
@@ -6,9 +7,6 @@ Damit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein einzelner
 * Öffnen sie das Vorlagen-Verzeichnis der Übung als Projekt innerhalb der Entwicklungsumgebung.
 * Führen Sie das *Maven Goal* `clean install` aus.
 * Öffnen sie die Website von Apache Spark (http://spark.apache.org/) für Recherchezwecke.
-* Laden sie sich Spark und Hadoop (bei der Verwendung von Windows) herunter: https://drive.google.com/drive/folders/1XFahjbu6taD0pltDO9IdRjN8rhBxxrP2?usp=sharing
-  * Laden sie sich das vorkonfigurierte Apache Spark herunter und entpacken sie es in dem Verzeichnis, in dem auch das *vorlage* Verzeichnis zu finden ist.
-  * **Bei Windows:** Laden sie noch zusätzlich Hadoop herunter. Setzen sie anschließend die Umgebungsvariable HADOOP_HOME in ihrer Entwicklungsumgebung (z.B.: Eclipse Run -> Run Configurations .. -> Environment).
 
 ## Ziel
 Wir führen verschiedene Berechnungen und Analysen mit Apache Spark durch:
