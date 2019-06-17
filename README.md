@@ -19,7 +19,8 @@ Inhalte:
 10. [Plattform-as-a-Service](09-paas)
 11. [Serverless](10-serverless)
 12. [Big Data: Speicherung und Verarbeitung](11-big-data)
-13. [Prüfungsvorbereitung](12-zusammenfassung)
+13. [Continous Delivery](12-cd)
+14. [Prüfungsvorbereitung](13-zusammenfassung)
 
 Für die Übungen notwendige Software:
 
