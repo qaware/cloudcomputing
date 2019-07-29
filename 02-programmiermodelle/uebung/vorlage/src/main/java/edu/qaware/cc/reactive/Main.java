@@ -2,6 +2,7 @@ package edu.qaware.cc.reactive;
 
 import edu.qaware.cc.reactive.connectors.openlibrary.OpenLibraryConnector;
 import edu.qaware.cc.reactive.connectors.wikipedia.WikipediaConnector;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,9 @@ public class Main {
 
         String term = "Reactive";
         long start = System.currentTimeMillis();
-        List<String> results = new ArrayList<String>();
 
         WikipediaConnector connector = new WikipediaConnector();
-        results.addAll(connector.getArticleTitlesFor(term));
+        List<String> results = new ArrayList<>(connector.getArticleTitlesFor(term));
 
         OpenLibraryConnector openLibrary = new OpenLibraryConnector();
         results.addAll(openLibrary.getBooksWithTitleContaining(term));

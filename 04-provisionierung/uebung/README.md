@@ -3,16 +3,22 @@
 ## Vorbereitung
 * Prüfen sie, ob VirtualBox / Hyper-V und Vagrant installiert sind. Falls nicht: installieren.
 
-
 ## Aufgaben
 
 ### Hello Ansible (manuell)
 
-In dieser Aufgabe wollen wir zunächst erste Gehversuche mit Ansible machen. Erzeugen sie sich hierfür mittels
-Vagrant eine neue VM (siehe Übung 03-virtualisierung) und installieren sie entweder manuell oder per Shell-Provisioning
-in der VM das Ansible Paket.
+In dieser Aufgabe wollen wir zunächst erste Gehversuche mit Ansible machen. 
 
-Legen sie anschließend ein neues Playbook YAML File an und führen sie es lokal aus. Erweitern sie das Hello World
+1. Erzeugen sie sich hierfür mittels Vagrant eine neue VM:
+```
+vagrant init ubuntu/trusty64
+vagrant up --provider=virtualbox
+```
+Mittels `vagrant ssh` kommen Sie auf die Shell der VM.
+
+2. und installieren sie entweder manuell oder per Shell-Provisioning in der VM das Ansible Paket.
+
+Legen sie anschließend ein neues Ansible Playbook YAML File an und führen sie es lokal aus. Erweitern sie das Hello World
 Beispiel nach belieben, z.B. kopieren sie eine Datei vom Host-System in das `hello-world/` Verzeichnis mit dem `copy`
 Command Modul.
 

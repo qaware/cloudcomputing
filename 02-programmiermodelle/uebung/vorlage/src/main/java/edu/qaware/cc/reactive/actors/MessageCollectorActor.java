@@ -3,9 +3,6 @@ package edu.qaware.cc.reactive.actors;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedAbstractActor;
-import akka.actor.UntypedActor;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MessageCollectorActor extends UntypedAbstractActor {
 

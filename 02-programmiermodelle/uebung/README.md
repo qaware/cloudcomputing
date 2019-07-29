@@ -1,7 +1,7 @@
 # Übung: Reactive Programming mit akka
 
 ## Vorbereitung
-1. Holen sie sich die Vorlage zur Übung aus dem github Repository der Vorlesung (entweder indem sie sich das gesamte Repository als ZIP-Datei herunterladen oder per Befehl `git clone https://github.com/qaware/cloudcomputing.git`).
+1. Holen sie sich die Vorlage zur Übung aus dem github Repository der Vorlesung (entweder indem sie sich das gesamte Repository als ZIP-Datei herunterladen oder per Befehl `git clone https://github.com/phxql/cloudcomputing.git`).
 2. Öffnen sie in der IDE das Vorlagen-Verzeichnis der Übung als Projekt.
 3. Führen Sie das Maven Goal `clean package` aus.
 

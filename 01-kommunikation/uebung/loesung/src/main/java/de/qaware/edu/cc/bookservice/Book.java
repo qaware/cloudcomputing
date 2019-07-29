@@ -2,19 +2,21 @@ package de.qaware.edu.cc.bookservice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.util.Objects;
 
 /**
  * Simple book POJO.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ApiModel("Book")
+@ApiModel(description = "Book")
 public class Book {
+    @ApiModelProperty("Title")
     private String title;
+    @ApiModelProperty("Author")
     private String author;
+    @ApiModelProperty("ISBN")
     private String isbn;
 
     public Book() {
@@ -52,34 +54,29 @@ public class Book {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Book book = (Book) o;
-
-        return new EqualsBuilder()
-                .append(title, book.title)
-                .append(author, book.author)
-                .append(isbn, book.isbn)
-                .isEquals();
+        return Objects.equals(title, book.title) &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(isbn, book.isbn);
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(title)
-                .append(author)
-                .append(isbn)
-                .toHashCode();
+        return Objects.hash(title, author, isbn);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-                .append("title", title)
-                .append("author", author)
-                .append("isbn", isbn)
-                .toString();
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                '}';
     }
 }

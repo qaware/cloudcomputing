@@ -1,7 +1,6 @@
 package edu.qaware.cc.reactive.actors;
 
 import akka.actor.UntypedAbstractActor;
-import akka.actor.UntypedActor;
 import edu.qaware.cc.reactive.connectors.wikipedia.WikipediaConnector;
 
 public class WikipediaActor extends UntypedAbstractActor {

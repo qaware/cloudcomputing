@@ -9,14 +9,10 @@ import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import scala.Tuple2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
-
-import static edu.qaware.cc.spark.Constants.*;
 
 /**
  * A word count example implemented with Apache Spark
@@ -32,36 +28,27 @@ public class SparkWordCount {
      * The function to extract words from a line
      */
     private static final FlatMapFunction<String, String> WORDS_EXTRACTOR =
-            new FlatMapFunction<String, String>() {
-                @Override
-                public Iterator<String> call(String s) throws Exception {
-                    //Implement
-                    return null;
-                }
+            (FlatMapFunction<String, String>) s -> {
+                // TODO: Implement
+                return null;
             };
 
     /**
      * The function to map the extracted words into word, integer pairs
      */
     private static final PairFunction<String, String, Integer> WORDS_MAPPER =
-            new PairFunction<String, String, Integer>() {
-                @Override
-                public Tuple2<String, Integer> call(String s) throws Exception {
-                    //Implement
-                    return null;
-                }
+            (PairFunction<String, String, Integer>) s -> {
+                // TODO: Implement
+                return null;
             };
 
     /**
      * The function to reduce the pairs of word and integer
      */
     private static final Function2<Integer, Integer, Integer> WORDS_REDUCER =
-            new Function2<Integer, Integer, Integer>() {
-                @Override
-                public Integer call(Integer a, Integer b) throws Exception {
-                    //Implement
-                    return null;
-                }
+            (Function2<Integer, Integer, Integer>) (a, b) -> {
+                // TODO: Implement
+                return null;
             };
 
 
@@ -77,10 +64,11 @@ public class SparkWordCount {
 
         SparkConf conf = new SparkConf()
                 .setAppName("Cloud Computing")
-                .setMaster(SPARK_MASTER_URL);
+                .setMaster("local[4]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        //Required to execute the calculation on each worker
-        jsc.addJar(new File(PATH_TO_JAR).getPath());
+        // Required to execute the calculation on each worker
+        // Make sure to read the txt file in the spark-lib directory!
+        jsc.addJar(new File("./spark-lib/user-classes-for-spark.jar").getPath());
 
         //Start the computation below
         long start = System.currentTimeMillis();

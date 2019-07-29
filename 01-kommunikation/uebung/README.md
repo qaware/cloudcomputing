@@ -8,12 +8,10 @@ sowie ein CRUD Interface zum Anlegen, Aktualisieren und Löschen von Büchern er
 1. Zunächst muss ein Anwendungsrumpf für den Microservice und das REST API erstellt werden. Wir verwenden hierfür
 den Spring Boot Initializr. Rufen sie hierfür die folgende URL auf: https://start.spring.io
 
-2. Passen sie die Projekt Metadaten nach ihren Bedürfnissen an. Wählen sie Java als Sprache und Maven als Build-Tool. Verwenden sie nicht Spring Boot 2 sondern die letzte Version der Spring Boot 1.x Linie.
+2. Passen sie die Projekt Metadaten nach ihren Bedürfnissen an. Wählen sie Java als Sprache und Maven als Build-Tool.
 
 3. Fügen sie die folgenden Dependencies hinzu:
   * Jersey (JAX-RS)
-  * Actuator
-
 
 4. Generieren (`mvnw idea:idea` oder `eclipse:eclipse`) und laden sie das Projekt und speichern sie es in ihrem Arbeitsbereich.
 
@@ -26,7 +24,7 @@ den Spring Boot Initializr. Rufen sie hierfür die folgende URL auf: https://sta
 
 Bei dieser Aufgabe geht es darum, eine einfache REST-Schnittstelle aufzubauen. Wir verwenden hierfür JAX-RS. Ein Getting Started finden sie hier: https://jersey.github.io/documentation/latest/getting-started.html
 
-(1) Entwerfen sie zunächst eine einfache Datenklasse um Bücher zu repräsentieren. Die Klasse soll mindestens die Felder `titel`, `isbn` und `author` enthalten. Zusätzlich soll die Klasse beim Deserialisieren unbekannte
+(1) Entwerfen sie zunächst eine einfache Datenklasse um Bücher zu repräsentieren. Die Klasse soll mindestens die Felder `title`, `isbn` und `author` enthalten. Zusätzlich soll die Klasse beim Deserialisieren unbekannte
 JSON Felder ignorieren.
 
 ```java
@@ -52,7 +50,7 @@ public class BookResource {
 ```
 
 (3) Fügen sie der REST Resource nun entsprechende Methoden zum Abruf von Büchern hinzu. Es soll die Möglichkeit geben alle Bücher per `GET /api/books` abzurufen sowie einzelne Bücher mittels ISBN per `GET /api/books/{isbn}`. Implementieren sie die Business-Logik rudimentär (statische Liste statt DB). Achten sie bei
-der Implementierung auf die Verwendung der korrekten HTP Verben und Status-Codes, z.B. für den Fall das ein Buch per ISBN nicht gefunden wurde.
+der Implementierung auf die Verwendung der korrekten HTTP Verben und Status-Codes, z.B. für den Fall das ein Buch per ISBN nicht gefunden wurde.
 
 ```java
     @GET
@@ -101,7 +99,7 @@ Jersey Modul in der REST API `ResourceConfig` hinzu.
 ```
 
 (2) Starten sie den Microservice und prüfen sie die korrekte Funktionsweise.
-Die WADL Definition sollten unter `http://localhost:8080/api/application.wadl`
+Die WADL Definition sollten unter `http://localhost:8080/application.wadl`
 aufrufbar sein (abhängig von der Jersey Servlet URL).
 
 #### Aufgabe 2.2: Swagger Definition hinzufügen
@@ -109,40 +107,41 @@ aufrufbar sein (abhängig von der Jersey Servlet URL).
 (1) Fügen sie zunächst in der `pom.xml` die folgenden Dependencies hinzu:
 ```xml
     <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger2</artifactId>
-        <version>2.8.0</version>
-    </dependency>
-    <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger-ui</artifactId>
-        <version>2.8.0</version>
-    </dependency>
-    <dependency>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-jersey2-jaxrs</artifactId>
-        <version>1.5.18</version>
+        <version>1.5.22</version>
     </dependency>
 ```
 
 (2) Im nächsten Schritt müssen die Swagger REST Resource Klasse mit der JAX-RS Applikation registriert werden. Siehe https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-Jersey-2.X-Project-Setup-1.5#using-a-custom-application-subclass für weitere Details.
 
 ```java
+@Component
+public class BookstoreAPI extends ResourceConfig {
+    // ...
     register(io.swagger.jaxrs.listing.ApiListingResource.class);
     register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+}
 ```
 
 (3) Zusätzlich muss Swagger und die Basis-Parameter für das API noch entsprechend konfiguriert werden. Siehe https://github.com/swagger-api/swagger-core/wiki/Swagger-Core-Jersey-2.X-Project-Setup-1.5#using-a-custom-application-subclass für weitere Details.
 
 ```java
+@Component
+public class BookstoreAPI extends ResourceConfig {
+    // ...
+
     BeanConfig beanConfig = new BeanConfig();
-    beanConfig.setVersion("1.0.1");
+    beanConfig.setVersion("1.0.0");
     beanConfig.setSchemes(new String[]{"http"});
     beanConfig.setHost("localhost:8080");
     beanConfig.setPrettyPrint(true);
-    beanConfig.setBasePath("/api/");
+    beanConfig.setBasePath("/");
     beanConfig.setResourcePackage("de.qaware.edu.cc.bookservice");
     beanConfig.setScan(true);
+
+    // ...
+}
 ```
 
 (4) Annotieren und dokumentieren sie nun die vorhandenen Klassen der REST-API über Swagger-Annotationen zusätzlich zu den bereits vorhandenen JAX-RS-Annotationen. Nutzen Sie hierfür die folgenden Swagger-Annotationen, eine Beschreibung der Annotationen ist hier zugänglich: https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X.
@@ -155,15 +154,15 @@ aufrufbar sein (abhängig von der Jersey Servlet URL).
 | `@ApiModel` | Entitäts-Klasse      |
 | `@ApiModelProperty` | Setter-Methoden der Entitätsklasse      |
 
-(5) Starten Sie die Anwendung nun neu. Die API-Beschreibung durch Swagger sollte nun unter der URL http://localhost:8080/api/swagger.json zugänglich sein.
+(5) Starten Sie die Anwendung nun neu. Die API-Beschreibung durch Swagger sollte nun unter der URL http://localhost:8080/swagger.json zugänglich sein.
 
-(6) Laden sie nun die Swagger-UI von Github. Folgen sie den Anweisungen unter https://swagger.io/docs/swagger-tools/#swagger-ui-documentation-29
+(6) Laden sie nun die Swagger-UI von Github. Folgen sie den Anweisungen unter https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/
 Öffnen sie die UI und rufen sie die Swagger JSON URL auf. **Hinweis: sie benötigen einen JAX-RS CORS Filter um die Datei lokal aufrufen zu können.**
 
 ### Kür: REST-API weiter ausbauen
 Bauen Sie die REST-Schnittstelle weiter aus und fügen sie Logik zum Anlegen, Aktualisieren und Löschen von Büchern hinzu:
 
-* `DELETE /api/books/{isbn}` löscht ein Buch und gibt bei Erfolg HTTP 202 zurück
+* `DELETE /api/books/{isbn}` löscht ein Buch und gibt bei Erfolg HTTP 204 zurück
 * `POST /api/books` legt ein Buch an, akzeptiert `application/json` und gibt HTTP 201 mit der neuen URL zurück.
 * `PUT /api/books/{isbn}` aktualisiert das Buch, akzeptiert `application/json` und gibt HTTP 200 zurück.
 

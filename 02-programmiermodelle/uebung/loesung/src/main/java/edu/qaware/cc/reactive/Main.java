@@ -22,10 +22,9 @@ public class Main {
 
         String term = "Reactive";
         long start = System.currentTimeMillis();
-        List<String> results = new ArrayList<String>();
 
         WikipediaConnector connector = new WikipediaConnector();
-        results.addAll(connector.getArticleTitlesFor(term));
+        List<String> results = new ArrayList<String>(connector.getArticleTitlesFor(term));
 
         OpenLibraryConnector openLibrary = new OpenLibraryConnector();
         results.addAll(openLibrary.getBooksWithTitleContaining(term));

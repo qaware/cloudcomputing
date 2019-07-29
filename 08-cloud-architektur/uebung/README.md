@@ -100,6 +100,10 @@ spring.cloud.consul.discovery.heartbeat.enabled=true
 spring.cloud.consul.discovery.tags=traefik.enable=true,traefik.frontend.rule=PathPrefixStrip:/book-service,traefik.tags=api,traefik.frontend.entrypoint=h
 ```
 
+### Testen
+
+Die Anwendung sollte nun unter `http://localhost/book-service/api/books` erreichbar sein.
+
 ### Orchestrierung mit Kubernetes
 
 Bringen sie das Gespann aus Consul, Traefik und dem Microservice in Kubernetes zum Laufen.
