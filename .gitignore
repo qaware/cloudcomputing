@@ -11,9 +11,9 @@
 
 *.iml
 
-08-cloud-architektur/uebung/loesung/bin/fabio
+07-cloud-architektur/uebung/loesung/bin/fabio
 
-08-cloud-architektur/uebung/loesung/bin/consul
+07-cloud-architektur/uebung/loesung/bin/consul
 
 \.DS_Store
 
@@ -45,45 +45,45 @@
 
 01-kommunikation/beispiele/hazelcast/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
 
-02-programmiermodelle/uebung/loesung/\.classpath
+12-programmiermodelle/uebung/loesung/\.classpath
 
-02-programmiermodelle/uebung/loesung/\.project
+12-programmiermodelle/uebung/loesung/\.project
 
-02-programmiermodelle/uebung/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
+12-programmiermodelle/uebung/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
 
-02-programmiermodelle/uebung/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
+12-programmiermodelle/uebung/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
 
-02-programmiermodelle/uebung/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
+12-programmiermodelle/uebung/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
 
-05-iaas/uebung/01-jclouds/loesung/\.classpath
+04-iaas/uebung/01-jclouds/loesung/\.classpath
 
-05-iaas/uebung/01-jclouds/loesung/\.project
+04-iaas/uebung/01-jclouds/loesung/\.project
 
-05-iaas/uebung/01-jclouds/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
+04-iaas/uebung/01-jclouds/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
 
-05-iaas/uebung/01-jclouds/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
+04-iaas/uebung/01-jclouds/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
 
-05-iaas/uebung/01-jclouds/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
+04-iaas/uebung/01-jclouds/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
 
-06-cluster-scheduling/beispiele/marathon/loesung/\.classpath
+05-cluster-scheduling/beispiele/marathon/loesung/\.classpath
 
-06-cluster-scheduling/beispiele/marathon/loesung/\.project
+05-cluster-scheduling/beispiele/marathon/loesung/\.project
 
-06-cluster-scheduling/beispiele/marathon/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
+05-cluster-scheduling/beispiele/marathon/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
 
-06-cluster-scheduling/beispiele/marathon/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
+05-cluster-scheduling/beispiele/marathon/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
 
-06-cluster-scheduling/beispiele/marathon/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
+05-cluster-scheduling/beispiele/marathon/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
 
-08-cloud-architektur/beispiele/loesung/\.classpath
+07-cloud-architektur/beispiele/loesung/\.classpath
 
-08-cloud-architektur/beispiele/loesung/\.project
+07-cloud-architektur/beispiele/loesung/\.project
 
-08-cloud-architektur/beispiele/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
+07-cloud-architektur/beispiele/loesung/\.settings/org\.eclipse\.core\.resources\.prefs
 
-08-cloud-architektur/beispiele/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
+07-cloud-architektur/beispiele/loesung/\.settings/org\.eclipse\.jdt\.core\.prefs
 
-08-cloud-architektur/beispiele/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
+07-cloud-architektur/beispiele/loesung/\.settings/org\.eclipse\.m2e\.core\.prefs
 
 10-big-data/uebung/loesung/\.classpath
 
