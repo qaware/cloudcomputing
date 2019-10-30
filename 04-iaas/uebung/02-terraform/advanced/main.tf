@@ -4,34 +4,34 @@ provider "aws" {
 }
 
 # Create a VPC to launch our instances into
-resource "aws_vpc" "cc2017_advanced" {
+resource "aws_vpc" "cc2019_advanced" {
   cidr_block = "10.0.0.0/16"
 }
 
 # Create an internet gateway to give our subnet access to the outside world
-resource "aws_internet_gateway" "cc2017_advanced" {
-  vpc_id = "${aws_vpc.cc2017_advanced.id}"
+resource "aws_internet_gateway" "cc2019_advanced" {
+  vpc_id = "${aws_vpc.cc2019_advanced.id}"
 }
 
 # Grant the VPC internet access on its main route table
 resource "aws_route" "internet_access" {
-  route_table_id         = "${aws_vpc.cc2017_advanced.main_route_table_id}"
+  route_table_id         = "${aws_vpc.cc2019_advanced.main_route_table_id}"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "${aws_internet_gateway.cc2017_advanced.id}"
+  gateway_id             = "${aws_internet_gateway.cc2019_advanced.id}"
 }
 
 # Create a subnet to launch our instances into
-resource "aws_subnet" "cc2017_advanced" {
-  vpc_id                  = "${aws_vpc.cc2017_advanced.id}"
+resource "aws_subnet" "cc2019_advanced" {
+  vpc_id                  = "${aws_vpc.cc2019_advanced.id}"
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
 }
 
 # A security group for the ELB so it is accessible via the web
 resource "aws_security_group" "elb" {
-  name        = "cc2017-advanced-elb"
+  name        = "cc2019-advanced-elb"
   description = "Used in the terraform"
-  vpc_id      = "${aws_vpc.cc2017_advanced.id}"
+  vpc_id      = "${aws_vpc.cc2019_advanced.id}"
 
   # HTTP access from anywhere
   ingress {
@@ -50,12 +50,12 @@ resource "aws_security_group" "elb" {
   }
 }
 
-# Our cc2017_advanced security group to access
+# Our cc2019_advanced security group to access
 # the instances over SSH and HTTP
-resource "aws_security_group" "cc2017_advanced" {
-  name        = "cc2017-advanced"
-  description = "CC2017 Terraform security group"
-  vpc_id      = "${aws_vpc.cc2017_advanced.id}"
+resource "aws_security_group" "cc2019_advanced" {
+  name        = "cc2019-advanced"
+  description = "cc2019 Terraform security group"
+  vpc_id      = "${aws_vpc.cc2019_advanced.id}"
 
   # SSH access from anywhere
   ingress {
@@ -83,9 +83,9 @@ resource "aws_security_group" "cc2017_advanced" {
 }
 
 resource "aws_elb" "web" {
-  name = "cc2017-advanced-web-elb"
+  name = "cc2019-advanced-web-elb"
 
-  subnets         = ["${aws_subnet.cc2017_advanced.id}"]
+  subnets         = ["${aws_subnet.cc2019_advanced.id}"]
   security_groups = ["${aws_security_group.elb.id}"]
   instances       = ["${aws_instance.web.id}"]
 
@@ -110,6 +110,8 @@ resource "aws_instance" "web" {
     user = "ubuntu"
 
     # The connection will use the local SSH agent for authentication.
+    host = "${self.public_ip}"
+    agent = true
   }
 
   instance_type = "t2.micro"
@@ -122,12 +124,12 @@ resource "aws_instance" "web" {
   key_name = "${aws_key_pair.auth.id}"
 
   # Our Security group to allow HTTP and SSH access
-  vpc_security_group_ids = ["${aws_security_group.cc2017_advanced.id}"]
+  vpc_security_group_ids = ["${aws_security_group.cc2019_advanced.id}"]
 
   # We're going to launch into the same subnet as our ELB. In a production
   # environment it's more common to have a separate private subnet for
   # backend instances.
-  subnet_id = "${aws_subnet.cc2017_advanced.id}"
+  subnet_id = "${aws_subnet.cc2019_advanced.id}"
 
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,
