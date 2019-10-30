@@ -34,5 +34,11 @@ $ terraform destroy
 ## Advanced Terraform
 
 Mit Terraform lassen sich auch sehr aufwändige Infrastrukturen aufbauen. Studieren sie das Beispiel
-im `adavanced/` Ordner. Planen sie die Ausführung. Sie benötigen einen SSH Key-Paar, dieses können
+im `adavanced/` Ordner. Planen sie die Ausführung.
+
+Sie benötigen einen SSH Key-Paar, dieses können
 sie mit folgendem Kommando erstellen: `cd .ssh/ && ssh-keygen -t rsa -b 2048 -f terraform`
+
+Stellen sie sicher dass das Schlüsselpaar zum lokalen SSH Agent hinzugefügt wurde, damit der Remote Exec Provisioniere die Verbindung erfolgreich aufbauen kann.
+
+*Windows Nutzer wird empfohlen hierfür `WinSCP` mit der `Pageant` Komponente zu installieren.* 
