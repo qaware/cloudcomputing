@@ -23,19 +23,19 @@ address = ":8080"
 #
 # Required
 #
-endpoint = "consul:8500"
+endpoint = "127.0.0.1:8500"
 
 # Default domain used.
 #
 # Optional
 #
-domain = "localhost"
+domain = "consul.localhost"
 
 # Expose Consul catalog services by default in traefik
 #
 # Optional
 #
-exposedByDefault = true
+exposedByDefault = false
 
 # Prefix for Consul catalog tags
 #

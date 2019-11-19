@@ -1,61 +1,25 @@
-version: "2"
-
+version: '2'
 services:
-  consul1:
-    image: "progrium/consul:latest"
-    container_name: "consul1"
-    hostname: "consul1"
+  consul:
+    image: consul
+    command: consul agent -server -dev -client=0.0.0.0 -ui -bootstrap -log-level warn
     ports:
       - "8400:8400"
       - "8500:8500"
-      - "8600:53"
-    command: "-server -bootstrap-expect 3 -ui-dir /ui"
-    networks:
-      cloud-architecture:
-        aliases:
-          - consul
-
-  consul2:
-    image: "progrium/consul:latest"
-    container_name: "consul2"
-    hostname: "consul2"
-    expose:
-      - "8400"
-      - "8500"
-      - "8600"
-    command: "-server -join consul1"
-    depends_on:
-      - consul1
+      - "8600:53/udp"
     networks:
       - cloud-architecture
 
-  consul3:
-    image: "progrium/consul:latest"
-    container_name: "consul3"
-    hostname: "consul3"
-    expose:
-      - "8400"
-      - "8500"
-      - "8600"
-    command: "-server -join consul1"
-    depends_on:
-      - consul1
-    networks:
-      - cloud-architecture
-
-  traefik:
-    image: traefik
-    command: --web --consulcatalog.endpoint=consul:8500 --logLevel=DEBUG
+  reverse-proxy:
+    image: reverse-proxy
+    command: traefik --consulcatalog.endpoint=consul:8500
     ports:
-      - "80:80"
       - "8080:8080"
-    volumes:
-      - ./traefik.toml:/etc/traefik/traefik.toml
-      - /var/run/docker.sock:/var/run/docker.sock
+      - "8081:80"
     depends_on:
-      - consul1
-      - consul2
-      - consul3
+      - consul
+    links:
+      - consul
     networks:
       - cloud-architecture
 
@@ -65,9 +29,7 @@ services:
     ports:
       - 18080:18080
     depends_on:
-      - consul1
-      - consul2
-      - consul3
+      - consul
     networks:
       - cloud-architecture
     environment:
