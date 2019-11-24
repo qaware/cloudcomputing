@@ -9,21 +9,23 @@ wie OpenShift oder Pivotal Cloud Foundry zu sammeln.
 
 ## Aufgaben
 
-### Spring Boot Development mit OpenShift (Beginner)
+## Spring Boot Development mit OpenShift (Beginner)
 
-In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen sie den Anweisungen für das Tutorial **[Spring Boot development](https://learn.openshift.com/middleware/courses/middleware-spring-boot/spring-getting-started)**.
+In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen Sie den Anweisungen für das Tutorial **[Spring Boot development](https://learn.openshift.com/middleware/courses/middleware-spring-boot/spring-getting-started)**.
+
+## Monitoring Spring Boot Applications auf OpenShift (Beginner)
+In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen Sie den Anweisungen für das Tutorial **[Monitoring Applications](https://learn.openshift.com/middleware/courses/middleware-spring-boot/monitoring)**.
 
 ## Java EE 8 mit OpenShift (Advanced)
 
-In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen sie den Anweisungen für das Tutorial **[Java EE 8 development](https://learn.openshift.com/middleware/middleware-javaee8/)**.
+In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen Sie den Anweisungen für das Tutorial **[Java EE 8 development](https://learn.openshift.com/middleware/middleware-javaee8/)**.
 
-## Lokale Entwicklung mit Minishift
+## Bonusaufgaben
+### Lokale Entwicklung mit Minishift
 
 Führen sie zunächst den [Minishift Quickstart](https://docs.openshift.org/latest/minishift/getting-started/quickstart.html) durch und studieren sie den Quellcode der Beispiel Anwendung.
 
-Anschließend bringen sie unsere Beispiel-Anwendung aus [Übung 1](../../01-kommunikation/uebung/) in Minishift zum laufen. Schreiben sie hierfür die nötigen Deployment Deskriptoren bzw. generieren sie diese aus einer `docker-compose.yml` mit dem Tool **kompose**.
-
-## Bonusaufgaben
+Anschließend bringen sie unsere Beispiel-Anwendung aus [Übung 1](../../01-kommunikation/uebung/) in Minishift zum Laufen. Schreiben sie hierfür die nötigen Deployment Deskriptoren bzw. generieren sie diese aus einer `docker-compose.yml` mit dem Tool **kompose**.
 
 ### Hands-On Pivotal CloudFoundry und PCF Dev
 
