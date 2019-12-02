@@ -48,6 +48,9 @@ Hierzu muss jedoch ein Cluster verfügbar sein ;-)
 
 * Öffnen sie im Editor die Klasse *SparkInProcessTester.java* und führen sie diese aus. Dies ist ein kleiner Test.
 * Wenn der Test erfolgreich durchgelaufen ist (keine Fehler) haben sie bereits Apache Spark ausgeführt. 
+* Gegebenfalls müssen Sie folgende Umgebungsvariablen setzen:
+   * SPARK_MASTER_IP=127.0.0.1 
+   * SPARK_LOCAL_IP=127.0.0.1
 
 2) Word Count mit Apache Spark und Java 8
 
@@ -61,17 +64,4 @@ Hierzu muss jedoch ein Cluster verfügbar sein ;-)
 * Öffnen sie im Editor die Klassen *SparkAnalyzeLog.java* und implementieren sie alle Code-Abschnitte, die mit einem `TODO` Kommentar versehen sind.
 * Während der Entwicklung sollten sie die Anwendung lokal ausführen (Debug, usw. möglich).
 * Führen Sie die fertige Anwendung aus. Wie viele Requests sind im Log? Wie lange benötigen diese?
-* Schauen sie sich auch die Job-Informationen unter http://localhost:4040 an. Was sehen sie?
-
-4) Word Count und Log-Analyse im Spark Cluster ausführen (**NUR LINUX!**)
-
-* Stellen sie sicher, dass sie die vorkonfigurierte Variante von Spark heruntergeladen haben und das Verzeichnis stimmt.
-* In der Vorlage finden sie zwei Skripte *startSparkStandalone.sh* und *stopAllsparkProcesses.sh*. Mit diesen können sie das Cluster starten und wieder beenden.
-* Im Skript *startSparkStandalone.sh* muss die Spark-Master URL beim Starten der Spark-Worker (Slaves) angepasst werden.
-* Anschließend müssen sie noch das *SPARK_WORKER_DIR* in der Datei *spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh* anpassen, indem sie ein beliebiges existierendes Verzeichnis angeben.
-* Starten sie anschließend das Cluster. Der Master ist unter der URL http://localhost:8080/ erreichbar.
-* Prüfen sie in der UI ob alle Worker (2 Stück) ebenfalls gestartet sind.
-* Modifizieren sie die Spark-Master URLs in den Anwendungen, indem sie die Master-URL auf spark://{IP}:7077 setzen.
-* Führen sie das Maven Goal `install` aus. Dadurch wird eine Jar-Datei erstellt, die beim Start der Anwendung auf die Worker verteilt wird.
-* Starten sie die Anwendungen. Untersuchen sie die Abarbeitung mittels der Webseiten.
 * Schauen sie sich auch die Job-Informationen unter http://localhost:4040 an. Was sehen sie?
