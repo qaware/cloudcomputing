@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.AbstractMap;
@@ -47,14 +49,14 @@ public class JavaWordCount {
      * @param args ignored
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
 
-        String filePath = SparkWordCount.class.getResource("/largeText.txt").getPath();
+        URI uri = JavaWordCount.class.getResource("/largeText.txt").toURI();
 
         long start = System.currentTimeMillis();
 
         //Collect it to a map Executes the whole computation!
-        Map<String, Long> result = Files.lines(Paths.get(filePath))
+        Map<String, Long> result = Files.lines(Paths.get(uri))
                 .flatMap(WORDS_EXTRACTOR)
                 .map(WORDS_MAPPER)
                 .collect(groupingBy(WORDS_REDUCER, counting()));
