@@ -12,7 +12,7 @@ Es sollen folgende Operationen möglich sein (hier beispielhaft in Java-Syntax a
 
 Ein Buch besteht aus `String isbn`, `String title` und `String author`. `isbn` ist die ID des Buchs.
 
-Sollten Sie an einer Stelle steckenbleiben, werfen Sie einen Blick in die [Loesung](loesung) oder fragen Sie Ihren Betreuer!
+Sollten Sie an einer Stelle steckenbleiben, werfen Sie einen Blick in die [Lösung](loesung) oder fragen Sie Ihren Betreuer!
 
 ## Vorbereitung
 
