@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 option java_package = "de.qaware.edu.cc.generated";
+option java_outer_classname = "BookProto";
 
 service BookService {
     rpc ListBooks(ListBooksRequest) returns (stream Book) {}

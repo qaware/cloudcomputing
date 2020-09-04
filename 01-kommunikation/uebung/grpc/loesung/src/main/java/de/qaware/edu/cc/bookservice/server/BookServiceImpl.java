@@ -4,7 +4,7 @@ import de.qaware.edu.cc.bookservice.server.domain.Book;
 import de.qaware.edu.cc.bookservice.server.domain.BookAlreadyExistsException;
 import de.qaware.edu.cc.bookservice.server.domain.BookNotFoundException;
 import de.qaware.edu.cc.bookservice.server.domain.BookRepository;
-import de.qaware.edu.cc.generated.BookOuterClass;
+import de.qaware.edu.cc.generated.BookProto;
 import de.qaware.edu.cc.generated.BookServiceGrpc;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
@@ -20,7 +20,7 @@ class BookServiceImpl extends BookServiceGrpc.BookServiceImplBase {
     }
 
     @Override
-    public void listBooks(BookOuterClass.ListBooksRequest request, StreamObserver<BookOuterClass.Book> responseObserver) {
+    public void listBooks(BookProto.ListBooksRequest request, StreamObserver<BookProto.Book> responseObserver) {
         for (Book book : bookRepository.listAll()) {
             responseObserver.onNext(book.toProtobuf());
         }
@@ -29,7 +29,7 @@ class BookServiceImpl extends BookServiceGrpc.BookServiceImplBase {
     }
 
     @Override
-    public void addBook(BookOuterClass.Book request, StreamObserver<BookOuterClass.Book> responseObserver) {
+    public void addBook(BookProto.Book request, StreamObserver<BookProto.Book> responseObserver) {
         Book book = Book.fromProtobuf(request);
         try {
             bookRepository.add(book);
@@ -41,10 +41,10 @@ class BookServiceImpl extends BookServiceGrpc.BookServiceImplBase {
     }
 
     @Override
-    public void deleteBook(BookOuterClass.Isbn request, StreamObserver<BookOuterClass.Void> responseObserver) {
+    public void deleteBook(BookProto.Isbn request, StreamObserver<BookProto.Void> responseObserver) {
         try {
             bookRepository.delete(request.getValue());
-            responseObserver.onNext(BookOuterClass.Void.getDefaultInstance());
+            responseObserver.onNext(BookProto.Void.getDefaultInstance());
             responseObserver.onCompleted();
         } catch (BookNotFoundException e) {
             responseObserver.onError(Status.NOT_FOUND.asException());
@@ -52,7 +52,7 @@ class BookServiceImpl extends BookServiceGrpc.BookServiceImplBase {
     }
 
     @Override
-    public void updateBook(BookOuterClass.UpdateBookRequest request, StreamObserver<BookOuterClass.Book> responseObserver) {
+    public void updateBook(BookProto.UpdateBookRequest request, StreamObserver<BookProto.Book> responseObserver) {
         Book newBook = Book.fromProtobuf(request.getNewBook());
 
         try {

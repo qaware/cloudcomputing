@@ -1,6 +1,6 @@
 package de.qaware.edu.cc.bookservice.server.domain;
 
-import de.qaware.edu.cc.generated.BookOuterClass;
+import de.qaware.edu.cc.generated.BookProto;
 
 import java.util.Objects;
 
@@ -34,11 +34,11 @@ public class Book {
         return author;
     }
 
-    public BookOuterClass.Book toProtobuf() {
-        return BookOuterClass.Book.newBuilder().setIsbn(isbn).setAuthor(author).setTitle(title).build();
+    public BookProto.Book toProtobuf() {
+        return BookProto.Book.newBuilder().setIsbn(isbn).setAuthor(author).setTitle(title).build();
     }
 
-    public static Book fromProtobuf(BookOuterClass.Book protobuf) {
+    public static Book fromProtobuf(BookProto.Book protobuf) {
         return new Book(protobuf.getIsbn(), protobuf.getTitle(), protobuf.getAuthor());
     }
 

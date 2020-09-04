@@ -1,6 +1,6 @@
 package de.qaware.edu.cc.bookservice.client;
 
-import de.qaware.edu.cc.generated.BookOuterClass;
+import de.qaware.edu.cc.generated.BookProto;
 import de.qaware.edu.cc.generated.BookServiceGrpc;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
@@ -51,7 +51,7 @@ public class Client {
         System.out.print("Enter ISBN: ");
         String isbn = SCANNER.nextLine();
 
-        bookService.deleteBook(BookOuterClass.Isbn.newBuilder().setValue(isbn).build());
+        bookService.deleteBook(BookProto.Isbn.newBuilder().setValue(isbn).build());
         System.out.println("Deleted book!");
         System.out.println();
     }
@@ -66,8 +66,8 @@ public class Client {
         System.out.print("Enter author: ");
         String author = SCANNER.nextLine();
 
-        BookOuterClass.Book addedBook = bookService.addBook(
-            BookOuterClass.Book.newBuilder().setIsbn(isbn).setTitle(title).setAuthor(author).build()
+        BookProto.Book addedBook = bookService.addBook(
+            BookProto.Book.newBuilder().setIsbn(isbn).setTitle(title).setAuthor(author).build()
         );
 
         System.out.printf("Added book: %s - %s from %s%n", addedBook.getIsbn(), addedBook.getTitle(), addedBook.getAuthor());
@@ -75,10 +75,10 @@ public class Client {
     }
 
     private static void listBooks(BookServiceGrpc.BookServiceBlockingStub bookService) {
-        Iterator<BookOuterClass.Book> books = bookService.listBooks(BookOuterClass.ListBooksRequest.getDefaultInstance());
+        Iterator<BookProto.Book> books = bookService.listBooks(BookProto.ListBooksRequest.getDefaultInstance());
         System.out.println("Available books:");
         while (books.hasNext()) {
-            BookOuterClass.Book book = books.next();
+            BookProto.Book book = books.next();
 
             System.out.printf("  %s - %s from %s%n", book.getIsbn(), book.getTitle(), book.getAuthor());
         }
