@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_package = "de.qaware.edu.cc.generated";
+
+service BookService {
+    rpc ListBooks(ListBooksRequest) returns (stream Book) {}
+
+    rpc AddBook(Book) returns (Book) {}
+
+    rpc DeleteBook(Isbn) returns (Void) {}
+
+    rpc UpdateBook(UpdateBookRequest) returns (Book) {}
+}
+
+message Void {}
+
+message ListBooksRequest {}
+
+message Book {
+    string isbn = 1;
+    string author = 2;
+    string title = 3;
+}
+
+message Isbn {
+    string value = 1;
+}
+
+message UpdateBookRequest {
+    string isbn = 1;
+    Book new_book = 2;
+}
