@@ -34,11 +34,10 @@ class BookServiceImpl extends BookServiceGrpc.BookServiceImplBase {
         try {
             bookRepository.add(book);
             responseObserver.onNext(request);
+            responseObserver.onCompleted();
         } catch (BookAlreadyExistsException e) {
             responseObserver.onError(Status.ALREADY_EXISTS.asException());
         }
-
-        responseObserver.onCompleted();
     }
 
     @Override
@@ -46,11 +45,10 @@ class BookServiceImpl extends BookServiceGrpc.BookServiceImplBase {
         try {
             bookRepository.delete(request.getValue());
             responseObserver.onNext(BookOuterClass.Void.getDefaultInstance());
+            responseObserver.onCompleted();
         } catch (BookNotFoundException e) {
             responseObserver.onError(Status.NOT_FOUND.asException());
         }
-
-        responseObserver.onCompleted();
     }
 
     @Override
@@ -60,12 +58,11 @@ class BookServiceImpl extends BookServiceGrpc.BookServiceImplBase {
         try {
             bookRepository.update(request.getIsbn(), newBook);
             responseObserver.onNext(request.getNewBook());
+            responseObserver.onCompleted();
         } catch (BookNotFoundException e) {
             responseObserver.onError(Status.NOT_FOUND.asException());
         } catch (BookAlreadyExistsException e) {
             responseObserver.onError(Status.ALREADY_EXISTS.asException());
         }
-
-        responseObserver.onCompleted();
     }
 }
