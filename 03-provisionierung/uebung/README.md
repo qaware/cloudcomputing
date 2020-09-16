@@ -1,5 +1,114 @@
 # Übung: Provisionierung mit Ansible und Docker Compose
 
+## Übung 1: Provisionierung mit Docker und Docker Compose
+Ziel dieser Übung ist, praktische Erfahrungen mit Docker und Docker Compose zu sammeln.
+
+Wir wollen in dieser Übung:
+- ein fertiges Docker Image nutzen
+- ein Docker Image bauen
+- ein Image über Docker Compose starten
+
+### Schritt 1: Docker Image nutzen und Container starten
+Nginx ist ein Open Source Reverse Proxy. 
+Unter https://hub.docker.com/_/nginx ist dokumentiert, wie das offizielle Docker Image
+genutzt werden kann.
+
+Schauen Sie sich die Doku an und starten Sie über die Console einen Nginx Container.
+
+Sorgen Sie dafür, dass der Port '80' auch auf Ihrem Host exponiert wird.
+
+<details>
+<summary>Hinweis, falls Sie nicht weiterkommen:</summary>
+
+```
+docker run -d -p 80:80 nginx
+```
+</details>
+
+Rufen Sie dann testweise localhost:80 in Ihrem Browser auf.
+
+### Schritt 2: Dockerfile schreiben und eigene index.html anlegen
+In diesem Schritt wollen wir nicht mehr das fertige Image nutzen, sondern ein eigenes
+angepasstes Image bauen.
+
+Legen Sie hierfür zunächst eine index.html an. Diese Seite soll unser Webserver ausliefern, wenn er aufgerufen wird.
+Nutzen Sie hierfür ein einfaches HTML, dass eine "Hello World" Begrüßung ausgibt.
+
+Legen Sie ein Dockerfile an.
+Führen Sie folgende Schritte aus:
+- Nutzen Sie nginx:1.19-alpine als Basisimage.
+- Kopieren Sie ihre 'index.html' nach '/usr/share/nginx/html/', 
+indem Sie das Docker Command 'COPY' nutzen.
+- Exponieren Sie den Port 80.
+- Starten Sie nginx über das Command 'nginx'. Achten Sie darauf, -g 'daemon off;'
+beim Start mit anzugeben, damit Nginx nicht direkt nach dem Containerstart beendet wird,
+sondern im Vordergrund läuft.
+
+<details>
+<summary>Hinweis, falls Sie nicht weiterkommen:</summary>
+
+```
+FROM nginx:1.19-alpine
+COPY nginx-config/index.html /usr/share/nginx/html
+EXPOSE 80
+CMD nginx -g 'daemon off;'
+```
+</details>
+
+### Schritt 3: Docker Image bauen
+Bauen Sie das Docker Image mit dem Namen cc-nginx und dem Tag v1.
+
+<details>
+<summary>Hinweis, falls Sie nicht weiterkommen:</summary>
+
+```docker build . -t cc-nginx:v1```
+</details>
+
+Prüfen Sie danach über ```docker images```, dass das neue Docker Image in Ihrer
+lokalen Registry liegt.
+
+### Schritt 4: Container starten
+Starten Sie den Container.
+Mappen Sie dabei den Port 8080 auf Ihrem Host auf den Container Port 80.
+
+<details>
+<summary>Hinweis, falls Sie nicht weiterkommen:</summary>
+
+```docker run -it -p 8080:80 cc-nginx:v1```
+</details>
+
+Rufen Sie den gestarteten Apache Http Server unter localhost:8080 auf.
+
+### Schritt 5: Container über Docker Compose starten
+Wir nutzen jetzt unser Docker Image und starten dieses über Docker Compose.
+
+Legen Sie hierfür  Datei docker-compose.yml an, das einen nginx Instanz startet und dabei:
+
+     - den Service Namen "cc-nginx" hat
+     - das Image auf Basis des in Schritt 1 erstellen Dockerfiles baut
+     - den Port 80 exportiert und unter 8080 auf Ihrem Host erreichbar macht
+     
+<details>
+<summary>Wenn Sie nicht weiterkommen, können Sie folgenden Codeblock verwenden:</summary>
+
+```
+  cc-nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+```
+</details>
+
+### Bonus/Optional:
+Probieren Sie weitere Docker und Docker Compose Commands aus.
+- Skalieren Sie den nginx auf 3 Instanzen
+- Öffnen Sie eine Shell im laufenden Container
+- Schauen Sie in die nginx Logs
+- ...
+
+
 ## Übung 2: Provisionierung mit Ansible
 Ziel dieser Übung ist, praktische Erfahrungen mit Ansible zu sammeln und Docker und Docker Compose
 noch besser kennenzulernen.
