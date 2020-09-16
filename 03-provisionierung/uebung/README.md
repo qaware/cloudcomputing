@@ -7,7 +7,7 @@ noch besser kennenzulernen.
 Um das lokale Setup möglichst einfach zu halten, werden wir sowohl die Ansible Control Node als auch 
 die Maschinen, die wir provisionieren wollen, per Docker Compose lokal hochfahren.
 
-Wir wollen also:
+Wir wollen:
 - Die Ansible Control Node per Docker Compose starten
 - 3 Managed Nodes per Docker Compose starten
 - ein Playbook erstellen, dass auf allen 3 Managed Nodes einen Apache Http Server installiert, 
@@ -215,7 +215,7 @@ Welcher Port leitet Requests an den exponierten Port '80' des Containers weiter?
 Rufen Sie in Ihrem Browser localhost:<port> für den spezifischen Port auf und verifizieren Sie, dass Ihre index.html
 angezeigt wird.
 
-### Bonus/Optional: Skalieren der Managed Nodes
+### Schritt 8: Skalieren der Managed Nodes
 
 Skalieren Sie die Managed Nodes auf 3. 
 Nutzen Sie hierfür 'docker-compose scale'.
