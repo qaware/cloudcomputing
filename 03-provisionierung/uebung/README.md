@@ -77,16 +77,16 @@ Mappen Sie dabei den Port 8080 auf Ihrem Host auf den Container Port 80.
 ```docker run -it -p 8080:80 cc-nginx:v1```
 </details>
 
-Rufen Sie den gestarteten Apache Http Server unter localhost:8080 auf.
+Rufen Sie den gestarteten nginx Container unter localhost:8080 auf.
 
 ### Schritt 5: Container über Docker Compose starten
 Wir nutzen jetzt unser Docker Image und starten dieses über Docker Compose.
 
 Legen Sie hierfür  Datei docker-compose.yml an, das einen nginx Instanz startet und dabei:
 
-     - den Service Namen "cc-nginx" hat
-     - das Image auf Basis des in Schritt 1 erstellen Dockerfiles baut
-     - den Port 80 exportiert und unter 8080 auf Ihrem Host erreichbar macht
+- den Service Namen "cc-nginx" hat
+- das Image auf Basis des in Schritt 1 erstellen Dockerfiles baut
+- den Port 80 exportiert und unter 8080 auf Ihrem Host erreichbar macht
      
 <details>
 <summary>Wenn Sie nicht weiterkommen, können Sie folgenden Codeblock verwenden:</summary>
