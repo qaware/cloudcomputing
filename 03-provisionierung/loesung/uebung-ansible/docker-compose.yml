@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  managed-node:
+    build:
+      context: .
+      dockerfile: Dockerfile_Managed_Node
+    image: "cc-managed:latest"
+    networks:
+      - cloudcomputing
+    ports:
+      - "80"
+    
+  ansible-node:
+    image: "willhallonline/ansible:2.9-alpine"
+    networks:
+      - cloudcomputing
+    deploy:
+      resources:
+        limits:
+          memory: 100m
+    depends_on:
+      - managed-node
+    volumes:
+    - "./ssh/config:/root/.ssh/config"
+    - "./ansible/hosts:/etc/ansible/hosts"
+    - "./playbooks:/root/playbooks"
+
+networks:
+  cloudcomputing:
+    driver: bridge

@@ -1,0 +1,24 @@
+---
+- hosts: server_hosts
+  remote_user: root
+
+  tasks:
+    - name: test connection
+      ping:
+      remote_user: root
+
+    - name: install apache 
+      apt:
+        name: apache2
+        update_cache: yes
+        state: latest
+
+    - name: copy custom index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+    - name: ensure apache is running
+      service:
+        name: apache2
+        state: started    
