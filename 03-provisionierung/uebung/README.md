@@ -243,13 +243,13 @@ Legen Sie die Group "server_hosts" an, tragen Sie darin die Managed Node ein, un
      <summary>Wenn Sie nicht weiterkommen, können Sie folgenden Codeblock verwenden:</summary>
 
       ```
-        [server_hosts]
-        uebung_managed-node_1
+      [server_hosts]
+      uebung_managed-node_1
 
-        [server_hosts:vars]
-        ansible_python_interpreter=/usr/bin/python3
-        ansible_ssh_user=root
-        ansible_ssh_pass=verysecretpassword
+      [server_hosts:vars]
+      ansible_python_interpreter=/usr/bin/python3
+      ansible_ssh_user=root
+      ansible_ssh_pass=verysecretpassword
       ```
 
     </details>
