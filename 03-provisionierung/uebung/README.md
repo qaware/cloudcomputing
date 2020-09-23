@@ -92,12 +92,12 @@ Legen Sie hierfür  Datei docker-compose.yml an, das einen nginx Instanz startet
 <summary>Wenn Sie nicht weiterkommen, können Sie folgenden Codeblock verwenden:</summary>
 
 ```
-  cc-nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:80"
+cc-nginx:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  ports:
+    - "8080:80"
 ```
 </details>
 
@@ -156,11 +156,11 @@ Erstellen Sie ein Docker Compose File (Datei mit dem Namen "docker-compose.yml" 
      <summary>Wenn Sie nicht weiterkommen, können Sie folgenden Codeblock verwenden:</summary>
      
      ```
-  managed-node:
-    build:
-      context: .
-      dockerfile: Dockerfile_Managed_Node
-    ports:
+managed-node:
+  build:
+    context: .
+    dockerfile: Dockerfile_Managed_Node
+  ports:
     - "80"
      ```
      </details>
@@ -175,12 +175,12 @@ Erstellen Sie ein Docker Compose File (Datei mit dem Namen "docker-compose.yml" 
      <summary>Wenn Sie nicht weiterkommen, können Sie folgenden Codeblock verwenden:</summary>
      
      ```
-  ansible-node:
-    image: "willhallonline/ansible:2.9-alpine"
-    networks:
-      - cloudcomputing
-    depends_on:
-      - managed-node
+ansible-node:
+  image: "willhallonline/ansible:2.9-alpine"
+  networks:
+    - cloudcomputing
+  depends_on:
+    - managed-node
     ```
     </details>
 - Geben Sie im Docker Compose File ein Netzwerk vom Typ "bridge" an und sorgen Sie dafür, dass die Managed
