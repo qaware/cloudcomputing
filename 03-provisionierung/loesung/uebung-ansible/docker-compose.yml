@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 services:
   managed-node:
@@ -15,10 +15,6 @@ services:
     image: "willhallonline/ansible:2.9-alpine"
     networks:
       - cloudcomputing
-    deploy:
-      resources:
-        limits:
-          memory: 100m
     depends_on:
       - managed-node
     volumes:
