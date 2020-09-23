@@ -142,7 +142,7 @@ Wir wählen für die Übung das Passwort 'verysecretpassword'.
 #### Bonus/Optional: 
 Erstellen Sie alternativ selbst ein Docker Image, das SSH Verbindungen von außen erlaubt:
 - Wählen Sie ein Ubuntu Basisimage.
-- Sorgen Sie dafür, dass eine SSH-Verbindung zum Container aufgebaut werden kann (per SSH Deamon), 
+- Sorgen Sie dafür, dass eine SSH-Verbindung zum Container aufgebaut werden kann (per SSH Daemon), 
 und hinterlegen Sie hierfür die Credentials Username="root" und Passwort="verysecretpassword".
 
 ### Schritt 2: Managed Node und Ansible Control Node über Docker Compose gemeinsam starten
