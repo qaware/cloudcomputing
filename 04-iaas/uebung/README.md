@@ -202,7 +202,7 @@ Es sollte eine Antwort ähnlich dieser auf der Konsole erscheinen:
 
 In Ihrer Docker Umgebung ist sowohl eine das Kommandozeilen Programm für AWS installiert (`aws`) als auch ene Programm zur bequemen Verwendung von EC2Connect(`mssh`). Letzeres erlaubt Ihnen das Verbinden mit einer EC2 Instanz per SSH, sofern Sie die Berechtigung dafür haben.
 
-Stellen Sie sich nun vor Sie sind für den zuverlässigen Betrieb des von Ihnen heute erstellten _Dragon Service_ Im Auftrag eines Geldgebers verantwortlich. Ihr Geldgeber stellt nun fest, dass die Nutzerzahlen Ihres Services zurückgehen und will daher Geld sparen - er ist bereit eine geringere Verfügbarkeit in Kauf zu nehmen. Reduzieren Sie daher die Anzahl der Instanzen in der AutoScaling Gruppe auf `1` statt `2`. Nutzen Sie `aws autoscaling help` um ein Kommando zusammenzustellen.
+Stellen Sie sich nun vor Sie sind für den zuverlässigen Betrieb des von Ihnen heute erstellten _Dragon Service_ im Auftrag eines Geldgebers verantwortlich. Ihr Geldgeber stellt nun fest, dass die Nutzerzahlen Ihres Services zurückgehen und will daher Geld sparen - er ist bereit eine geringere Verfügbarkeit in Kauf zu nehmen. Reduzieren Sie daher die Anzahl der Instanzen in der AutoScaling Gruppe auf `1` statt `2`. Nutzen Sie `aws autoscaling help` um ein Kommando zusammenzustellen.
 
 Lösung:
 <details>
