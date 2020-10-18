@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.11
 
 EXPOSE 80
 

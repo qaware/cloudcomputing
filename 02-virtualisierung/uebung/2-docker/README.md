@@ -26,7 +26,7 @@ Danach wieder mit `vagrant ssh` einloggen.
 
 *Hinweis:* Sollte ihre lokale Docker Installation nicht funktionieren, dann können Sie die folgende Übung ab Schritt 3 auch hier durchführen: https://www.katacoda.com/courses/docker/playground
 
-## Aufgaben
+## Aufgaben Teil 1
 1. Starten sie einen Docker Container auf Basis des *alpine* Images und lassen sie darin eine interaktive Konsole als Entrypoint-Prozess laufen. Auf Docker Hub https://hub.docker.com finden sie das benötigte Basis Image.
 2. Geben sie 'whoami' ein um herauszufinden, als welcher User sie nun eingeloggt sind. root ist dabei der Nutzer mit den höchsten Privilegien. Sie sind aber nur root innerhalb dieses Namespace.
 1. Initialisieren sie die Paketmanager *apk* mit `apk update`
@@ -43,11 +43,16 @@ Danach wieder mit `vagrant ssh` einloggen.
 1. Lassen sie sich per `curl` die Ausgaben auf *localhost* unter den Ports 80 ausgeben. Sie können nun auch auf die NGINX-Seiten direkt aus einem Browser des Haupt-Betriebssystems ihres Rechners zugreifen. Über welche URL ist dies möglich?
 1. Inspizieren sie die Docker Container mit `docker inspect` und lassen sie sich die Systemlogs in den Containern per `docker logs` ausgeben.
 
-## Bonus
+## Aufgaben Teil 2
 
-In den ersten Schritten haben wir das Image manuell erstellt und mussten außerdem für nginx Startparameter über die Kommandozeile angeben. Schreiben Sie ein sog. *Dockerfile* und bauen sie damit automatisch das
-cloudcomputing/nginx Image. Bauen sie das Docker image mit `docker build -t cloudcomputing/nginx .` und starten sie das docker image mit `docker run -d -p 80:80 cloudcomputing/nginx`.
+In den ersten Schritten haben wir das Image manuell erstellt und mussten außerdem für nginx Startparameter über die Kommandozeile angeben. 
 
+1. Nutzen Sie explizit als Basisimage alpine:3.11. Hier wird automatisch die letzte Bugfixversion mit der Hauptversion 3.11 runterladen. Zum Beispiel 3.11.6.
+1. Schreiben Sie ein sog. *Dockerfile* und bauen sie damit automatisch das cloudcomputing/nginx Image.
+1. Verwenden sie dazu die Kommandos "RUN, EXPOSE, ENTRYPOINT oder CMD"
+1. Bauen sie das Docker image mit `docker build -t cloudcomputing/nginx .` 
+1. Starten sie das docker image mit `docker run -d -p 80:80 cloudcomputing/nginx`.
+1. Prüfen sie korrekte Funktion mit curl.
 
 ## Aufräumen
 
