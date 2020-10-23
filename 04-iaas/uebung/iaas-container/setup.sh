@@ -26,5 +26,5 @@ rm awscliv2.zip
 ./aws/install
 
 echo "alias mssh=/home/bin/aws-ec2-instance-connect-cli/bin/mssh" >> /root/.bashrc
-echo "export AWS_DEFAULT_REGION=eu-central-1" >> /root/.bashrc
+echo "export AWS_DEFAULT_REGION=us-east-1" >> /root/.bashrc
 echo "complete -C /usr/local/bin/aws_completer aws" >> /root/.bashrc
