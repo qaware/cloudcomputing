@@ -1,0 +1,37 @@
+{
+    "variables": {
+        "region":         "eu-central-1"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_name": "dokku-{{timestamp}}",
+            "source_ami": "ami-0c960b947cbb2dd16",
+            "instance_type": "t3a.micro",
+            "region": "{{user `region`}}",
+            "ssh_username": "ubuntu",
+            "tags": {
+                "owner": "alex",
+                "purpose": "demo"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "./welcome.txt",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "shell",
+            "inline":[
+                "ls -al /home/ubuntu",
+                "cat /home/ubuntu/welcome.txt"
+            ]
+        },
+        {
+            "type": "shell",
+            "script": "./provision.sh"
+        }
+    ]
+}
