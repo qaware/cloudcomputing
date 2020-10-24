@@ -331,4 +331,71 @@ Provisionierung aus.
 ### Troubleshooting
 Stellen Sie sicher, dass Sie über Docker den Zugriff auf die gemounteten Dateien erlauben.
 
+## Übung 3: Packer
 
+### Schritt 1: Packer installieren
+Installieren Sie Packer, indem Sie die Anleitung auf https://learn.hashicorp.com/tutorials/packer/getting-started-install
+befolgen.
+
+### Schritt 2: Packer kennenlernen
+Machen Sie sich mit Packer vertraut, indem Sie sich die Beispiele auf https://learn.hashicorp.com/tutorials/packer/getting-started-build-image?in=packer/getting-started
+anschauen.
+
+Optional: bauen Sie eins der Beispiele lokal mit Packer.
+
+### Schritt 3: Docker Image mit Packer bauen
+Lesen Sie die Doku zum Bauen von Docker Images mit Packer: https://www.packer.io/docs/builders/docker
+
+Legen Sie ein Packer Template an.
+Verwenden Sie den Docker Builder von Packer, um ein Nginx Image mit 
+einer eigenen Welcome Seite zu bauen.
+
+Verwenden Sie als Basisimage "nginx:1.19-alpine".
+
+Exponieren Sie Port 80 im Image und führen Sie das CMD "nginx -g daemon off;"
+zum Start von Nginx aus.
+
+Da wir ein Alpine Image verwenden, in dem per Default ```Bash```
+nicht installiert ist, nutzen Sie das folgende ```run_command```
+von Packer, damit später beim Container-Start ```/bin/sh``` anstelle von
+```/bin/bash``` verwendet wird:
+   
+```"run_command": [ "-d", "-t", "-i", "{{.Image}}", "/bin/sh" ] ```
+
+Nutzen Sie den File Provisioner von Packer, um eine lokal angelegte index.html
+nach /usr/share/nginx/html/ im Image zu kopieren.
+
+Nutzen Sie den Post Processor "docker-tag" von Packer, um dem Image den 
+Namen "packer-nginx" und den Tag "1.0" zu geben.
+
+Führen Sie
+```packer build <Ihr Template>``` aus.
+
+Prüfen Sie über ```docker images```, ob das Docker Image in Ihrer lokalen 
+Registry verfügbar ist.
+
+Starten Sie dann den Container mit ```docker```.
+Mappen Sie dabei den Containerport 80 auf den Host Port 8080.
+
+<details>
+<summary>Hinweis, falls Sie nicht weiterkommen:</summary>
+
+```
+docker run -d -p 8080:80 packer-nginx:1.0
+```
+</details>
+
+Rufen Sie im Browser ```localhost:8080``` auf und verifizieren Sie,
+dass Ihre Welcome Seite angezeigt wird.
+
+### Bonus/Optional 1:
+Verwenden Sie anstelle des Nginx Images ein Alpine oder Centos Image.
+Installieren Sie Nginx per shell Provisioner.
+
+### Bonus/Optional 2: Ansible Provisionierung mit Packer ausführen
+
+Nutzen Sie Ansible zur Provisionierung mit Packer. 
+Verwenden Sie dafür das Playbook aus Übung 2 und führen Sie dieses mit dem
+Ansible Provisioner von Packer aus. 
+
+Nutzen Sie hierzu die Packer Doku und recherchieren Sie Beispiele.

@@ -1,0 +1,30 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "nginx:1.19-alpine",
+      "commit": true,
+      "run_command": [ "-d", "-t", "-i", "{{.Image}}", "/bin/sh" ],
+      "changes": [
+        "EXPOSE 80",
+        "CMD [\"nginx\", \"-g\", \"daemon off;\"]"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "./index.html",
+      "destination": "/usr/share/nginx/html/"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "packer-nginx",
+        "tag": "1.0"
+      }
+    ]
+  ]
+}
