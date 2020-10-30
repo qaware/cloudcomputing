@@ -166,23 +166,17 @@ Der gesamte Prozess dauert normalerweise maximal 10 Min.
 
 #### Vorbereitung
 
-Bauen Sie entweder den Container unter `iaas-container` mit:
+Bauen Sie das Container Image unter `iaas-container` mit:
 
 ```
 docker build -t iaas-container ./iaas-container
 ```
 
-Oder laden Sie sich den fertig gebauten Container herunter mit:
-
-```
-docker pull <TODO>
-docker tag <TODO> iaas-container
-```
 
 Starten Sie den Container mit:
 
 ```
-docker run -it --rm -e AWS_ACCESS_KEY_ID=<IHRE KEY ID> -e AWS_SECRET_ACCESS_KEY=<IHR ACCESS KEY> -e AWS_SESSION_TOKEN=<IHR SESSION TOKEN> iaas-container
+docker run -it --rm -w /root -e AWS_ACCESS_KEY_ID=<IHRE KEY ID> -e AWS_SECRET_ACCESS_KEY=<IHR ACCESS KEY> -e AWS_SESSION_TOKEN=<IHR SESSION TOKEN> iaas-container
 ```
 
 Nun sollte eine Bash Session vor Ihnen geöffnet sein. Geben Sie ein:
