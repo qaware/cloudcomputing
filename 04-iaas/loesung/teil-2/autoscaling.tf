@@ -28,16 +28,15 @@ resource "aws_security_group_rule" "app_outgoing" {
 
 # TODO: Allow Ingress from the Security Group of the Load Balancer to the App Security Group in port 8080
 # See: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule 
-
-# resource "aws_security_group_rule" "app_to_lb" {
-#   security_group_id        = 
-#   description              = "Allows HTTP access from the load balancer"
-#   type                     = "ingress"
-#   from_port                = 
-#   to_port                  = 
-#   protocol                 = "tcp"
-#   source_security_group_id =
-# }
+resource "aws_security_group_rule" "app_to_lb" {
+  security_group_id        = aws_security_group.app.id
+  description              = "Allows HTTP access from the load balancer"
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.lb.id
+}
 
 resource "aws_launch_template" "app" {
   name = local.env
@@ -66,16 +65,16 @@ resource "aws_launch_template" "app" {
 # TODO: Create an AutoScaling Group that manages 0 to 4 instances, with a default of 1
 # See: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group
 
-# resource aws_autoscaling_group app {
-#   name     = local.env
-#   min_size = 
-#   max_size = 
-#   launch_template {
-#     id = 
-#   }
-#   desired_capacity    = 
-#   vpc_zone_identifier = module.vpc.public_subnets
-#   # health_check_type   = 
-#   # target_group_arns   = []
-#   tags                = local.standard_tags_asg
-# }
+resource aws_autoscaling_group app {
+  name     = local.env
+  min_size = 0
+  max_size = 4
+  launch_template {
+    id = aws_launch_template.app.id
+  }
+  desired_capacity    = 1
+  vpc_zone_identifier = module.vpc.public_subnets
+  health_check_type   = "ELB"
+  target_group_arns   = [aws_lb_target_group.app.arn]
+  tags                = local.standard_tags_asg
+}

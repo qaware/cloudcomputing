@@ -39,4 +39,5 @@ cat >> /root/.bashrc <<-EOF
     export AWS_DEFAULT_REGION=us-east-1
     complete -C /usr/local/bin/aws_completer aws
     alias terraform=/root/bin/terraform
+    alias configure=/root/bin/configure.sh
 EOF

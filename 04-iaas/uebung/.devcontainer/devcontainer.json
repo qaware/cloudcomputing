@@ -1,0 +1,10 @@
+{
+    "name": "IaaS Container",
+    "dockerFile": "../iaas-container/Dockerfile",
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+        "hashicorp.terraform"
+    ]
+}
