@@ -32,14 +32,15 @@ In diesem Teil der Übung erstellen Sie ein virtuelles Netzwerk, mit einem einze
     * Klicken Sie auf erstellen. Nach dem erstellen werden Sie feststellen, dass über das Netz hinaus weitere Standard Cloud Ressourcen angelegt wurden z.B. eine Routing Tabelle.  
 
     :warning: WICHTIG: Verwenden sie nicht den VPC Launch Wizard. Ziel dieser Übung ist, dass Sie sich mit den Einzelkomponenten vertraut machen und den Wert von Automatisierung kennenlernen.
-2a. Klicken Sie in der Seitenleiste auf _Subnets_, wähle Sie _Create Subnet_.
-    * Verwenden Sie wieder Ihren eindeutigen Namen.
-    * Wählen Sie das von Ihnen erstellte VPC als Ziel für ihr Subnetz.
-    * Wählen Sie als VPC ihr gerade erstelltes Netz.
-    * Wählen Sie als _Availability Zone_ die Zone _us-east-1a_.
-    * Wählen Sie den Adressbereich kleiner als den Ihres VPC z.B. die Hälfte: `10.0.0.0/17`.
-    * Nach der Erstellung, markieren Sie ihr Netz und klicken Sie nun bei _Actions_ die Option _Modify auto-assign IP settings_ und aktivieren Sie den Haken bei _Auto-assign IPv4_.
-2b. Wiederholen Sie die Schritte in 2a um ein Netz in _us-east-1b_ mit dem Adressbereich `10.0.128.0/17` zu erzeugen.
+2. 
+    * a) Klicken Sie in der Seitenleiste auf _Subnets_, wähle Sie _Create Subnet_.
+        * Verwenden Sie wieder Ihren eindeutigen Namen.
+        * Wählen Sie das von Ihnen erstellte VPC als Ziel für ihr Subnetz.
+        * Wählen Sie als VPC ihr gerade erstelltes Netz.
+        * Wählen Sie als _Availability Zone_ die Zone _us-east-1a_.
+        * Wählen Sie den Adressbereich kleiner als den Ihres VPC z.B. die Hälfte: `10.0.0.0/17`.
+        * Nach der Erstellung, markieren Sie ihr Netz und klicken Sie nun bei _Actions_ die Option _Modify auto-assign IP settings_ und aktivieren Sie den Haken bei _Auto-assign IPv4_.
+    * b) Wiederholen Sie die Schritte in 2a um ein Netz in _us-east-1b_ mit dem Adressbereich `10.0.128.0/17` zu erzeugen.
 3. Erzeugen Sie nun einen Zugang zum Internet indem Sie in der Seitenleiste auf _Internet Gateways_ klicken und dann _Create Internet Gateway Klicken_.
     * Verwenden Sie wieder Ihren eindeutigen Namen.
     * Nach dem Erstellen klicken Sie oben rechts auf _Actions_ und wählen Sie _Attac to VPC_. 
@@ -198,7 +199,7 @@ Stellen Sie sich nun vor Sie sind für den zuverlässigen Betrieb des von Ihnen 
 Lösung:
 <details>
 <code>
-aws autoscaling set-desired-capacity --auto-scaling-group-name <IHR EINDEUTIGER NAME> --desired-capacity 1
+aws autoscaling set-desired-capacity --auto-scaling-group-name [IHR EINDEUTIGER NAME] --desired-capacity 1
 </code>
 </details>
 
@@ -232,7 +233,7 @@ Der Pinguin kommt gut an und die Nutzer Zahlen steigen. Ihr Geldgeber möchte di
 Lösung:
 <details>
 <code>
-aws autoscaling set-desired-capacity --auto-scaling-group-name <IHR EINDEUTIGER NAME> --desired-capacity 2
+aws autoscaling set-desired-capacity --auto-scaling-group-name [IHR EINDEUTIGER NAME] --desired-capacity 2
 </code>
 </details>
 
@@ -253,7 +254,7 @@ Wenn Sie Instanzen in einer AutoScaling Gruppe ändern wollen sollten Sie zunäc
 Idealerweise haben Sie im neuen Launch Template bereits ein mit Packer erstelltes Image konfiguriert, so dass die Installationsphase für Abhängigkeiten entfällt und immer die gleichen Pakete vorhanden sind. Einen rollierenden Austausch ohne Ausfall des Services können Sie auch vollautomatisch starten:
 
 <code>
-aws autoscaling start-instance-refresh --auto-scaling-group-name <IHR EINDEUTIGER NAME>
+aws autoscaling start-instance-refresh --auto-scaling-group-name [IHR EINDEUTIGER NAME]
 </code>
 </details>
 
