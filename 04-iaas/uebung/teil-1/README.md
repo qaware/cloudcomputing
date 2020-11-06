@@ -179,8 +179,8 @@ Starten Sie den Container mit:
 docker run -it --rm -w /root iaas-container
 ```
 
-Nun sollte eine Bash Session vor Ihnen geöffnet sein. Geben Sie `configure`. In der folgenden Abfrage geben Sie ihre AWS Zugangsdaten ein.
-Es sollte eine Antwort ähnlich dieser auf der Konsole erscheinen:
+Nun sollte eine Bash Session vor Ihnen geöffnet sein. Geben Sie `aws configure`. In der folgenden Abfrage geben Sie ihre AWS Zugangsdaten ein, wählen sie `us-east-1` als Standard Region.
+Testen Sie anschließend mit `aws sts get-caller-identity` Ihre Konfiguration. Es sollte eine Antwort ähnlich dieser auf der Konsole erscheinen:
 
 ```
 {
