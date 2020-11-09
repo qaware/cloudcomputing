@@ -1,29 +1,64 @@
-# Übung: Cluster Scheduling mit Docker Swarm
+# Übung: Cluster Scheduling
 
-Ziel dieser Übung ist es, praktische Erfahrungen mit dem Scheduling
-von Docker Containers auf einem Cluster zu machen. 
-Als Cluster Scheduler wird dabei Docker Swarm 
-(Scheduling auf beliebigen Rechnern) verwendet.
- 
-Die Übung basiert zum Teil auf Tutorials, die auf [Katacoda](https://www.katacoda.com/) verfügbar sind.
+## Übung 1: Binpack und Spread
 
-## Docker Swarm mit Katacoda
+### Schritt 1:
+Recherchieren Sie je einen Approximationsalgorithmus für das Bin Packing Problem.
+* Gruppe 1: First Fit Decreasing
+* Gruppe 2: Best Fit
+* Gruppe 3: Worst Fit
+* Gruppe 4: Next Fit
 
-#### Vorbereitung
+Bereiten Sie eine kleine Präsentation vor (~1 Folie), die den Algorithmus erklärt.
+Finden Sie in Ihrer Gruppe einen Vertreter, der den Algorithmus im Anschluss vorstellt.
 
-1. Bitte richten sie einen [Katacoda](https://www.katacoda.com/) Account für sich ein
+### Schritt 2:
+Berechnen Sie mit dem Algorithmus, den Ihre Gruppe erarbeitet hat, das Scheduling
+ für folgende Ressourcen und Jobs:
+- Nehmen Sie an, dass alle Ressourcen die Größe 20 haben.
+- Verteilen Sie Jobs der Größen 11,2,15,5,6,17,7 auf die Ressourcen.
+- Wieviele Ressourcen-Einheiten benötigen Sie?
+- Wie verteilen sich die Jobs auf die Ressourcen?
 
-Arbeiten Sie die folgenden Tutorials auf Katacoda durch. Sie vermitteln die Nutzersicht auf Cluster Scheduler. 
-Sie werden dabei sehen, dass sie dabei keine Informationen benötigen, auf welchen konkreten Maschinen die Container 
+Bereiten Sie auch hierzu eine Folie vor, mit der Sie das Ergebnis vorstellen können.
+
+### Schritt 3:
+Recherchieren Sie, wie Round Robin Scheduling funktioniert.
+Wann macht ein Round Robin Verfahren Ihrer Meinung nach Sinn?
+
+## Übung 2: Dominant Resource Fairness
+Nehmen Sie an, dass Ihnen insgesamt 84 CPUs und 12000 GB Memory zur Verfügung stehen.
+
+Sie haben 2 Applikationen, für die sie mit DRF die Anzahl der Container bestimmen.
+
+* Applikation A benötigt je Container 4 CPUs und 120 GB Memory
+* Applikation B benötig je Container 1 CPU und 240 GB Memory
+
+Wieviele Container von Applikation A und B können Sie jeweils starten, wenn Sie Ihr 
+Scheduling mit DRF durchführen?
+
+## Übung 3: Scheduling mit Nomad 
+
+### Schritt 1: Cluster Scheduling mit Nomad - Theorie
+Lesen Sie sich kurz in das Cluster Scheduling mit Nomad ein.
+Nutzen Sie dafür die Nomad Dokumentation unter 
+
+* https://www.nomadproject.io/intro
+* https://www.nomadproject.io/docs/internals/scheduling
+
+### Schritt 2: Katacoda Account einrichten
+
+Bitte richten sie einen [Katacoda](https://www.katacoda.com/) Account für sich ein.
+
+### Schritt 3: Katacoda Tutorial für Nomad - Praktische Erfahrungen sammeln
+
+Arbeiten Sie das folgende Tutorial auf Katacoda durch. 
+Dies vermittelt die Nutzersicht auf das Cluster Scheduling mit Nomad. 
+Sie werden dabei sehen, dass sie dabei keine Informationen benötigen, 
+auf welchen konkreten Maschinen die Container 
 ausgeführt werden. 
 
 Hinweis: Im Browser steht Ihnen dabei eine umfassende Umgebung zur Verfügung. 
-Nutzen Sie dies auch, um mit den Cluster Schedulern zu experimentieren.
+Nutzen Sie dies auch, um mit Nomad zu experimentieren.
 
-#### Docker Swarm
-1. [Mit Docker Swarm warm werden](https://www.katacoda.com/courses/docker/getting-started-with-swarm-mode)
-2. [Docker Swarm Services mit Compose v3](https://katacoda.com/courses/docker-orchestration/deploy-swarm-services-with-compose)
-3. Experimentieren Sie mit Docker Swarm. Deployen Sie verschiedene Services, skalieren Sie diese und
- verproben Sie Updates der deployten Services. 
- Orientieren Sie sich dabei z.B. am [Docker Swarm Tutorial](https://docs.docker.com/engine/swarm/swarm-tutorial)
-oder am [Docker Swarm Vagrant Tutorial](https://github.com/tdi/vagrant-docker-swarm).
+https://www.katacoda.com/hashicorp/scenarios/nomad-introduction
