@@ -8,6 +8,8 @@ Installieren Sie [MiniKube](https://kubernetes.io/de/docs/setup/minikube/), [k9s
 
 Sie müssen k9s und kubectl nicht konfigurieren, diesen Schritt übernimmt Minikube für Sie.
 
+Falls Sie Windows verwenden und bei der Installation von MiniKube stecken bleiben, [hilft vielleicht dieses Video](https://www.youtube.com/watch?v=u5Rx05r49tU).
+
 ## Aufgaben
 
 ### Aufgabe 1: Minikube starten
