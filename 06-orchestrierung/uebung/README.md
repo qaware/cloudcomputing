@@ -37,3 +37,7 @@ Legen Sie für Ihr Deployment einen Service und einen Ingress an. Prüfen Sie, o
 Überlegen Sie sich einen Anwendungsfall für Ihren Service, der Konfiguration nötig macht (z.B. Austauschen der Begrüßung). Legen Sie nun eine ConfigMap an, mit der Sie den Service konfigurieren können.
 Ändern Sie nun Ihren Service so ab, das dieser die Einstellungen aus der ConfigMap berücksichtigt.
 
+### Aufgabe 7: Persistent Volumes
+
+Mounten Sie ein Persistent Volume in den Container Ihrer Anwendung. Testen Sie, ob die Dateien in diesem Volume einen Container-Neustart überleben.
+
