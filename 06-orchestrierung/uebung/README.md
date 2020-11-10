@@ -8,14 +8,14 @@ Installieren Sie [MiniKube](https://kubernetes.io/de/docs/setup/minikube/), [k9s
 
 Sie müssen k9s und kubectl nicht konfigurieren, diesen Schritt übernimmt Minikube für Sie.
 
-Falls Sie Windows verwenden und bei der Installation von MiniKube stecken bleiben, [hilft vielleicht dieses Video](https://www.youtube.com/watch?v=u5Rx05r49tU).
-
 ## Aufgaben
 
 ### Aufgabe 1: Minikube starten
 
 Erstellen Sie einen neuen Cluster mit `minikube start`. Sollte es zu Problemen mit der Virtualisierung kommen, versuchen Sie einen anderen [Driver](https://minikube.sigs.k8s.io/docs/drivers/). Um zu testen, ob ihr
 Cluster läuft, können sie `kubectl --namespace kube-system get pods` verwenden.
+
+Falls Sie Windows verwenden und beim Starten von MiniKube stecken bleiben, [hilft vielleicht dieses Video](https://www.youtube.com/watch?v=u5Rx05r49tU).
 
 ### Aufgabe 2: Service schreiben
 
