@@ -43,3 +43,8 @@ Legen Sie für Ihr Deployment einen Service und einen Ingress an. Prüfen Sie, o
 
 Mounten Sie ein Persistent Volume in den Container Ihrer Anwendung. Testen Sie, ob die Dateien in diesem Volume einen Container-Neustart überleben.
 
+### Aufgabe 8: Helm
+
+Installieren Sie per Helm ein Redis in Ihr Cluster, das mit einem Master und 3 Slaves läuft. Wenn Sie das geschafft haben, starten Sie einen Redis-Client, verbinden Sie diesem zu Ihrem Master-Redis und legen Sie ein
+Key-Value-Pair an. Danach können Sie das Redis wieder aus Ihrem Cluster deinstallieren.
+
