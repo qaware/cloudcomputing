@@ -19,4 +19,4 @@ spec:
           imagePullPolicy: Never
           image: service:1
           ports:
-            - containerPort: 8000
+            - containerPort: 8080
