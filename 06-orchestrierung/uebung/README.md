@@ -1,3 +1,31 @@
+# Übung: Orchestrierungsmuster - Separation of Concerns mit modularen Containern
+
+Ziel dieser Übung ist es, Orchestrierungsmuster für Container kennenzulernen.
+
+Es gibt etablierte Patterns, wie sich bei der Ausführung von Containern
+ eine Separation of Concerns erreichen lässt, zum Beispiel lässt sich standardisierbare
+ Basis-Funktionalität aus dem eigentlichen Anwendungscontainer auslagern.
+ 
+## Schritt 1: 
+Recherchieren Sie das für Ihre Gruppe angegebene Orchestrierungsmuster.
+Sie können dabei den [Kubernetes Blog](https://kubernetes.io/blog/2015/06/the-distributed-system-toolkit-patterns/)
+als Quelle nutzen, müssen das aber nicht.
+
+Kubernetes-Konzepte und Begrifflichkeiten können Sie für diese Übung ignorieren.
+Falls diese für das Verständnis unbedingt erforderlich sind,
+ fragen Sie bitte beim Betreuer der Übung nach.
+
+* Gruppe 1: Sidecar Containers
+* Gruppe 2: Ambassador Containers
+* Gruppe 3: Adapter Containers
+
+## Schritt 2: 
+Bereiten Sie eine kleine Präsentation vor (1-2 Folien), in der Sie
+* das Orchestrierungsmuster vorstellen
+* Beispiele benennen, wann dieses Orchestrierungsmuster Sinn macht
+
+Bestimmen Sie einen Vertreter in Ihrer Gruppe, der das Ergebnis im Anschluss vorstellt.
+
 # Übung: Cluster-Orchestrierung mit Kubernetes
 
 Ziel dieser Übung ist es, praktische Erfahrungen mit der Orchestrierung von Docker Containern zu machen. Als Cluster-Orchestrierer wird dabei Kubernetes verwendet.
