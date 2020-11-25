@@ -54,6 +54,11 @@ Erstellen Sie mit dem Web-Framework ihrer Wahl einen Hello-World-Service, der ü
 Bauen Sie den Docker-Container gegen Minikube (`minikube docker-env`) und schreiben Sie ein Kubernetes Deployment für diesen Service. Installieren Sie dieses Deployment in den Kubernetes-Cluster und prüfen Sie mittels
 `k9s`, ob der Service korrekt startet.
 
+Sollte es zu einem `ImagePullErr` kommen, obwohl Sie ihr Docker gegen Minikube konfiguriert haben, versuchen Sie mal ein `imagePullPolicy: Never` unter `spec.containers`.
+
+Unter Windows gibt `minikube docker-env` einen Befehl in der letzten Zeile aus, der mit `REM` anfängt. Dieses `REM` ist nicht Teil des Befehls,
+den Sie eingeben müssen! Geben Sie alles hinter `REM` in die Konsole ein.
+
 ### Aufgabe 4: Probes & Resource constraints
 
 Bauen Sie in Ihr Deployment noch Liveness- und Readiness-Probes ein. Vergeben Sie außerdem Resource requests und limits.
