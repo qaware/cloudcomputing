@@ -1,34 +1,30 @@
-# Übung: PaaS mit OpenShift und PCF
+# Übung: PaaS mit Heroku
 
-Ziel dieser Übung ist es erste praktische Erfahrungen im Umgang mit PaaS Platformen
-wie OpenShift oder Pivotal Cloud Foundry zu sammeln.
+## Aufgabe 1
 
-## Vorbereitung
+Erstellen Sie sich einen [kostenlosen Heroku-Account](https://signup.heroku.com/).
 
-* Eine lokale Minishift Installation. Siehe [minishift.adoc](minishift.adoc) und [https://github.com/minishift/minishift](https://github.com/minishift/minishift)
+## Aufgabe 2
 
-## Aufgaben
+Installieren Sie die [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) und loggen Sie sich ein `heroku login`.
 
-## Spring Boot Development mit OpenShift (Beginner)
+## Aufgabe 3
 
-In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen Sie den Anweisungen für das Tutorial **[Spring Boot development](https://learn.openshift.com/middleware/courses/middleware-spring-boot/spring-getting-started)**.
+Schreiben Sie einen Hello World Service in der Sprache ihrer Wahl und deployen Sie diesen auf Heroku.
 
-## Monitoring Spring Boot Applications auf OpenShift (Beginner)
-In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen Sie den Anweisungen für das Tutorial **[Monitoring Applications](https://learn.openshift.com/middleware/courses/middleware-spring-boot/monitoring)**.
+[Hier](https://devcenter.heroku.com/start) gibt es diverse Heroku "Getting Started" Guides.
 
-## Java EE 8 mit OpenShift (Advanced)
+## Aufgabe 4
 
-In dieser Übung nutzen wir das OpenShift [Interactive Learning Portal](https://learn.openshift.com/middleware/). Folgen Sie den Anweisungen für das Tutorial **[Java EE 8 development](https://learn.openshift.com/middleware/middleware-javaee8/)**.
+Bringen Sie die lokale Entwicklung zum Laufen (`heroku local`), so dass sie bequem an der Anwendung entwickeln können.
 
-## Bonusaufgaben
-### Lokale Entwicklung mit Minishift
+## Aufgabe 5
 
-Führen sie zunächst den [Minishift Quickstart](https://docs.openshift.org/latest/minishift/getting-started/quickstart.html) durch und studieren sie den Quellcode der Beispiel Anwendung.
+Bauen Sie in Ihre Anwendung eine Konfigurationsmöglichkeit ein (z.B. um die Begrüßung zu konfigurieren).
+Verwenden Sie dann die [Heroku-Mechanismen zur Konfiguration](https://devcenter.heroku.com/articles/config-vars) um
+die Anwendung zu konfigurieren.
 
-Anschließend bringen sie unsere Beispiel-Anwendung aus [Übung 1](../../01-kommunikation/uebung/) in Minishift zum Laufen. Schreiben sie hierfür die nötigen Deployment Deskriptoren bzw. generieren sie diese aus einer `docker-compose.yml` mit dem Tool **kompose**.
+## (Optional) Aufgabe 6
 
-### Hands-On Pivotal CloudFoundry und PCF Dev
-
-In dieser Bonus Aufgabe können sie sich mit Pivotal CloudFoundry vertraut machen. Führen sie hierzu die Schritte des [PCF Tutorials](
-https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction) unter https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction aus und studieren sie den Source Code der Beispiel-Anwendung.
-**Achtung: PCF Dev funktioniert derzeit nur mit Virtualbox und nicht mit Hyper-V!!!**
+Verwenden Sie [Heroku Postgres](https://www.heroku.com/postgres), um Ihrer Anwendung eine Datenbank zu spendieren.
+Programmieren Sie einen einfachen Anwendungsfall, der diese Datenbank verwendet.
