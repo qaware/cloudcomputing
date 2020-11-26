@@ -6,7 +6,7 @@ Erstellen Sie sich einen [kostenlosen Heroku-Account](https://signup.heroku.com/
 
 ## Aufgabe 2
 
-Installieren Sie die [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) und loggen Sie sich ein `heroku login`.
+Installieren Sie die [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) und loggen Sie sich ein (`heroku login`).
 
 ## Aufgabe 3
 
@@ -22,7 +22,7 @@ Bringen Sie die lokale Entwicklung zum Laufen (`heroku local`), so dass sie bequ
 
 Bauen Sie in Ihre Anwendung eine Konfigurationsmöglichkeit ein (z.B. um die Begrüßung zu konfigurieren).
 Verwenden Sie dann die [Heroku-Mechanismen zur Konfiguration](https://devcenter.heroku.com/articles/config-vars) um
-die Anwendung zu konfigurieren.
+Ihre Anwendung zu konfigurieren.
 
 ## (Optional) Aufgabe 6
 
