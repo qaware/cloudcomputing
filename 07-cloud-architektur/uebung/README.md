@@ -36,8 +36,27 @@ Recherchieren Sie in Ihrer Gruppe die angegebenen Faktoren. Sie können dafür d
 nutzen oder frei recherchieren.
 
 Bereiten Sie gemeinsam jeweils einen kurzen Foliensatz vor (1 Slide je Factor), in dem Sie
-* den jeweiligen Factor benennen
+* den Idee hinter dem jeweiligen Factor benennen
 * die Empfehlung erläutern
+
+Bearbeiten Sie in den Gruppen die folgenden Punkte:
+
+* Gruppe 1:
+    * Codebase
+    * Dependencies
+    * Configuration
+* Gruppe 2:
+    * Backing Services
+    * Build, release, run
+    * Processes
+* Gruppe 3:
+    * Port binding
+    * Concurrency
+    * Disposability
+* Gruppe 4:
+    * Dev/Prod Parity
+    * Logs
+    * Admin Processes
 
 Finden Sie einen Vertreter Ihrer Gruppe, der die Vorstellung übernimmt.
 
