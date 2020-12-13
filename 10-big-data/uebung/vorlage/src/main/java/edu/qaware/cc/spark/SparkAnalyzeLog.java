@@ -61,7 +61,7 @@ public class SparkAnalyzeLog {
             };
 
     /**
-     * TODO: Implement the filtering of solr logs that are greater zero
+     * TODO: Implement the filtering of solr logs that contain a Qtime greater zero
      */
     private static final Function<SolrLog, Boolean> FILTER_SOLR_LOGS_GREATER_ZERO =
             (Function<SolrLog, Boolean>) solrLog -> {
