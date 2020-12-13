@@ -1,4 +1,24 @@
-# Übung: Verteilte Berechnung mit Apache Spark
+# Übung 1: MapReduce
+Recherchieren Sie, wie MapReduce funktioniert, zum Beispiel indem Sie folgendes Video anschauen:
+[MapReduce](https://www.youtube.com/watch?v=cvhKoniK5Uo).
+
+Listen Sie die Vor- und Nachteile vom beschriebenen Vorgehen auf. Wann macht MapReduce Sinn, wann eher nicht?
+Sammeln Sie dies auf einer Folie in Ihrer Gruppe.
+
+Zählen Sie mittels MapReduce das Auftreten der einzelnen Wörter in der ersten Strophe von "O Tannenbaum"
+(mit Stift und Papier, Sie müssen hier noch nichts implementieren):
+
+```
+O Tannenbaum, o Tannenbaum,
+wie grün sind deine Blätter!
+Du grünst nicht nur zur Sommerszeit,
+nein, auch im Winter, wenn es schneit.
+O Tannenbaum, o Tannenbaum,
+wie grün sind deine Blätter!
+```
+
+
+# Übung 2: Verteilte Berechnung mit Apache Spark
 
 Apache Spark ist ein Framework, um Berechnungen in einem Cluster zu verteilen.
 Damit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein einzelner Rechner üblicherweise nicht in der Lage ist.
