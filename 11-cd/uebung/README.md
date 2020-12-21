@@ -61,4 +61,4 @@ Type 3: Ops as Infrastructure-as-a-Service (Platform), Type 4: DevOps as an Exte
 Type 5: DevOps Team with an Expiry Date, Type 6: DevOps Advocacy Team, Type 7: SRE Team (Google Model), 
 
 Bereiten Sie eine kleine Präsentation vor (~1 Folie je Pattern bzw. Anti-Pattern), die das jeweilige Pattern erklärt.
-Finden Sie in Ihrer Gruppe einen Vertreter, der den Algorithmus im Anschluss vorstellt.
+Finden Sie in Ihrer Gruppe einen Vertreter, der die Patterns und Anti-Patterns im Anschluss vorstellt.
