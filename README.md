@@ -1,6 +1,6 @@
 ![Vorlesung Cloud Computing](https://github.com/qaware/cloudcomputing/blob/master/vl-cc-logo.jpg "Vorlesung Cloud Computing")
 
-__Aktuelle Vorlesung: Technische Hochschule Rosenheim, Wintersemester 2019/2020__
+__Aktuelle Vorlesung: Hochschule München, Sommersemester 2021__
 
 Inhalte:
 
@@ -24,9 +24,9 @@ Für die Übungen notwendige Software:
 
 * Java-Entwicklungsumgebung der Wahl (Eclipse, IntelliJ, Netbeans).
 * Java Development Kit (JDK) 8. (https://adoptopenjdk.net/)
-* git in der aktuellsten Version: https://git-scm.com/download/win. Optional: github Desktop (https://desktop.github.com).
+* git in der aktuellsten Version: https://git-scm.com/downloads. Optional: github Desktop (https://desktop.github.com).
 * Vagrant (inklusive der benötigten VirtualBox Version) in der aktuellsten Version. (https://www.vagrantup.com)
-* Docker for Windows (https://docs.docker.com/docker-for-windows) oder Docker for Mac (https://docs.docker.com/docker-for-mac)
+* Docker for Linux, Docker Desktop for Mac oder Docker Desktop for Windows (https://docs.docker.com/)
 * Minikube (https://github.com/kubernetes/minikube/releases)
 * Minishift (https://github.com/minishift/minishift/releases)
 

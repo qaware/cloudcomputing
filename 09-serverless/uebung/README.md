@@ -17,37 +17,29 @@ Kubernetes von Docker. Folgen sie dabei der offiziellen Anleitung: https://kubel
 Für eine Beschreibung der verschiedenen Runtimes nutzen sie folgende Informationen:
 https://github.com/kubeless/kubeless/blob/master/docs/runtimes.md
 
-## Fn Project
+## OpenFaaS
 
-Diese Übung beschäftigt sich mit Project Fn (http://fnproject.io), einer Container nativen
-aber Cloud agnostischen Serverless platform.
+Diese Übung beschäftigt sich mit OpenFaaS ( https://www.openfaas.com/ ), einer Serverlessplattform 
+für Kubernetes oder OpenShift mit Fokus auf Einfachheit.
 
-1. Installieren sie zunächst lokal Project Fn. Folgen sie hierzu den Anweisungen der
-Quickstart Dokumentation: https://github.com/fnproject/fn#top
+1. Installieren sie zunächst auf Ihrem Kubernetes OpenFaaS. Folgen sie hierzu den Anweisungen der
+Dokumentation zum Deployment auf Kubernetes: https://docs.openfaas.com/deployment/kubernetes/
+Sie können mit dem Abschnitt "Install the faas-cli" beginnen.
 
-2. Folgen sie anschließend den Anweisungen der Project Fn Tutorials. Schreiben und deployen
-sie eine einfache Funktion in Java. https://fnproject.io/tutorials/JavaFDKIntroduction/
-
-- http://fnproject.io/tutorials/
-- https://github.com/fnproject/fn-helm
-- https://medium.com/fnproject/fn-project-helm-chart-for-kubernetes-e97ded6f4f0c
+2. Folgen sie anschließend den Anweisungen der im "Lab 3" des OpenFaaS-Workshops:
+https://github.com/openfaas/workshop/blob/master/lab3.md
+Dort können sie eine einfache Funktion in in Python schreiben.
 
 ## Serverless Framework
 
-Diese Übung beschäftigt sich mit dem Serverless Framework (https://serverless.com/framework/),
+Diese Übung beschäftigt sich mit dem Serverless Framework (https://www.serverless.com/open-source/),
 einem CLI Tool zur einfachen und schnellen Entwicklung von von Event-getriebenen Funktionen.
 
-Aufbauend auf den Übungen zu Kubeless und Project Fn, führen sie die Übungen erneut mit Hilfe
+Aufbauend auf den Übungen zu Kubeless führen sie die Übungen erneut mit Hilfe
 des Serverless Frameworks aus.
 
 ### Kubeless
 
 Eine Übersicht zum Kubeless Provider finden sie hier: https://serverless.com/framework/docs/providers/kubeless/
 Folgen sie der Quickstart Anleitung, und wenden sie diese auf die in der Kubeless
-Übung erstellte Funktion an.
-
-### Project Fn
-
-Eine Übersicht zum Project Fn Provider finden sie hier: https://serverless.com/framework/docs/providers/fn/
-Folgen sie der Quickstart Anleitung, und wenden sie diese auf die in der Project Fn
 Übung erstellte Funktion an.

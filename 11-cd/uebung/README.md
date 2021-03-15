@@ -44,6 +44,9 @@ Lernen Sie Jenkins und Sonarqube kennen, indem Sie die folgenden Katacoda Online
 
 * Building Docker Images Using Jenkins:
 https://www.katacoda.com/courses/cicd/build-docker-images-using-jenkins
+Als (vom Aufgabensteller unbeabsichtigte) Zusatzaufgabe sollten Sie zuerst den Jenkins auf den neuesten Stand bringen,
+und alle Plugins updaten. Beachten Sie dabei die Menge an CVEs.
+
 * Sonarqube on Kubernetes: 
 https://www.katacoda.com/courses/cicd/sonarqube
 
