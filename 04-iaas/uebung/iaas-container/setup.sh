@@ -36,7 +36,7 @@ cd ~
 
 cat >> /root/.bashrc <<-EOF
     alias mssh=/root/bin/aws-ec2-instance-connect-cli/bin/mssh
-    export AWS_DEFAULT_REGION=us-east-1
+    export AWS_DEFAULT_REGION=eu-central-1
     complete -C /usr/local/bin/aws_completer aws
     alias terraform=/root/bin/terraform
     alias configure=/root/bin/configure.sh

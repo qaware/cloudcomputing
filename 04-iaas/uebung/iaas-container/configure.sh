@@ -12,7 +12,7 @@ mkdir -p ~/.aws/
 
 cat > ~/.aws/config <<-EOF
 [default]
-region = us-east-1
+region = eu-central-1
 EOF
 
 cat > ~/.aws/credentials <<-EOF
