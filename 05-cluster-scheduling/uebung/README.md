@@ -46,7 +46,7 @@ Nutzen Sie dafür die Nomad Dokumentation unter
 * https://www.nomadproject.io/intro
 * https://www.nomadproject.io/docs/internals/scheduling
 
-### Schritt 3: Nomad - Praktische Erfahrungen sammeln
+### Schritt 2: Nomad - Praktische Erfahrungen sammeln
 
 Arbeiten Sie das [CLI Quick Start Tutorial](https://learn.hashicorp.com/tutorials/nomad/get-started-intro?in=nomad/get-started) durch.
 Bei der [Installation](https://learn.hashicorp.com/tutorials/nomad/get-started-install?in=nomad/get-started) können Sie entweder die vorgeschlagenen Varianten
