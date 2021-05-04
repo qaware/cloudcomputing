@@ -50,4 +50,4 @@ Nutzen Sie dafür die Nomad Dokumentation unter
 
 Arbeiten Sie das [CLI Quick Start Tutorial](https://learn.hashicorp.com/tutorials/nomad/get-started-intro?in=nomad/get-started) durch.
 Bei der [Installation](https://learn.hashicorp.com/tutorials/nomad/get-started-install?in=nomad/get-started) können Sie entweder die vorgeschlagenen Varianten
-verwenden, oder Sie verwenden [Vagrant](https://www.vagrantup.com/), das sie dann aber zusätzlich noch installieren müssen.
+verwenden, oder Sie verwenden [Vagrant](https://www.vagrantup.com/), das Sie dann aber zusätzlich noch installieren müssen.
