@@ -46,19 +46,8 @@ Nutzen Sie dafür die Nomad Dokumentation unter
 * https://www.nomadproject.io/intro
 * https://www.nomadproject.io/docs/internals/scheduling
 
-### Schritt 2: Katacoda Account einrichten
+### Schritt 3: Nomad - Praktische Erfahrungen sammeln
 
-Bitte richten sie einen [Katacoda](https://www.katacoda.com/) Account für sich ein.
-
-### Schritt 3: Katacoda Tutorial für Nomad - Praktische Erfahrungen sammeln
-
-Arbeiten Sie das folgende Tutorial auf Katacoda durch. 
-Dies vermittelt die Nutzersicht auf das Cluster Scheduling mit Nomad. 
-Sie werden dabei sehen, dass sie dabei keine Informationen benötigen, 
-auf welchen konkreten Maschinen die Container 
-ausgeführt werden. 
-
-Hinweis: Im Browser steht Ihnen dabei eine umfassende Umgebung zur Verfügung. 
-Nutzen Sie dies auch, um mit Nomad zu experimentieren.
-
-https://www.katacoda.com/hashicorp/scenarios/nomad-introduction
+Arbeiten Sie das [CLI Quick Start Tutorial](https://learn.hashicorp.com/tutorials/nomad/get-started-intro?in=nomad/get-started) durch.
+Bei der [Installation](https://learn.hashicorp.com/tutorials/nomad/get-started-install?in=nomad/get-started) können Sie entweder die vorgeschlagenen Varianten
+verwenden, oder Sie verwenden [Vagrant](https://www.vagrantup.com/), das Sie dann aber zusätzlich noch installieren müssen.
