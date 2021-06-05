@@ -1,6 +1,6 @@
 provider aws {
   version = "3.12.0"
-  region  = "us-east-1"
+  region  = "eu-central-1"
 }
 
 provider random {

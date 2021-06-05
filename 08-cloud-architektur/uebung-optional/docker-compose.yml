@@ -1,0 +1,39 @@
+version: '2'
+services:
+  consul:
+    image: consul
+    command: consul agent -server -dev -client=0.0.0.0 -ui -bootstrap -log-level warn
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+    networks:
+      - cloud-architecture
+
+  reverse-proxy:
+    image: reverse-proxy
+    command: traefik --consulcatalog.endpoint=consul:8500
+    ports:
+      - "8080:8080"
+      - "8081:80"
+    depends_on:
+      - consul
+    links:
+      - consul
+    networks:
+      - cloud-architecture
+
+  book-service:
+    build: ./book-service
+    image: book-service:1.1.0
+    ports:
+      - 18080:18080
+    depends_on:
+      - consul
+    networks:
+      - cloud-architecture
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+
+networks:
+  cloud-architecture:

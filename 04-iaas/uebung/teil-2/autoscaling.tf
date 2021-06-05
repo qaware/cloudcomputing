@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "app_outgoing" {
 resource "aws_launch_template" "app" {
   name = local.env
 
-  image_id                             = "ami-0dba2cb6798deb6d8"
+  image_id                             = "ami-0848da720bb07de35"
   instance_initiated_shutdown_behavior = "terminate"
   update_default_version               = true
 

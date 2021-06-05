@@ -8,7 +8,7 @@ Ziel dieser Übung ist, dass Sie ein grundsätzliches Verständnis der AWS Cloud
 
 Im zweiten Teil dieser Übung verwenden wir einen Docker Container zur Verwendung der CLI. Daher brauchen Sie eine eine lokale Docker Installation. Da die Erstellung / der Download des Containers länger dauern kann starten Sie bitte mit der Vorbereitung für Übung zwei.
 
-Sie benötigen einen AWS Account um die Übung zu absolvieren. Wenn Sie awseducate.com verwenden loggen Sie sich auf der Webseite ein und klicken Sie auf _AWS Account_ und erzeugen Sie einen _Educate Starter Account_. Auf der Startseite von _Vocareum_ können Sie über _Account Details_ und den Button _AWS CLI_ die Zugangsdaten für den Kommandozeilen Zugriff abrufen. Die Webkonsole erreichen Sie unter dem Button _AWS Console_.
+Sie benötigen einen AWS Account um die Übung zu absolvieren. Diesen bekommen Sie in der Übung bereitgestellt.
 
 
 ## Aufgaben
@@ -19,7 +19,7 @@ In dieser Übung erzeugen Sie eine einfache IaaS Architektur mit der AWS Web Kon
 
 Hinweise:
 * Folgen Sie der Anleitung, sofern nicht anders genannt, belassen Sie andere Einstellungen unverändert.
-* Stellen Sie sicher, dass die AWS Region _US East (North Virginia) us-east-1_ (rechter, oberer Bildschirmrand) ist und die Sprache auf _English_ (linker, unterer Bildschirmrand) steht.
+* Stellen Sie sicher, dass die AWS Region _US East (North Virginia) eu-central-1_ (rechter, oberer Bildschirmrand) ist und die Sprache auf _English_ (linker, unterer Bildschirmrand) steht.
 * Wichtig wenn Sie Sich einen Account mit anderen Übungsteilnehmern teilen: Denken Sie sich einen eindeutigen Namen für die Benennung/Tags Ihrer Ressourcen aus. Da alle Teilnehmer den gleichen Account verwenden werden ist davon auszugehen, dass wenn Sie ihre Ressourcen nicht wiedererkennbar bennenen Sie und Ihre Kommolitonen Schwierigkeiten haben werden Ihre Ressourcen wiederzufinden. Sie können beispielsweise eine Kombination aus Ihrem echten Namen verwenden z.b. `akrause` wenn ihr Name _Alex Krause_ ist oder Sie wählen einen beliebigen anderen Namen wie z.B. `anonymeameise`. Verwenden Sie bei der Namenswahl keine Sonderzeichen außer `-` und vermeiden Sie Umlaute.
 
 #### Ein VPC erstellen
@@ -37,10 +37,10 @@ In diesem Teil der Übung erstellen Sie ein virtuelles Netzwerk, mit einem einze
         * Verwenden Sie wieder Ihren eindeutigen Namen.
         * Wählen Sie das von Ihnen erstellte VPC als Ziel für ihr Subnetz.
         * Wählen Sie als VPC ihr gerade erstelltes Netz.
-        * Wählen Sie als _Availability Zone_ die Zone _us-east-1a_.
+        * Wählen Sie als _Availability Zone_ die Zone _eu-central-1a_.
         * Wählen Sie den Adressbereich kleiner als den Ihres VPC z.B. die Hälfte: `10.0.0.0/17`.
         * Nach der Erstellung, markieren Sie ihr Netz und klicken Sie nun bei _Actions_ die Option _Modify auto-assign IP settings_ und aktivieren Sie den Haken bei _Auto-assign IPv4_.
-    * b) Wiederholen Sie die Schritte in 2a um ein Netz in _us-east-1b_ mit dem Adressbereich `10.0.128.0/17` zu erzeugen.
+    * b) Wiederholen Sie die Schritte in 2a um ein Netz in _eu-central-1b_ mit dem Adressbereich `10.0.128.0/17` zu erzeugen.
 3. Erzeugen Sie nun einen Zugang zum Internet indem Sie in der Seitenleiste auf _Internet Gateways_ klicken und dann _Create Internet Gateway Klicken_.
     * Verwenden Sie wieder Ihren eindeutigen Namen.
     * Nach dem Erstellen klicken Sie oben rechts auf _Actions_ und wählen Sie _Attac to VPC_. 
@@ -83,7 +83,7 @@ In diesem Teil der Übung erstellen Sie eine AutoScaling Gruppe, welche Ihnen er
 2. Klicken Sie in der Seitenleiste auf den Eintrag _Launch Templates_ > _Create Launch Template_.
     * Verwenden Sie wieder Ihren eindeutigen Namen.
     * Als Beschreibung ist "Launch Template für eine einfache Web Anwendung" geeignet.
-    * Wählen Sie als _AMI_ ein Ubuntu: `ami-0dba2cb6798deb6d8`.
+    * Wählen Sie als _AMI_ ein Ubuntu: `ami-0848da720bb07de35`.
     * Wählen Sie `t2.micro` als Instanztyp
     * Wählen Sie Ihre Security Group für die Applikation.
     * Verwenden Sie das folgende Skript als _User Data_ unter den _Advanced Details_:
@@ -179,7 +179,7 @@ Starten Sie den Container mit:
 docker run -it --rm -w /root iaas-container
 ```
 
-Nun sollte eine Bash Session vor Ihnen geöffnet sein. Geben Sie `aws configure`. In der folgenden Abfrage geben Sie ihre AWS Zugangsdaten ein, wählen sie `us-east-1` als Standard Region.
+Nun sollte eine Bash Session vor Ihnen geöffnet sein. Geben Sie `aws configure`. In der folgenden Abfrage geben Sie ihre AWS Zugangsdaten ein, wählen sie `eu-central-1` als Standard Region.
 Testen Sie anschließend mit `aws sts get-caller-identity` Ihre Konfiguration. Es sollte eine Antwort ähnlich dieser auf der Konsole erscheinen:
 
 ```

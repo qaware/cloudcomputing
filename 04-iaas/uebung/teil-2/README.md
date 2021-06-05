@@ -5,7 +5,7 @@ Ziel dieser Übung ist das erlernen grundlegender Infrastructure as Code Fähigk
 
 0. Starten Sie den `iaas-container` und mounten Sie das Verzeichnis `teil-2` in den `/root/teil-2` im Container. Beispiel mit Bash aus dem Verzeichnis:
    ```
-   docker run -it --rm -w /root iaas-container --mount type=bind,source="$(pwd)",target=/root/teil-2 iaas-container
+   docker run -it --rm -w /root --mount type=bind,source="$(pwd)",target=/root/teil-2 iaas-container
    ``` 
    Konfigurieren Sie wieder Ihren AWS Zungang mit `aws configure`.
    Initialisieren Sie dann im Verzeichnis `teil-2` Terraform mit `terraform init`.
