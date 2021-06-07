@@ -9,8 +9,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Holt Artikeltitel auf Wikipedia zu einem entsprechenden
@@ -31,7 +31,7 @@ public class WikipediaConnector {
      * Die Liste ist leer, wenn keine Artikel gefunden wurden.
      * Es werden maximal 25 Artikeltitel zurückgegeben.
      */
-    public Set<String> getArticleTitlesFor(String term) {
+    public List<String> getArticleTitlesFor(String term) {
         try {
             URI uri = URI.create(String.format("https://en.wikipedia.org/w/api.php?action=opensearch&limit=25&format=json&search=%s", URLEncoder.encode(term, StandardCharsets.UTF_8)));
             HttpRequest request = HttpRequest.newBuilder(uri).GET().header("Accept", "application/json").build();
@@ -40,7 +40,7 @@ public class WikipediaConnector {
             JsonNode jsonNode = new ObjectMapper().readTree(response.body());
             JsonNode titles = jsonNode.get(1);
 
-            Set<String> result = new HashSet<>();
+            List<String> result = new ArrayList<>();
             for (JsonNode title : titles) {
                 result.add(title.asText());
             }
