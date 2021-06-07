@@ -5,7 +5,6 @@ import akka.actor.Props;
 import akka.actor.UntypedAbstractActor;
 
 public class MessageCollectorActor extends UntypedAbstractActor {
-
     private ActorRef wikipedia;
     private ActorRef openlibrary;
 
@@ -13,12 +12,10 @@ public class MessageCollectorActor extends UntypedAbstractActor {
     public void preStart() throws Exception {
         wikipedia = getContext().actorOf(Props.create(WikipediaActor.class), "Wikipedia");
         openlibrary = getContext().actorOf(Props.create(OpenLibraryActor.class), "OpenLibrary");
-
     }
 
     @Override
     public void onReceive(Object message) throws Exception {
         //TODO
     }
-
 }
