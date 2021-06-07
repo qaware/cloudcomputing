@@ -9,8 +9,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Holt Bücher mit einem bestimmten Titel vom OpenLibrary Dienst des Internet Archive.
@@ -27,7 +27,7 @@ public class OpenLibraryConnector {
      * @param term Suchbegriff im Titel
      * @return Liste an Buchtiteln. Die Liste ist leer, wenn keine Artikel gefunden wurden.
      */
-    public Set<String> getBooksWithTitleContaining(String term) {
+    public List<String> getBooksWithTitleContaining(String term) {
         try {
             URI uri = URI.create(String.format("https://openlibrary.org/search.json?title=%s", URLEncoder.encode(term, StandardCharsets.UTF_8)));
             HttpRequest request = HttpRequest.newBuilder(uri).GET().header("Accept", "application/json").build();
@@ -35,7 +35,7 @@ public class OpenLibraryConnector {
 
             JsonNode jsonNode = new ObjectMapper().readTree(response.body());
 
-            Set<String> result = new HashSet<>();
+            List<String> result = new ArrayList<>();
             for (JsonNode doc : jsonNode.get("docs")) {
                 result.add(doc.get("title").textValue());
             }

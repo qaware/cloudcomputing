@@ -6,7 +6,6 @@ import akka.actor.UntypedAbstractActor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class MessageCollectorActor extends UntypedAbstractActor {
     private ActorRef wikipedia;
@@ -33,9 +32,9 @@ public class MessageCollectorActor extends UntypedAbstractActor {
             // Start wikipedia & openLibrary
             wikipedia.tell(message, self());
             openlibrary.tell(message, self());
-        } else if (message instanceof Set) {
+        } else if (message instanceof List) {
             // Collect results
-            result.addAll((Set<String>) message);
+            result.addAll((List<String>) message);
 
             if (getSender().equals(wikipedia)) {
                 wikipediaFinished = true;

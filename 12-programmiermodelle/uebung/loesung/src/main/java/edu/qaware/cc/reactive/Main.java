@@ -14,7 +14,6 @@ import java.util.List;
  * @author Josef Adersberger
  */
 public class Main {
-
     /**
      * Die Einstiegsmethode
      *
