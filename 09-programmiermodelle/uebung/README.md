@@ -1,9 +1,9 @@
 # Übung: Reactive Programming mit akka
 
 ## Vorbereitung
-1. Holen sie sich die Vorlage zur Übung aus dem github Repository der Vorlesung (entweder indem sie sich das gesamte Repository als ZIP-Datei herunterladen oder per Befehl `git clone https://github.com/phxql/cloudcomputing.git`).
+1. Holen sie sich die Vorlage zur Übung aus dem github Repository der Vorlesung (entweder indem sie sich das gesamte Repository als ZIP-Datei herunterladen oder per Befehl `git clone ...`).
 2. Öffnen sie in der IDE das Vorlagen-Verzeichnis der Übung als Projekt.
-3. Führen Sie das Maven Goal `clean package` aus.
+3. Führen Sie das Maven Goal `clean package` aus. Sie brauchen kein installiertes Maven, es reicht ein `./mvnw clean package`
 
 ## Ziel
 Das Ziel der heutigen Übung ist es, ein Aktorensystem zu erstellen, mit dem Buchtitel aus der OpenLibrary und Artikel aus Wikipedia zu einem bestimmten Suchwort gemeinsam durchsucht werden können.

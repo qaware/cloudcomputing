@@ -2,6 +2,8 @@ package edu.qaware.cc.reactive;
 
 import edu.qaware.cc.reactive.connectors.openlibrary.OpenLibraryConnector;
 import edu.qaware.cc.reactive.connectors.wikipedia.WikipediaConnector;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,19 +14,17 @@ import java.util.List;
  * @author Josef Adersberger
  */
 public class Main {
-
     /**
      * Die Einstiegsmethode
      *
      * @param args es werden keine Kommandozeilen-Argumente ausgewertet
      */
     public static void main(String[] args) {
-
         String term = "Reactive";
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
 
         WikipediaConnector connector = new WikipediaConnector();
-        List<String> results = new ArrayList<String>(connector.getArticleTitlesFor(term));
+        List<String> results = new ArrayList<>(connector.getArticleTitlesFor(term));
 
         OpenLibraryConnector openLibrary = new OpenLibraryConnector();
         results.addAll(openLibrary.getBooksWithTitleContaining(term));
@@ -34,7 +34,6 @@ public class Main {
             System.out.println(s);
         }
 
-        System.out.println("Duration to collect results: " + (System.currentTimeMillis() - start) + " ms");
-
+        System.out.println("Duration to collect results: " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
     }
 }

@@ -6,8 +6,7 @@ import edu.qaware.cc.reactive.connectors.openlibrary.OpenLibraryConnector;
 import java.util.List;
 
 public class OpenLibraryActor extends UntypedAbstractActor {
-
-    private OpenLibraryConnector connector = new OpenLibraryConnector();
+    private final OpenLibraryConnector connector = new OpenLibraryConnector();
 
     @Override
     public void onReceive(Object message) throws Exception {
