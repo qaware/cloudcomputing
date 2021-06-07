@@ -6,9 +6,9 @@ import akka.actor.UntypedAbstractActor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class MessageCollectorActor extends UntypedAbstractActor {
-
     private ActorRef wikipedia;
     private ActorRef openlibrary;
 
@@ -21,23 +21,28 @@ public class MessageCollectorActor extends UntypedAbstractActor {
     public void preStart() throws Exception {
         wikipedia = getContext().actorOf(Props.create(WikipediaActor.class), "Wikipedia");
         openlibrary = getContext().actorOf(Props.create(OpenLibraryActor.class), "OpenLibrary");
-
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onReceive(Object message) throws Exception {
         if (message instanceof String) {
+            result.clear();
             caller = getSender();
+
+            // Start wikipedia & openLibrary
             wikipedia.tell(message, self());
             openlibrary.tell(message, self());
+        } else if (message instanceof Set) {
+            // Collect results
+            result.addAll((Set<String>) message);
 
-        } else if (message instanceof List) {
-            result.addAll((List) message);
             if (getSender().equals(wikipedia)) {
                 wikipediaFinished = true;
             } else if (getSender().equals(openlibrary)) {
                 openlibraryFinished = true;
             }
+            // Both have finished, respond to caller
             if (wikipediaFinished && openlibraryFinished) {
                 caller.tell(result, self());
             }
@@ -45,5 +50,4 @@ public class MessageCollectorActor extends UntypedAbstractActor {
             unhandled(message);
         }
     }
-
 }

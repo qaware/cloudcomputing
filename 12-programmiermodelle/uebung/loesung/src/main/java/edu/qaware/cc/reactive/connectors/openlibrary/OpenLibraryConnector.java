@@ -1,11 +1,16 @@
 package edu.qaware.cc.reactive.connectors.openlibrary;
 
-import com.jayway.jsonpath.JsonPath;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
-import java.util.List;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Holt Bücher mit einem bestimmten Titel vom OpenLibrary Dienst des Internet Archive.
@@ -22,17 +27,22 @@ public class OpenLibraryConnector {
      * @param term Suchbegriff im Titel
      * @return Liste an Buchtiteln. Die Liste ist leer, wenn keine Artikel gefunden wurden.
      */
-    public List<String> getBooksWithTitleContaining(String term){
-        //Request absetzen ()
-        Client client = ClientBuilder.newClient();
-        String articles = client.target("http://openlibrary.org")
-                .path("search.json")
-                .queryParam("title", term)
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .get(String.class);
+    public Set<String> getBooksWithTitleContaining(String term) {
+        try {
+            URI uri = URI.create(String.format("https://openlibrary.org/search.json?title=%s", URLEncoder.encode(term, StandardCharsets.UTF_8)));
+            HttpRequest request = HttpRequest.newBuilder(uri).GET().header("Accept", "application/json").build();
+            HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        //Das JSON-Dokument auslesen
-        List<String> result = JsonPath.read(articles, "$.docs..title");
-        return result;
+            JsonNode jsonNode = new ObjectMapper().readTree(response.body());
+
+            Set<String> result = new HashSet<>();
+            for (JsonNode doc : jsonNode.get("docs")) {
+                result.add(doc.get("title").textValue());
+            }
+
+            return result;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
