@@ -6,8 +6,8 @@ import akka.actor.Props;
 import akka.util.Timeout;
 import edu.qaware.cc.reactive.actors.MessageCollectorActor;
 import scala.concurrent.Await;
-import scala.concurrent.duration.Duration;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,8 +33,8 @@ public class MainWithActors {
             System.out.println(message);
         }
 
-        System.out.println("Duration to collect results (reactive): " + Duration.fromNanos(System.nanoTime() - start).toMillis() + " ms");
+        System.out.println("Duration to collect results (reactive): " + Duration.ofNanos(System.nanoTime() - start).toMillis() + " ms");
 
-        Await.ready(actorSystem.terminate(), Duration.Inf());
+        Await.ready(actorSystem.terminate(), scala.concurrent.duration.Duration.Inf());
     }
 }
