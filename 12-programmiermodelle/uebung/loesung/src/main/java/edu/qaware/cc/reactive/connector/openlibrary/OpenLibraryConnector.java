@@ -1,4 +1,4 @@
-package edu.qaware.cc.reactive.connectors.openlibrary;
+package edu.qaware.cc.reactive.connector.openlibrary;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

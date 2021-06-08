@@ -1,6 +1,6 @@
 package edu.qaware.cc.reactive;
 
-import edu.qaware.cc.reactive.connectors.wikipedia.WikipediaConnector;
+import edu.qaware.cc.reactive.connector.wikipedia.WikipediaConnector;
 import org.junit.Test;
 
 import java.util.List;

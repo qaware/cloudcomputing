@@ -1,7 +1,7 @@
 package edu.qaware.cc.reactive;
 
-import edu.qaware.cc.reactive.connectors.openlibrary.OpenLibraryConnector;
-import edu.qaware.cc.reactive.connectors.wikipedia.WikipediaConnector;
+import edu.qaware.cc.reactive.connector.openlibrary.OpenLibraryConnector;
+import edu.qaware.cc.reactive.connector.wikipedia.WikipediaConnector;
 
 import java.time.Duration;
 import java.util.ArrayList;

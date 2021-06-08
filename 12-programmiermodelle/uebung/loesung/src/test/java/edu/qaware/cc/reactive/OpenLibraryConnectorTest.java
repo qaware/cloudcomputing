@@ -1,6 +1,6 @@
 package edu.qaware.cc.reactive;
 
-import edu.qaware.cc.reactive.connectors.openlibrary.OpenLibraryConnector;
+import edu.qaware.cc.reactive.connector.openlibrary.OpenLibraryConnector;
 import org.junit.Test;
 
 import java.util.List;
