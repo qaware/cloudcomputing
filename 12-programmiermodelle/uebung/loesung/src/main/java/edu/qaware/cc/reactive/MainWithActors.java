@@ -27,8 +27,10 @@ public class MainWithActors {
         long start = System.nanoTime();
         Timeout timeout = new Timeout(30, TimeUnit.SECONDS);
 
+        String term = "Reactive";
+
         // Send a SearchMessage to MessageCollectorActor and wait for the SearchResultMessage
-        Future<SearchResultMessage> resultFuture = ask(messageCollector, new SearchMessage("Reactive"), timeout).mapTo(classTag(SearchResultMessage.class));
+        Future<SearchResultMessage> resultFuture = ask(messageCollector, new SearchMessage(term), timeout).mapTo(classTag(SearchResultMessage.class));
         SearchResultMessage resultMessage = Await.result(resultFuture, timeout.duration());
 
         System.out.println(resultMessage.getResults().size() + " items found");
