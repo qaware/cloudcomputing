@@ -3,7 +3,8 @@
 Ziel der heutigen Übung ist es, die benötigten Softwarekomponenten für die weiteren Übungen auf Ihren Rechnern zu installieren.
 
 Falls Sie mit einer Linux-VM arbeiten möchten, gibt es die "DevBox"-VM, die auch in anderen Veranstaltungen der HM
-verwendet wird: https://gitlab.lrz.de/hm/devbox/-/wikis/home
+verwendet wird: https://gitlab.lrz.de/hm/devbox/-/wikis/Releases
+
 
 ## Installationen
 
