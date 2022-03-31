@@ -48,7 +48,7 @@ SHELL
 ```
 
 Führen sie die Provisionierung mit Vagrant aus, prüfen sie die erfolgreiche Installation indem sie mit einem Browser auf dem Host
-die Index-Seite auf `http://localhost:18080/` aufrufen.
+die Index-Seite auf `http://localhost:8080/` aufrufen.
 
 ```bash
 $ vagrant provision
