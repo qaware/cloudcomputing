@@ -4,29 +4,27 @@ Ziel dieser Übung ist es mit Vagrant einen einfachen Stack aus NGINX, PHP und M
 
 ## Vorbereitung
 
-1. Prüfen sie dass Virtualbox und Vagrant installiert sind und funktionieren. Je nach Betriebssystem nutzen
-sie anstatt Virtualbox entweder Hyper-V, kvm, xhyve oder Parallels als Virtualisierungssoftware.
+1. Prüfen Sie, dass Virtualbox und Vagrant installiert sind und funktionieren. Je nach Betriebssystem nutzen sie anstatt Virtualbox entweder Hyper-V, kvm, xhyve oder Parallels als Virtualisierungssoftware.
 
 ## Aufgaben
 
 ### Aufgabe 1: Vagrant und (Virtualbox)
 
-Bei dieser Aufgabe geht es darum den Technologie Stack aus NGINX, PHP und MySQL innerhalb einer virtuellen Maschine
-mit Hilfe von Vagrant hochzufahren.
+Bei dieser Aufgabe geht es darum den Technologie-Stack aus NGINX, PHP und MySQL innerhalb einer virtuellen Maschine mit Hilfe von Vagrant hochzufahren.
 
-(1) In einem ersten Schritt legen sie zunächst mit Vagrant eine Ubuntu 16.04 Basis Box an.
+(1) In einem ersten Schritt legen sie zunächst mit Vagrant eine Ubuntu 20.04 Basis Box an.
 
 ```bash
-$ vagrant init hashicorp/bionic64
+$ vagrant init ubuntu/focal64
 ```
 
-Editieren sie das `Vagrantfile` und weisen sie der virtuellen Maschine anschließend 1024MB Hauptspeicher zu.
+Editieren sie das `Vagrantfile` und weisen sie der virtuellen Maschine anschließend 1024 MB Hauptspeicher zu.
 ```ruby
  config.vm.box_check_update = false
  config.vm.provider "virtualbox" do |vb|
      vb.memory = "1024"
  end
-  ```
+```
 
 Fahren sie anschließend die VM hoch (dauert etwas) und melden sie sich per SSH an.
 
@@ -40,12 +38,12 @@ erneut das `Vagrantfile`. Leiten sie außerdem den Port `80` des Gast-Betriebssy
 Hostbetriebssystem weiter.
 
 ```ruby
-config.vm.network "forwarded_port", guest: 80, host: 18080, host_ip: "127.0.0.1"
+config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
 config.vm.provision "shell", inline: <<-SHELL
   sudo apt-get update
-  sudo apt-get -y install nginx
-  sudo service nginx start
+  sudo apt-get install -y  nginx
+  sudo systemctl start nginx
 SHELL
 ```
 
@@ -61,10 +59,11 @@ $ vagrant reload --provision
 (3) Installieren sie nun ähnlich zu Schritt (2) die mySQL Server und Client Pakete mittels Shell Provisioner in der VM.
 
 ```bash
+# Mysql
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password secret'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password secret'
-sudo apt-get -y install mysql-server mysql-client
-sudo service mysql start
+sudo apt-get install -y mysql-server mysql-client
+sudo systemctl start mysql
 ```
 
 Melden sie sich nach der Installation per SSH an und prüfen sie ob mySQL läuft.
@@ -78,18 +77,22 @@ $ mysql -u root -p
 Provisionierung und installieren sie die Pakete `php5-fpm` und `php5-mysqlnd`.
 
 ```bash
-sudo apt-get -y install php5-fpm php5-mysqlnd
-sudo service php5-fpm start
+# PHP
+sudo apt-get install -y php php-fpm php-mysql
+sudo sed -i -e "s/;\?cgi.fix_pathinfo\s*=\s*1/cgi.fix_pathinfo = 0/g" /etc/php/7.4/fpm/php.ini
+sudo systemctl start php7.4-fpm
 ```
 
 Im nächsten Schritt kopieren sie die folgenden Dateien von Host in das Gast-Betriebssystems und starten Nginx neu.
+Die Dateien müssen Sie evtl. vorher in das Verzeichnis kopieren, in dem das Vagrantfile liegt.
 
 ```bash
+sudo mkdir -p /usr/share/nginx/www
 sudo cp /vagrant/vagrant/default /etc/nginx/sites-available/default
 sudo cp /vagrant/vagrant/info.php /usr/share/nginx/www/info.php
 sudo cp /vagrant/vagrant/index.html /usr/share/nginx/www/index.html
 
-sudo service nginx reload
+sudo systemctl reload nginx
 ```
 
 Führen sie die Provisionierung durch prüfen sie dass die `info.php` erfolgreich aufgerufen werden kann.
