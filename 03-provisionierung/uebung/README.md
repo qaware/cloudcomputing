@@ -325,7 +325,7 @@ Provisionierung aus.
 Stellen Sie sicher, dass Sie über Docker den Zugriff auf die gemounteten Dateien erlauben.
 
 
-## Übung 3: Packer
+## Übung 3: Packer (Optional)
 
 ### Schritt 1: Packer installieren
 Installieren Sie Packer, indem Sie die Anleitung auf https://learn.hashicorp.com/tutorials/packer/getting-started-install
