@@ -316,7 +316,7 @@ angezeigt wird.
 ### Schritt 7: Skalieren der Managed Nodes
 
 Skalieren Sie die Managed Nodes auf 3. 
-Nutzen Sie hierfür 'docker-compose scale'.
+Nutzen Sie hierfür das docker-compose Kommando 'up' mit der Option '--scale' (siehe https://docs.docker.com/compose/reference/up/).
 
 Ändern Sie die Datei 'hosts' so ab, dass alle 3 Managed Nodes provisioniert werden können und führen Sie die 
 Provisionierung aus.
