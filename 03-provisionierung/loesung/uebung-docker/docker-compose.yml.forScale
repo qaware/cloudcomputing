@@ -5,7 +5,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
     ports:
-      - "8080:80"
+      - "8080-8082:80"

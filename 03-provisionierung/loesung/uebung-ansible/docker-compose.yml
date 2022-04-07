@@ -12,13 +12,12 @@ services:
       - "80"
     
   ansible-node:
-    image: "willhallonline/ansible:2.9-alpine"
+    image: "willhallonline/ansible:2.9-alpine-3.13"
     networks:
       - cloudcomputing
     depends_on:
       - managed-node
     volumes:
-    - "./ssh/config:/root/.ssh/config"
     - "./ansible/hosts:/etc/ansible/hosts"
     - "./playbooks:/root/playbooks"
 
