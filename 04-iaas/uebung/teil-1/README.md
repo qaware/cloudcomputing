@@ -19,7 +19,7 @@ In dieser Übung erzeugen Sie eine einfache IaaS Architektur mit der AWS Web Kon
 
 Hinweise:
 * Folgen Sie der Anleitung, sofern nicht anders genannt, belassen Sie andere Einstellungen unverändert.
-* Stellen Sie sicher, dass die AWS Region _US East (North Virginia) eu-central-1_ (rechter, oberer Bildschirmrand) ist und die Sprache auf _English_ (linker, unterer Bildschirmrand) steht.
+* Stellen Sie sicher, dass die AWS Region _eu-central-1 (Frankfurt)_ (rechter, oberer Bildschirmrand) ist und die Sprache auf _English_ (linker, unterer Bildschirmrand) steht.
 * Wichtig wenn Sie Sich einen Account mit anderen Übungsteilnehmern teilen: Denken Sie sich einen eindeutigen Namen für die Benennung/Tags Ihrer Ressourcen aus. Da alle Teilnehmer den gleichen Account verwenden werden ist davon auszugehen, dass wenn Sie ihre Ressourcen nicht wiedererkennbar bennenen Sie und Ihre Kommolitonen Schwierigkeiten haben werden Ihre Ressourcen wiederzufinden. Sie können beispielsweise eine Kombination aus Ihrem echten Namen verwenden z.b. `akrause` wenn ihr Name _Alex Krause_ ist oder Sie wählen einen beliebigen anderen Namen wie z.B. `anonymeameise`. Verwenden Sie bei der Namenswahl keine Sonderzeichen außer `-` und vermeiden Sie Umlaute.
 
 #### Ein VPC erstellen
