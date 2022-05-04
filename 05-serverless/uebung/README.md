@@ -1,21 +1,18 @@
 # Übung: Serverless Computing mit FaaS
 
-In dieser Übung wollen wir verschiedene FaaS Frameworks kennenlernen.
+In dieser Übung wollen wir FaaS auf AWS sowie verschiedene FaaS Frameworks auf Kubernetes kennenlernen.
 
-## Kubeless
+## FaaS auf AWS: AWS Lambda mit Terraform
 
-Diese Übung beschäftigt sich mit Kubeless (https://kubeless.io), einem Kubernetes
-Native Serverless Framework.
+Um AWS Lambda aus dem Web ohne Zugriff auf die AWS API aufzurufen, ist es nötig, den API Gateway 
+zu nutzen. Folgen Sie dazu dem folgenden Tutorial:
 
-1. Für die ersten Gehversuche, verwenden sie das Katacoda Tutorial von Kubeless:
-https://www.katacoda.com/kubeless/
+https://learn.hashicorp.com/tutorials/terraform/lambda-api-gateway
 
-2. Installieren sie nun Kubeless lokal, entweder per Minikube oder mittels
-Kubernetes von Docker. Folgen sie dabei der offiziellen Anleitung: https://kubeless.io/docs/quick-start/
+Hinweis: Dieses Tutorial zeigt auch die typische Organisation von Konfiguration, Variablen und Ressourcen in 
+Terraform-Modulen - dies kann für die Arbeit zur ZV nützlich sein.
 
-3. Schreiben und deployen sie nun eine einfache Funktion in einer Sprache ihrer Wahl.
-Für eine Beschreibung der verschiedenen Runtimes nutzen sie folgende Informationen:
-https://github.com/kubeless/kubeless/blob/master/docs/runtimes.md
+Zusatzaufgabe: Wechseln Sie die eingesetzte Sprache, z.B. auf Python.
 
 ## OpenFaaS
 
@@ -35,11 +32,6 @@ Dort können sie eine einfache Funktion in in Python schreiben.
 Diese Übung beschäftigt sich mit dem Serverless Framework (https://www.serverless.com/open-source/),
 einem CLI Tool zur einfachen und schnellen Entwicklung von von Event-getriebenen Funktionen.
 
-Aufbauend auf den Übungen zu Kubeless führen sie die Übungen erneut mit Hilfe
-des Serverless Frameworks aus.
+Schreiben und deployen sie eine einfache Funktion in einer Sprache ihrer Wahl.
 
-### Kubeless
-
-Eine Übersicht zum Kubeless Provider finden sie hier: https://serverless.com/framework/docs/providers/kubeless/
-Folgen sie der Quickstart Anleitung, und wenden sie diese auf die in der Kubeless
-Übung erstellte Funktion an.
+Zusatzaufgabe: Deployen Sie die gleiche Funktion auf Minikube mit z.B. Knative.
