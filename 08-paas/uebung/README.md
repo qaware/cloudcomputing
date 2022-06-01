@@ -28,3 +28,8 @@ Ihre Anwendung zu konfigurieren.
 
 Verwenden Sie [Heroku Postgres](https://www.heroku.com/postgres), um Ihrer Anwendung eine Datenbank zu spendieren.
 Programmieren Sie einen einfachen Anwendungsfall, der diese Datenbank verwendet.
+
+## Kür: Hephy (a.k.a. Deis) oder Dokku
+
+Nutzen Sie [Hephy](https://github.com/teamhephy/workflow) oder wahlweise [Dokku](https://dokku.com/)
+um Ihre Applikation auf einen lokalen Minikube o.ä. zu deployen.
