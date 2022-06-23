@@ -1,5 +1,9 @@
-# Übung 1: MapReduce
+# BigData - Übung
+
+## Übung 1: MapReduce
+
 Recherchieren Sie, wie MapReduce funktioniert, zum Beispiel indem Sie folgendes Video anschauen:
+
 [MapReduce](https://www.youtube.com/watch?v=cvhKoniK5Uo).
 
 Listen Sie die Vor- und Nachteile vom beschriebenen Vorgehen auf. Wann macht MapReduce Sinn, wann eher nicht?
@@ -17,71 +21,30 @@ O Tannenbaum, o Tannenbaum,
 wie grün sind deine Blätter!
 ```
 
+## Übung 2: Verteilte Berechnung mit Apache Ignite
 
-# Übung 2: Verteilte Berechnung mit Apache Spark
+Hinweis: Diese Übung wurde mit IntelliJ erstellt und lässt sich am besten damit öffnen, funktioniert aber auch mit anderen Editoren. 
+Öffnen Sie dazu am besten nur das Verzeichnis `uebung`. Wechseln sie auch auf Ihrer Shell in das Verzeichnis.
 
-Apache Spark ist ein Framework, um Berechnungen in einem Cluster zu verteilen.
-Damit erlaubt Apache Spark große Datenmengen zu verarbeiten, wozu ein einzelner Rechner üblicherweise nicht in der Lage ist.
+Für alle folgenden Übungen muss ein lokales Ignite-Cluster laufen. Starten Sie es mit `docker-compose build && docker-compose up`.
 
-## Vorbereitung
-* Öffnen sie das Vorlagen-Verzeichnis der Übung als Projekt innerhalb der Entwicklungsumgebung.
-* Führen Sie das *Maven Goal* `clean install` aus.
-* Öffnen sie die Website von Apache Spark (http://spark.apache.org/) für Recherchezwecke.
+Wenn Änderungen am Code nicht wie erwartet ins Cluster deployed werden, kann es erforderlich sein, das Cluster neu zu starten.
 
-## Ziel
-Wir führen verschiedene Berechnungen und Analysen mit Apache Spark durch:
+### Testen ob Apache Ignite lokal funktioniert.
 
-1. Word Count: Wir zählen die Auftreten einzelner Wörter.
-2. Log-Analyse: Wir analysieren eine Logdatei, zählen die Queries und summieren die Laufzeiten.
+* Öffnen sie die Klasse `HelloWorld` und führen sie diese aus. Dies ist ein kleiner Test.
+* Wenn der Test erfolgreich durchgelaufen ist (keine Fehler) haben sie bereits einen Task in Apache Ignite ausgeführt. 
+* Versuchen sie, den Ignite-Cache auf dem Cluster auszugeben.
 
-Diese Berechnungen führen wir zunächst lokal und anschließend in einem Cluster aus.
-Um Apache Spark lokal zu starten, muss der Spark Master auf *local* gesetzt werden.
-```
-  SparkConf conf = new SparkConf()
-      .setAppName("Cloud Computing")
-      .setMaster("local[4]"); //four threads
-```
+### Word Count mit Apache Ignite und MapReduce
 
-Um die Berechnung in einem Spark-Cluster auszuführen reicht es die Spark Konfiguration etwas anzupassen.
-Hierzu muss jedoch ein Cluster verfügbar sein ;-)
-```
-  SparkConf conf = new SparkConf()
-      .setAppName("Cloud Computing")
-      .setMaster("spark://{IP}:7077");
-```
+* Öffnen sie im Editor die Klassen `WordCountMapReduce` und `WordCountSplitAdapter` und implementieren sie alle Code-Abschnitte, die mit einem `TODO`-Kommentar versehen sind.
+* Führen Sie `WordCountMapReduce` aus. Untersuchen sie die Ausführungszeiten in der Ausgabe? Was sehen Sie? Woran liegt das?
+* Was ändert sich, wenn Sie die Partitionsgröße mit der Konstante `PARTITION_SIZE` in der Klasse `WordCountSplitAdapter` verändern?
 
-![Zielbild](zielbild.png)
+### Word Count mit Apache Ignite und Streaming
 
-## Wichtige Adressen beim Arbeiten mit Apache Spark
-### Cluster
-* Spark-Master URL: spark://{IP}:7077
-* Spark-Master UI: http://{IP}:8080
-* Spark-Worker-1 UI: http://{IP}:8081
-* Spark-Worker-2 UI: http://{IP}:8082
-
-### Lokal
-* Spark Job UI: http://{IP}:4040
-* Spark lokal starten über, z.B.: local[4], wobei 4 die Anzahl der gestarteten Threads angibt.
-
-## Aufgaben
-1) Testen ob Apache Spark lokal funktioniert.
-
-* Öffnen sie im Editor die Klasse *SparkInProcessTester.java* und führen sie diese aus. Dies ist ein kleiner Test.
-* Wenn der Test erfolgreich durchgelaufen ist (keine Fehler) haben sie bereits Apache Spark ausgeführt. 
-* Gegebenfalls müssen Sie folgende Umgebungsvariablen setzen:
-   * SPARK_MASTER_IP=127.0.0.1 
-   * SPARK_LOCAL_IP=127.0.0.1
-
-2) Word Count mit Apache Spark und Java 8
-
-* Öffnen sie im Editor die Klassen *SparkWordCount.java* und *JavaWordCount.java* und implementieren sie alle Code-Abschnitte, die mit einem `TODO` Kommentar versehen sind.
-* Während der Entwicklung sollten sie die Anwendung lokal ausführen (Debug, usw. möglich).
-* Führen *SparkWordCount.java* und anschließend *JavaWordCount.java* lokal aus. Untersuchen sie die Ausführungszeiten in der Ausgabe? Was sehen Sie? Woran liegt das?
-* Schauen sie sich auch die Job-Informationen unter http://localhost:4040 an. Was sehen sie?
-
-3) Log-Analyse mit Apache Spark
-
-* Öffnen sie im Editor die Klassen *SparkAnalyzeLog.java* und implementieren sie alle Code-Abschnitte, die mit einem `TODO` Kommentar versehen sind.
-* Während der Entwicklung sollten sie die Anwendung lokal ausführen (Debug, usw. möglich).
-* Führen Sie die fertige Anwendung aus. Wie viele Requests sind im Log? Wie lange benötigen diese?
-* Schauen sie sich auch die Job-Informationen unter http://localhost:4040 an. Was sehen sie?
+* Öffnen sie im Editor die Klassen `WordCountStreaming` und `WordStreamCounter` und implementieren sie alle Code-Abschnitte, die mit einem `TODO`-Kommentar versehen sind.
+* Führen Sie `WordCountStreaming` aus. Was passiert jetzt?
+* Führen Sie `WordStreamCounter` aus. Wie sind die erhaltenen Daten zu interpretieren?
+* Was ändert sich, wenn Sie den Wert der Konstante `CACHE_SLIDING_WINDOW_SECONDS` in der Klasse `IgniteConfigurationProvider` erhöhen? 

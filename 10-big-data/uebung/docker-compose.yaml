@@ -1,0 +1,25 @@
+version: "3"
+services:
+  ignite:
+    build: "src/main/ignite"
+    entrypoint:
+      - "/usr/share/apache-ignite/bin/ignite.sh"
+      - "/config/ignite.xml"
+    environment:
+      - "JVM_OPTS=-Xms1g -Xmx1g -Djava.net.preferIPv4Stack=true"
+    ports:
+      - "8787:8787"
+      - "11211:11211"
+      - "47100:47100"
+      - "47500:47500"
+      - "49112:49112"
+      - "49113:49113"
+      - "49114:49114"
+    volumes:
+      - "./src/main/ignite/config:/config"
+    networks:
+      - ignitenet
+
+networks:
+  ignitenet:
+    driver: bridge
