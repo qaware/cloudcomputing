@@ -36,7 +36,7 @@ Nutzen Sie hierfür ein einfaches HTML, dass eine "Hello World" Begrüßung ausg
 
 Legen Sie ein Dockerfile an.
 Führen Sie folgende Schritte aus:
-- Nutzen Sie nginx:1.19-alpine als Basisimage.
+- Nutzen Sie nginx:1.23-alpine als Basisimage.
 - Kopieren Sie ihre 'index.html' nach '/usr/share/nginx/html/', 
 indem Sie das Docker Command 'COPY' nutzen.
 - Exponieren Sie den Port 80.
@@ -48,7 +48,7 @@ sondern im Vordergrund läuft.
 <summary>Hinweis, falls Sie nicht weiterkommen:</summary>
 
 ```
-FROM nginx:1.19-alpine
+FROM nginx:1.23-alpine
 COPY index.html /usr/share/nginx/html
 EXPOSE 80
 CMD nginx -g 'daemon off;'
@@ -328,23 +328,23 @@ Stellen Sie sicher, dass Sie über Docker den Zugriff auf die gemounteten Dateie
 ## Übung 3: Packer (Optional)
 
 ### Schritt 1: Packer installieren
-Installieren Sie Packer, indem Sie die Anleitung auf https://learn.hashicorp.com/tutorials/packer/getting-started-install
+Installieren Sie Packer, indem Sie die Anleitung auf https://developer.hashicorp.com/packer/tutorials/docker-get-started/get-started-install-cli
 befolgen.
 
 ### Schritt 2: Packer kennenlernen
-Machen Sie sich mit Packer vertraut, indem Sie sich die Beispiele auf https://learn.hashicorp.com/tutorials/packer/getting-started-build-image?in=packer/getting-started
+Machen Sie sich mit Packer vertraut, indem Sie sich die Beispiele auf https://developer.hashicorp.com/packer/tutorials/docker-get-started/docker-get-started-build-image
 anschauen.
 
 Optional: bauen Sie eins der Beispiele lokal mit Packer.
 
 ### Schritt 3: Docker Image mit Packer bauen
-Lesen Sie die Doku zum Bauen von Docker Images mit Packer: https://www.packer.io/docs/builders/docker
+Lesen Sie die Doku zum Bauen von Docker Images mit Packer: https://developer.hashicorp.com/packer/plugins/builders/docker
 
 Legen Sie ein Packer Template an.
 Verwenden Sie den Docker Builder von Packer, um ein Nginx Image mit.
 einer eigenen Welcome Seite zu bauen.
 
-Verwenden Sie als Basisimage "nginx:1.19-alpine".
+Verwenden Sie als Basisimage "nginx:1.23-alpine".
 
 Exponieren Sie Port 80 im Image und führen Sie das CMD "nginx -g daemon off;"
 zum Start von Nginx aus.
