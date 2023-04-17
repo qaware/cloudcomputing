@@ -19,7 +19,7 @@ In dieser Übung erzeugen Sie eine einfache IaaS Architektur mit der AWS Web Kon
 
 Hinweise:
 * Folgen Sie der Anleitung, sofern nicht anders genannt, belassen Sie andere Einstellungen unverändert.
-* Stellen Sie sicher, dass die AWS Region _eu-central-1 (Frankfurt)_ (rechter, oberer Bildschirmrand) ist und die Sprache auf _English_ (linker, unterer Bildschirmrand) steht.
+* Stellen Sie sicher, dass die AWS Region _eu-central-1 (Frankfurt)_ (rechter, oberer Bildschirmrand) ist und die Sprache auf _English_ (linker, unterer Bildschirmrand) steht. Falls nach der Anmeldung die Sprache weiterhin Deutsch ist, melden Sie sich wieder ab und wählen Sie unterhalb der Login-Maske die Sprache Englisch aus und melden Sie sich erneut an.
 * Wichtig wenn Sie Sich einen Account mit anderen Übungsteilnehmern teilen: Denken Sie sich einen eindeutigen Namen für die Benennung/Tags Ihrer Ressourcen aus. Da alle Teilnehmer den gleichen Account verwenden werden ist davon auszugehen, dass wenn Sie ihre Ressourcen nicht wiedererkennbar bennenen Sie und Ihre Kommolitonen Schwierigkeiten haben werden Ihre Ressourcen wiederzufinden. Sie können beispielsweise eine Kombination aus Ihrem echten Namen verwenden z.b. `akrause` wenn ihr Name _Alex Krause_ ist oder Sie wählen einen beliebigen anderen Namen wie z.B. `anonymeameise`. Verwenden Sie bei der Namenswahl keine Sonderzeichen außer `-` und vermeiden Sie Umlaute.
 
 #### Ein VPC erstellen
@@ -39,7 +39,7 @@ In diesem Teil der Übung erstellen Sie ein virtuelles Netzwerk, mit einem einze
         * Wählen Sie als VPC ihr gerade erstelltes Netz.
         * Wählen Sie als _Availability Zone_ die Zone _eu-central-1a_.
         * Wählen Sie den Adressbereich kleiner als den Ihres VPC z.B. die Hälfte: `10.0.0.0/17`.
-        * Nach der Erstellung, markieren Sie ihr Netz und klicken Sie nun bei _Actions_ die Option _Modify auto-assign IP settings_ und aktivieren Sie den Haken bei _Auto-assign IPv4_.
+        * Nach der Erstellung, markieren Sie ihr Netz und klicken Sie nun bei _Actions_ die Option _Edit subnet settings_ und aktivieren Sie den Haken bei _Enable auto-assign public IPv4 address_.
     * b) Wiederholen Sie die Schritte in 2a um ein Netz in _eu-central-1b_ mit dem Adressbereich `10.0.128.0/17` zu erzeugen.
 3. Erzeugen Sie nun einen Zugang zum Internet indem Sie in der Seitenleiste auf _Internet Gateways_ klicken und dann _Create Internet Gateway Klicken_.
     * Verwenden Sie wieder Ihren eindeutigen Namen.
