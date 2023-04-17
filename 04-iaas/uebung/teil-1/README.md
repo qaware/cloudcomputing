@@ -106,7 +106,7 @@ In diesem Teil der Übung erstellen Sie eine AutoScaling Gruppe, welche Ihnen er
 3. Gehen Sie nun in der Seitenleiste auf den Eintrag _Auto Scaling Groups_ und klicken danach auf _Create Auto Scaling group_.
     * _Step 1_: Verwenden Sie wieder Ihren eindeutigen Namen. Wäheln Sie ihr Launch Template.
     * _Step 2_: Wählen Sie die von Ihnen erzeugten Komponenten aus: VPC, **beide** Subnets.
-    * _Step 3_: Zum verwenden Ihrer Target Group setzen Sie bei Schritt _Load Balancing_ den Haken bei _Enable Load Balancing_ und wählen Ihre Target Group. Setzen Sie auf dieser Seite auch den Haken bei _ELB_ unter _Health Checks_.
+    * _Step 3_: Zum verwenden Ihrer Target Group setzen Sie bei Schritt _Load Balancing_ den Haken bei _Attach to an existing load balancer_ und wählen Ihre Target Group. Setzen Sie auf dieser Seite auch den Haken bei _ELB_ unter _Health Checks_.
     * _Step 4_:Setzen Sie die maximale Kapazität auf `4`, die minimale auf `0` und die gewünschte auf `2`.
     * Schließen Sie den Vorgang nun ab. Nach Erstellung sollten nun nach einiger Zeit zwei Instanzen nach Ihren Spezifikationen erzeugt werden.
 
