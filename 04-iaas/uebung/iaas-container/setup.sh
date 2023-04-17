@@ -3,6 +3,9 @@ set -euxo pipefail
 
 apt-get update 
 DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
+    wget \
+    gnupg \
+    software-properties-common \
     python3 \
     python3-pip \
     python-is-python3 \
@@ -11,15 +14,13 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
     curl \
     groff
 
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" > /etc/apt/sources.list.d/hashicorp.list
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y -q terraform
 
 mkdir bin 
 cd bin 
-
-
-curl "https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip" -o "terraform_0.13.5_linux_amd64.zip" 
-unzip terraform_0.13.5_linux_amd64.zip
-rm terraform_0.13.5_linux_amd64.zip
-./terraform -install-autocomplete
 
 git clone https://github.com/aws/aws-ec2-instance-connect-cli.git 
 cd aws-ec2-instance-connect-cli 
@@ -38,6 +39,5 @@ cat >> /root/.bashrc <<-EOF
     alias mssh=/root/bin/aws-ec2-instance-connect-cli/bin/mssh
     export AWS_DEFAULT_REGION=eu-central-1
     complete -C /usr/local/bin/aws_completer aws
-    alias terraform=/root/bin/terraform
     alias configure=/root/bin/configure.sh
 EOF
