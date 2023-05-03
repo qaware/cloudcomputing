@@ -28,7 +28,11 @@ pip3 install -r requirements.txt
 pip3 install -e . 
 cd - 
 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
+if [ "$(uname -m)" = "aarch64" ]; then
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+else
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+fi
 unzip awscliv2.zip 
 rm awscliv2.zip 
 ./aws/install
