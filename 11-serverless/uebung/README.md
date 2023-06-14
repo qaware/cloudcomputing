@@ -27,6 +27,12 @@ Sie können mit dem Abschnitt "Install the faas-cli" beginnen.
 https://github.com/openfaas/workshop/blob/master/lab3.md
 Dort können sie eine einfache Funktion in in Python schreiben.
 
+Achtung:
+Da DockerHub nicht mehr kostenfrei nutzbar ist, müssen Sie das GitLab-LRZ verwenden, um Ihre Docker Images zu speichern.
+Sie können dafür ein individuelles Projekt anlegen, auf dem Sie dann die "Docker Registry" in den Einstellungen aktivieren.
+Nutzen Sie dann https://docs.openfaas.com/reference/private-registries/ mit einem neuen GitLab-Token, so dass OpenFaaS
+auch auf diese Registry zugreifen kann.
+
 ## Serverless Framework
 
 Diese Übung beschäftigt sich mit dem Serverless Framework (https://www.serverless.com/open-source/),
