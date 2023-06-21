@@ -9,9 +9,7 @@ Jenkins ist ein Build Server, mit dem Sie Ihre Pipelines konfigurieren und ausf�
 Sonarqube ist ein Tool, um statische Code-Analysen durchzuführen, das Sie innerhalb Ihrer Pipelines
 verwenden können.
 
-### Variante 1: Lokal mit Docker Compose
-
-#### Sonarqube
+### Sonarqube
 Folgen Sie der Anleitung unter https://docs.sonarqube.org/latest/setup/get-started-2-minutes/
 um lokal Sonarqube als Docker Container auszuführen.
 
@@ -29,26 +27,13 @@ Sie können hierzu eines Ihrer privaten Projekte nutzen, oder z.B. Ihre Lösung 
 
 Schauen Sie sich das Ergebnis der Analyse über die Sonarqube UI an.
 
-#### Jenkins
+### Jenkins
 Folgen Sie den Anleitungen auf https://www.jenkins.io/solutions/docker/, um Jenkins lokal als Docker Container auszuführen
 und dort Build Pipelines einzurichten.
 
 Interessant sind vor allem die Schritte
 * [Jenkins+Docker Tutorial](https://medium.com/@gustavo.guss/quick-tutorial-of-jenkins-b99d5f5889f2) um Jenkins lokal zu starten
 * im Anschluss [Build Docker Images with Jenkins](https://medium.com/@karthi.net/docker-tutorial-build-docker-images-using-jenkins-d2880e65b74)
-
-
-### Variante 2: Katacoda Online Tutorials
-
-Lernen Sie Jenkins und Sonarqube kennen, indem Sie die folgenden Katacoda Online Tutorials durcharbeiten:
-
-* Building Docker Images Using Jenkins:
-https://www.katacoda.com/courses/cicd/build-docker-images-using-jenkins
-Als (vom Aufgabensteller unbeabsichtigte) Zusatzaufgabe sollten Sie zuerst den Jenkins auf den neuesten Stand bringen,
-und alle Plugins updaten. Beachten Sie dabei die Menge an CVEs.
-
-* Sonarqube on Kubernetes: 
-https://www.katacoda.com/courses/cicd/sonarqube
 
 ## Übung 2: DevOps Topologies
 
