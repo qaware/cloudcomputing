@@ -9,8 +9,8 @@ verwendet wird: https://gitlab.lrz.de/hm/devbox/-/wikis/Releases
 ## Installationen
 
 1. Git ([Installation](https://git-scm.com/downloads))
-1. Ein Java 11 JDK (z.B. [Adoptium](https://adoptium.net/), ob HotSpot oder OpenJ9 spielt keine Rolle)
-1. Eine Java IDE ihrer Wahl, z.B. [IntelliJ Community Edition](https://www.jetbrains.com/de-de/idea/download/)
+1. Ein Java 21 JDK (z.B. [Adoptium](https://adoptium.net/))
+1. Eine Java IDE ihrer Wahl, z.B. [IntelliJ Community Edition](https://www.jetbrains.com/de-de/idea/download/other.html)
 1. Docker ([Windows](https://docs.docker.com/docker-for-windows/install/), [Mac](https://docs.docker.com/docker-for-mac/install/), [Linux](https://docs.docker.com/engine/install/))
 1. Kubectl [Anleitung](https://kubernetes.io/docs/tasks/tools/)
 
